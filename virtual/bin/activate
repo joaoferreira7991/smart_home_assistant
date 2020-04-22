@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/pi/repos/clone/flask-app-jf/flask-app/virtual"
+VIRTUAL_ENV="/home/pi/repos/smart_home_assistant/virtual"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

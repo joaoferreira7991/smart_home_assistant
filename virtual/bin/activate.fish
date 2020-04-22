@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/pi/repos/clone/flask-app-jf/flask-app/virtual"
+set -gx VIRTUAL_ENV "/home/pi/repos/smart_home_assistant/virtual"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
