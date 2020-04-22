@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        {% if title %}
+            <title> {{ title }} - flask-app </title>
+        {% else %}
+            <title> Welcome to flask-app </title>
+        {% endif %}
+    </head>
+    <body>
+        <div> flask-app: 
+            <a href="index">Home</a>
+            {% if current_user.is_anonymous %}
+                <a href="sign_in">Sign in</a>
+            {% else %}
+                <a href="sign_out">Sign out</a>
+            {% endif %}
+            <a href="sign_up">Sign up</a>
+        </div>
+        <hr>
+        {% block content %}
+        {% endblock content %}
+
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class=flashes>
+                        {% for message in messages %}
+                            <li> {{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+    </body>
+</html>

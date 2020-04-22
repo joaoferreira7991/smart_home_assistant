@@ -1,0 +1,2 @@
+FLASK_APP=smart_home_assistant.py
+FLASK_ENV=development

@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "./flask-app/virtual/bin/python3.8",
+    "files.associations": {
+        "*.html": "html"
+    },
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint-flask"
+    ],
+}
