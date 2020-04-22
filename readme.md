@@ -8,7 +8,7 @@ After cloning the repository, delete the virtual folder. Then, run
 ```bash
 source setup.sh
 ```
-which will create the new virtual environment (folder) and install the dependencies necessary.
+which will create the new virtual environment (folder) and install the dependencies necessary, from the requirements.txt file.
 
 ## Daily Scrum
 
