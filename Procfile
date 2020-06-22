@@ -1,1 +1,1 @@
-web: gunicorn smart-home-assistant:app
+web: flask db upgrade; gunicorn smart-home-assistant:app
