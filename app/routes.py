@@ -44,7 +44,7 @@ def sign_up():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = UserSignUpForm()
-    if form.validate():
+    if form.is_submitted():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
