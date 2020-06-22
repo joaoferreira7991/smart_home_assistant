@@ -27,6 +27,9 @@
                 {% endfor %}      
             </div>        
             {{ form.submit() }}
+            {% for error in form.errors %}
+                <span style='color: red;'> [{{ error }}]</span>
+            {% endfor %}  
         </form>
         <h4>Already Signed up? <a href="{{ url_for('sign_in') }}">Click to Sign in!</a></h4>        
     </div> 
