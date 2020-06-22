@@ -2,5 +2,66 @@
 
 {% block content %}
     <h1>Welcome to the smart_house assistant.</h1>
-    <h1>Hello, {{ current_user.username }}!</h1>
+
+    {% if user.home_id == None %}
+        <h1>You must create a new house.</h1>
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.name.label }} <br>
+                {{ form.name(size=30) }}                
+            </p>
+            <p>
+                {{ form.submit() }}
+            </p>
+        </form>
+    {% else %}
+        <div>
+            <h3>Username: {{ user.username }}</h3>
+            <h3>Email: {{ user.email }}</h3>            
+        </div>
+        <br>
+        <div>
+            <h1>{{ home.name }}</h1>
+            <h3>Sensors</h3>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>                
+                {% for sensor in sensors %}
+                    <tr>
+                        <td>{{ sensor.id }}</td>
+                        <td>{{ sensor.name }}</td>                          
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <script type="text/javascript">
+                function toggle_form_sensor()  {
+                    if (document.getElementById("toggle_form_sensor").style.visibility == "visible")
+                        document.getElementById("toggle_form_sensor").style.visibility = "hidden";
+                    else
+                    document.getElementById("toggle_form_sensor").style.visibility = "visible";
+                }
+            </script>
+            <button onclick="toggle_form_sensor()">Add a Sensor</button>
+            <div id="toggle_form_sensor" class="sensor_form" style="visibility: hidden;">
+                <form action="" method="POST" novalidate>
+                    {{ form_sensor.hidden_tag() }}
+                        <p>
+                            {{ form_sensor.name.label }} <br>
+                            {{ form_sensor.name(size=30) }}
+                            {% for error in form_sensor.name.errors %}
+                                <span style='color: red;'> [{{ error }}]</span>
+                            {% endfor %}                                          
+                        </p>
+                        <p>
+                            {{ form_sensor.submit() }}
+                        </p>
+                </form>
+            </div>                        
+        </div>
+
+    {% endif %}
 {% endblock content %}

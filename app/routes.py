@@ -1,27 +1,43 @@
 from app import app, db
-from app.models import User
-from app.forms import UserSignUpForm, UserSignInForm
+from app.models import User, Home, Sensor
+from app.forms import UserSignUpForm, UserSignInForm, HomeCreateForm, SensorCreateForm
 from flask import redirect, url_for, request, render_template, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
-def index():
-    return render_template('index.html', title='Index')
-
-@app.route('/add-student', methods = ['GET' , 'POST'])
-def add_student():
-    form = StudentForm()
-    if request.method == 'POST':
-        student = Students(name=form.name.data, age=form.age.data,
-                    address=form.address.data, cellphone=form.cellphone.data,
-                    email=form.email.data)
-        db.session.add(student)
+def index():      
+    user = User.query.filter_by(username=current_user.username).first()
+    home = Home.query.filter_by(id=user.home_id).first()
+    sensors = Sensor.query.filter_by(home_id=user.home_id).all()
+    form_sensor = SensorCreateForm()    
+    form = HomeCreateForm()
+    if form_sensor.validate_on_submit():
+        sensor = Sensor(name=form_sensor.name.data)
+        sensor.home_id = user.home_id
+        db.session.add(sensor)
         db.session.commit()
-        flash('Student added with success!')
-    return render_template('add-student.html', title='Add Student', form = form)
+        flash('Sensor created with success!')
+        return redirect(url_for('index'))
+    if form.validate_on_submit():
+        home = Home(name=form.name.data)
+        db.session.add(home)
+        db.session.commit()
+        home = Home.query.filter_by(name=form.name.data).first()
+        user = User.query.filter_by(username=current_user.username).first()
+        user.home_id = home.id
+        db.session.commit()
+        flash('Home created with success!')
+        return redirect(url_for('index'))
+
+    return render_template('index.html', title='Index', form=form, form_sensor=form_sensor, user=user, home=home, sensors=sensors)
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    pass
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
@@ -44,12 +60,12 @@ def sign_in():
     form = UserSignInForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user is None: 
+        if user is None:
             flash('Invalid username')
-            return redirect(url_for('sign_in'))   
+            return redirect(url_for('sign_in'))
         if not user.check_password(form.password.data):
             flash('Invalid password')
-            return redirect(url_for('sign_in'))             
+            return redirect(url_for('sign_in'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':

@@ -1,6 +1,15 @@
 from app import app, db
-from app.models import User
+from app.models import User, Home, Sensor, Actuator, Reading
+from app.sensors import dht11
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db':db, 'User':User}
+    return {
+        'db':db, 
+        'User':User,
+        'Home':Home,
+        'Sensor':Sensor,
+        'Actuator':Actuator,
+        'Reading':Reading,
+        'dht11':dht11
+        }

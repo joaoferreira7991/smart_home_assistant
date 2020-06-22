@@ -1,31 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Sign in</h1>
-    <form action='' method='POST' novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=30) }}
-            {% for error in form.username.errors %}
-                <span style='color: red;'> [{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=30) }}
-            {% for error in form.password.errors %}
-                <span style='color: red;'> [{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.remember_me() }} {{ form.remember_me.label }}
-        </p>
-        <p>
+    <div class=formwrapper>
+        <h2 class="title">Sign in</h2>
+        <form action='' method='POST' novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-field">
+                {{ form.username.label }} <br>
+                {{ form.username(size=30) }}
+                {% for error in form.username.errors %}
+                    <span style='color: red;'> [{{ error }}]</span>
+                {% endfor %}            
+            </div>        
+            <div class="form-field">
+                {{ form.password.label }} <br>
+                {{ form.password(size=30) }}
+                {% for error in form.password.errors %}
+                    <span style='color: red;'> [{{ error }}]</span>
+                {% endfor %}         
+            </div>        
+            <div class="form-field">
+                {{ form.remember_me() }} {{ form.remember_me.label }}          
+            </div>
             {{ form.submit() }}
-        </p>
-    </form>
-
-    <p>New User? <a href="{{ url_for('sign_up') }}">Click to Sign up!</a></p>
+        </form>
+        <h4>New User? <a href="{{ url_for('sign_up') }}">Click to Sign up!</a></h4>        
+    </div>    
 {% endblock content %}
 
