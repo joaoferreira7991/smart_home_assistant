@@ -38,7 +38,7 @@ def index():
 @login_required
 def user(username):
     pass
-
+#
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if current_user.is_authenticated:
