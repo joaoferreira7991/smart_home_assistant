@@ -78,7 +78,7 @@ def sign_out():
 
 @app.route('/update', methods=['POST'])
 def update():
-    req_data = request.get_json()
+    req_data = request.get_json(force=False, silent=False, cache=True)
 
     # Implement some sort of security to avoid unwanted injections
 
