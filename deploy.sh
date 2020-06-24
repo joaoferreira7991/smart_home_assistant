@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # First argument is the message to be commited
-# Example usage: deploy.sh "First Commit"
+# Example usage: deploy.sh "First Commit" 
 if [ ! $1 ];then
     echo "Missing first argument!"
 else
