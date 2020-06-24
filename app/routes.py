@@ -92,5 +92,5 @@ def update():
     db.session.add(humidity_reading)
     db.session.commit()
 
-    return ""
+    return "success"
 
