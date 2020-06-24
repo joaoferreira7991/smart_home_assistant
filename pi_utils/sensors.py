@@ -41,7 +41,6 @@ def dht11(data_pin):
                 'temperature' : temperature_c
                 'humidity' : humidity
                 'timestamp' : timestamp
-                'data_type' : 0
             }
 
             request = requests.post(url=API_ENDPOINT, data=json_data)

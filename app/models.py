@@ -89,6 +89,7 @@ class Actuator(db.Model):
 #   to be inserted in the database instead.
 data_type_dict = {
     'dht11_temperature' : 0,
+    'dht11_humidity' : 1,
     '_luminance' : 2
 }
 

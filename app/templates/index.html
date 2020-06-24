@@ -19,48 +19,42 @@
         <div>
             <h3>Username: {{ user.username }}</h3>
             <h3>Email: {{ user.email }}</h3>            
+            <h3>{{ home_name }}</h3>            
         </div>
         <br>
         <div>
-            <h1>{{ home.name }}</h1>
-            <h3>Sensors</h3>
+            <h3>Temperature</h3>
             <table>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Timestamp</th>
                 </tr>                
-                {% for sensor in sensors %}
+                {% for temperature in temperature_list %}
                     <tr>
-                        <td>{{ sensor.id }}</td>
-                        <td>{{ sensor.name }}</td>                          
+                        <td>{{ temperature.id }}</td>
+                        <td>{{ temperature.data_reading }}</td>                          
+                        <td>{{ temperature.timestamp }}</td>                          
                     </tr>
                 {% endfor %}
-            </table>
-
-            <script type="text/javascript">
-                function toggle_form_sensor()  {
-                    if (document.getElementById("toggle_form_sensor").style.visibility == "visible")
-                        document.getElementById("toggle_form_sensor").style.visibility = "hidden";
-                    else
-                    document.getElementById("toggle_form_sensor").style.visibility = "visible";
-                }
-            </script>
-            <button onclick="toggle_form_sensor()">Add a Sensor</button>
-            <div id="toggle_form_sensor" class="sensor_form" style="visibility: hidden;">
-                <form action="" method="POST" novalidate>
-                    {{ form_sensor.hidden_tag() }}
-                        <p>
-                            {{ form_sensor.name.label }} <br>
-                            {{ form_sensor.name(size=30) }}
-                            {% for error in form_sensor.name.errors %}
-                                <span style='color: red;'> [{{ error }}]</span>
-                            {% endfor %}                                          
-                        </p>
-                        <p>
-                            {{ form_sensor.submit() }}
-                        </p>
-                </form>
-            </div>                        
+            </table>                    
+        </div>        
+        <div>
+            <h3>Humidity</h3>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Value</th>
+                    <th>Timestamp</th>
+                </tr>                
+                {% for humidity in humidity_list %}
+                    <tr>
+                        <td>{{ humidity.id }}</td>
+                        <td>{{ humidity.data_reading }}</td>                          
+                        <td>{{ humidity.timestamp }}</td>                          
+                    </tr>
+                {% endfor %}
+            </table>                    
         </div>
 
     {% endif %}

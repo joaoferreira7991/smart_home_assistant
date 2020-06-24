@@ -10,30 +10,26 @@ from werkzeug.urls import url_parse
 @login_required
 def index():      
     user = User.query.filter_by(username=current_user.username).first()
-    home = Home.query.filter_by(id=user.home_id).first()
-    sensors = Sensor.query.filter_by(home_id=user.home_id).all()
     form = HomeCreateForm()
     if form.validate_on_submit():
-    home = Home(name=form.name.data)
-    db.session.add(home)
-    db.session.commit()
-    home = Home.query.filter_by(name=form.name.data).first()
-    user = User.query.filter_by(username=current_user.username).first()
-    user.home_id = home.id
-    db.session.commit()
-    flash('Home created with success!')
-    return redirect(url_for('index'))
-    #form_sensor = SensorCreateForm()    
-    #if form_sensor.validate_on_submit():
-    #    sensor = Sensor(name=form_sensor.name.data)
-    #    sensor.home_id = user.home_id
-    #    db.session.add(sensor)
-    #    db.session.commit()
-    #    flash('Sensor created with success!')
-    #    return redirect(url_for('index'))
+        home = Home(name=form.name.data)
+        db.session.add(home)
+        db.session.commit()
+        home = Home.query.filter_by(name=form.name.data).first()
+        user = User.query.filter_by(username=current_user.username).first()
+        user.home_id = home.id
+        db.session.commit()
+        flash('Home created with success!')
+        return redirect(url_for('index'))
+    
+    # Checks if home is already assigned, if it is then loads a list of the readings, separated from
+    # reading type.
+    if user.home_id is not None:
+        home_name = Home.query.get(user.home_id)
+        temperature_list = Reading.query.filter_by(data_type_dict['dht11_temperature']).all()
+        humidity_list = Reading.query.filter_by(data_type_dict['dht11_humidity']).all()
 
-
-    return render_template('index.html', title='Index', form=form, form_sensor=form_sensor, user=user, home=home, sensors=sensors)
+    return render_template('index.html', title='Index', form=form, user=user, home_name=home_name, temperature_list=temperature_list, humidity_list=humidity_list)
 
 @app.route('/user/<username>')
 @login_required
@@ -88,10 +84,9 @@ def update():
     temperature = req_data['temperature']
     humidity = req_data['humidity']
     timestamp = req_data['timestamp']
-    data_type = req_data['data_type']
 
-    temperature_reading = Reading(timestamp, temperature, data_type_dict[data_type])
-    humidity_reading = Reading(timestamp, humidity, data_type_dict[data_type])
+    temperature_reading = Reading(timestamp, temperature, data_type_dict['dht11_temperature'])
+    humidity_reading = Reading(timestamp, humidity, data_type_dict['dht11_humidity'])
     db.session.add(temperature_reading)
     db.session.add(humidity_reading)
     db.session.commit()
