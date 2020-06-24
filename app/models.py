@@ -84,19 +84,29 @@ class Actuator(db.Model):
     def set_home_id(home_id):
         self.home_id = home_id
 
+
+# Dictionary meant for assigning data_type string to an integer value, 
+#   to be inserted in the database instead.
+data_type_dict = {
+    'dht11_temperature' : 0,
+    '_luminance' : 2
+}
+
 class Reading(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.now, nullable=False)
     data_reading = db.Column(db.Float, nullable=False)
-    sensor_id = db.Column(db.Integer, db.ForeignKey('sensor.id'), nullable=False)
+    data_type = db.Column(db.Integer, nullable=False)
+    #sensor_id = db.Column(db.Integer, db.ForeignKey('sensor.id'), nullable=False)
 
-    def __init__(self, timestamp, data_reading):
+    def __init__(self, timestamp, data_reading, data_type):
         self.timestamp = timestamp
         self.data_reading = data_reading
+        self.data_type = data_type
     
     def __repr__(self):
         return '<Reading {}>'.format(self.id, self.data_reading)
     
-    def set_sensor_id(sensor_id):
-        self.sensor_id = sensor_id
+    #def set_sensor_id(sensor_id):
+    #    self.sensor_id = sensor_id
 

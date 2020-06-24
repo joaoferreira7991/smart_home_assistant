@@ -2,25 +2,26 @@ import time
 import board
 import adafruit_dht
 from datetime import datetime
-from app.models import Sensor, Reading
-from app import db
+import requests
 
 DATA_PINS = {
     14 : board.D14
 }
 
+# URL to be ran
+API_ENDPOINT = 'https://smart-home-assistant.herokuapp.com/update'
 
-def dht11(sensor_id, data_pin):
+# Make security
+# API_KEY
+
+def dht11(data_pin):
     ''' 
-    Function that initializes a dht11 sensor, and retrieves information every 60 seconds to the database,
-    based on the given id.
+    Function that initializes a dht11 sensor, and sends information every 60 seconds to the cloud.
 
     ...
 
     Parameters
     ----------
-    sensor_id : int 
-        Id of the sensor in database.
     data_pin : int 
         Number of the GPIO pin connected to the raspberry pi.
     '''
@@ -35,24 +36,21 @@ def dht11(sensor_id, data_pin):
 
             print("T{}, H{}, D{}".format(temperature_c, humidity, timestamp))
 
-            # Check sensor_id if exists in database
-            id = Sensor.query.filter_by(id=sensor_id).first()
-            if id is None:
-                print("No id given.")        
-            else :
-                read = Reading(timestamp, temperature_c)
-                read.sensor_id = id
-                db.session.add(read)
-                db.session.commit()
+            # Data to be sent to the API
+            json_data = {
+                'temperature' : temperature_c
+                'humidity' : humidity
+                'timestamp' : timestamp
+                'data_type' : 0
+            }
 
-            
+            request = requests.post(url=API_ENDPOINT, data=json_data)
 
-        except RuntimeError as error:
-            # print("error")
+        except RuntimeError as error:            
             pass
 
         # Read interval
-        time.sleep(5.0)
+        time.sleep(60.0)
 
 #def loadSensors():
 
