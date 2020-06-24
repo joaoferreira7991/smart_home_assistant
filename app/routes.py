@@ -29,7 +29,7 @@ def index():
         temperature_list = Reading.query.filter_by(data_type_dict['dht11_temperature']).all()
         humidity_list = Reading.query.filter_by(data_type_dict['dht11_humidity']).all()
         return render_template('index.html', title='Index', form=form, user=user, home_name=home_name, temperature_list=temperature_list, humidity_list=humidity_list)
-    else
+    else:
         return render_template('index.html', title='Index', form=form, user=user)
 
 @app.route('/user/<username>')
