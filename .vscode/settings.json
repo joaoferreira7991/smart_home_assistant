@@ -1,5 +1,4 @@
 {
-    "python.pythonPath": "./virtual/bin/python",
     "files.associations": {
         "*.html": "html"
     },
