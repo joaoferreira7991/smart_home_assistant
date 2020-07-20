@@ -21,7 +21,7 @@ login = LoginManager(app)
 # Specify view that handles signing in
 login.login_view = 'sign_in'
 
-from app import routes, models, forms, errors
+from app import routes, models, forms, errors, socketio_server
 
 if __name__ == "__main__":
     socketio.run(app)
