@@ -20,3 +20,8 @@ def receive_data(json):
     db.session.commit()
 
     emit('response', callback=ack)
+
+@socketio.on('example')
+def example():
+    emit('example', 'ola cliente!')
+    socketio.sleep(5)
