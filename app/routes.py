@@ -1,11 +1,9 @@
-from app import app, db
+from app import app, db, socketio
 from app.models import User, Home, Sensor, Reading, data_type_dict
 from app.forms import UserSignUpForm, UserSignInForm, HomeCreateForm, SensorCreateForm
 from flask import redirect, url_for, request, render_template, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-
-import app.socketio_server
 
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])

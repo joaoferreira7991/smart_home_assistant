@@ -1,5 +1,4 @@
-from app import socketio
-from app import db
+from app import db, socketio
 from app.models import Reading
 
 def ack():
