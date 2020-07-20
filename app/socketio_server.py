@@ -1,5 +1,5 @@
 from app import db, socketio
-from app.models import Reading
+from app.models import Reading, data_type_dict
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder
 import json
