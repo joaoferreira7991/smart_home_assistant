@@ -5,6 +5,8 @@ from flask import redirect, url_for, request, render_template, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
+from socketio_server import example
+
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
