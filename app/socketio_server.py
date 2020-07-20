@@ -8,7 +8,7 @@ def ack():
 
 @socketio.on('send_data')
 def receive_data(json_data):
-    aux = json.dump(json_data)
+    aux = json.dumps(json_data)
     temperature = aux['temperature']
     humidity = aux['humidity']
     timestamp = aux['timestamp']
