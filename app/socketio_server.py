@@ -1,6 +1,7 @@
 from app import db, socketio
 from app.models import Reading
 from flask_socketio import emit
+from utils.json_util import DateTimeDecoder
 import json
 
 def ack():
@@ -8,7 +9,7 @@ def ack():
 
 @socketio.on('send_data')
 def receive_data(json_data):
-    aux = json.dumps(json_data)
+    aux = json.loads(json_data, cls=DateTimeDecoder)
     temperature = aux['temperature']
     humidity = aux['humidity']
     timestamp = aux['timestamp']
