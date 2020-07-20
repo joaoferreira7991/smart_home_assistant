@@ -2,6 +2,9 @@ from app import app
 from app import db
 from app.models import Reading
 
+def ack():
+    print('Message was received!')
+
 @socketio.on('send_data')
 def receive_data(json):
 
@@ -15,3 +18,5 @@ def receive_data(json):
     db.session.commit()
     db.session.add(humidity_reading)
     db.session.commit()
+
+    emit('response', callback=ack)
