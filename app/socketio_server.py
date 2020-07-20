@@ -1,4 +1,4 @@
-from app import app, socketio
+from app import socketio
 from app import db
 from app.models import Reading
 
