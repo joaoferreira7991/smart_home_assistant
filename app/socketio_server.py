@@ -1,5 +1,6 @@
 from app import db, socketio
 from app.models import Reading
+from flask_socketio import emit
 
 def ack():
     print('Message was received!')
