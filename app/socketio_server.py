@@ -21,7 +21,7 @@ def receive_data(json_data):
     db.session.add(humidity_reading)
     db.session.commit()
 
-    emit('response', callback=ack)
+    emit('response', 'Message was received!')
 
 @socketio.on('example')
 def example():
