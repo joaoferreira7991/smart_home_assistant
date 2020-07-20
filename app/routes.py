@@ -27,7 +27,6 @@ def index():
     # Checks if home is already assigned, if it is then loads a list of the readings, separated from
     # reading type.
     if user.home_id is not None:
-        socketio.start_background_task(example)
         home_name = Home.query.get(user.home_id)
         temperature_list = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).all()
         humidity_list = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).all()
