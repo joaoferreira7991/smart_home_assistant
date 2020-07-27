@@ -5,7 +5,11 @@ from utils.json_util import DateTimeDecoder
 import json
 
 @socketio.on('connect', namespace='/client-pi')
-def connect():
+def connect_pi():
+    pass
+
+@socketio.on('connect', namespace='/client-user')
+def connect_user():
     pass
 
 # Sensor reading
