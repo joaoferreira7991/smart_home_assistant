@@ -10,7 +10,7 @@ def connect_pi():
 
 @socketio.on('connect', namespace='/client-user')
 def connect_user():
-    pass
+    emit('response', 'A user has connected.', namespace='/client-pi')
 
 # Sensor reading
 @socketio.on('send_data', namespace='/client-pi')
