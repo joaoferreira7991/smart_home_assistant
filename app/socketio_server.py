@@ -4,6 +4,10 @@ from flask_socketio import emit
 from utils.json_util import DateTimeDecoder
 import json
 
+@socketio.on('connect', namespace='/client-pi')
+def connect():
+    pass
+
 # Sensor reading
 @socketio.on('send_data', namespace='/client-pi')
 def receive_data(json_data):
