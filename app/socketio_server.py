@@ -5,7 +5,7 @@ from utils.json_util import DateTimeDecoder
 import json
 
 # Sensor reading
-@socketio.on('send_data')
+@socketio.on('send_data', namespace='/client-pi')
 def receive_data(json_data):
     aux = json.loads(json_data, cls=DateTimeDecoder)
     temperature = aux['temperature']
@@ -19,25 +19,25 @@ def receive_data(json_data):
     db.session.add(humidity_reading)
     db.session.commit()
 
-    emit('response', 'Message was received!')
+    emit('response', 'Message was received!', namespace='/client-pi')
 
 # Led Strip Controller
-@socketio.on('LED_ON')
+@socketio.on('LED_ON', namespace='/client-user')
 def ledInit():
-    emit('LED_ON')
+    emit('LED_ON', namespace='/client-pi')
 
-@socketio.on('LED_OFF')
+@socketio.on('LED_OFF', namespace='/client-user')
 def ledStop():
-    emit('LED_OFF')
+    emit('LED_OFF', namespace='/client-pi')
 
-@socketio.on('START_COLORSHIFT')
+@socketio.on('START_COLORSHIFT', namespace='/client-user')
 def colorshiftStart():
-    emit('START_COLORSHIFT')
+    emit('START_COLORSHIFT', namespace='/client-pi')
 
-@socketio.on('INCREASE_BRIGHTNESS')
+@socketio.on('INCREASE_BRIGHTNESS', namespace='/client-user')
 def brighnessIncrease():
-    emit('INCREASE_BRIGHTNESS')
+    emit('INCREASE_BRIGHTNESS', namespace='/client-pi')
 
-@socketio.on('DECREASE_BRIGHTNESS')
+@socketio.on('DECREASE_BRIGHTNESS', namespace='/client-user')
 def brighnessDecrease():
-    emit('DECREASE_BRIGHTNESS')
+    emit('DECREASE_BRIGHTNESS', namespace='/client-pi')
