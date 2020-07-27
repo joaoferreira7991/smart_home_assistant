@@ -5,7 +5,6 @@ from flask import redirect, url_for, request, render_template, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
-from app.socketio_server import example
 
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
@@ -27,6 +26,8 @@ def index():
     # Checks if home is already assigned, if it is then loads a list of the readings, separated from
     # reading type.
     if user.home_id is not None:
+        socketio.emit('LED_ON')
+        socketio.emit('START_COLORSHIFT')        
         home_name = Home.query.get(user.home_id)
         temperature_list = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).all()
         humidity_list = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).all()
