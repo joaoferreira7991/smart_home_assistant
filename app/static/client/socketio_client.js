@@ -8,26 +8,26 @@ var socketio = io.connect(location.origin + '/client-user');
 
 led_start.innerHTML = 'On'
 led_start.onclick = function()  {
-    socketio.emit('LED_ON', namespace='/client-user');
+    socketio.emit('LED_ON');
 }
 
 led_stop.innerHTML = 'Off'
 led_stop.onclick = function()  {
-    socketio.emit('LED_OFF', namespace='/client-user');
+    socketio.emit('LED_OFF');
 }
 
 led_colorshift.innerHTML = 'Colorshift'
 led_colorshift.onclick = function()  {
-    socketio.emit('START_COLORSHIFT', namespace='/client-user');
+    socketio.emit('START_COLORSHIFT');
 }
 
 led_increaseBrightness.innerHTML = 'Increase_Brightness'
 led_increaseBrightness.onclick = function()  {
-    socketio.emit('INCREASE_BRIGHTNESS', namespace='/client-user');
+    socketio.emit('INCREASE_BRIGHTNESS');
 }
 
 led_decreaseBrightness.innerHTML = 'Decrease_Brightness'
 led_decreaseBrightness.onclick = function()  {
-    socketio.emit('DECREASE_BRIGHTNESS', namespace='/client-user');
+    socketio.emit('DECREASE_BRIGHTNESS');
 }
 

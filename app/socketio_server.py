@@ -6,7 +6,7 @@ import json
 
 @socketio.on('connect', namespace='/client-pi')
 def connect_pi():
-    emit('response', 'Raspberry Pi is connected', namespace='/client-pi')
+    emit('response', 'Raspberry Pi is connected.', namespace='/client-pi')
 
 @socketio.on('connect', namespace='/client-user')
 def connect_user():
