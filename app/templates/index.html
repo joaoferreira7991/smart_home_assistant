@@ -22,9 +22,15 @@
             <h3>{{ home_name }}</h3>            
         </div>
         <br>
-        <div>
-           <p>WIP</p> 
+        <div id="led">
+           <button id="led_start"></button>
+           <button id="led_colorshift"></button>
+           <button id="led_increaseBrighness"></button> 
+           <button id="led_decreaseBrighness"></button>
+           <button id="led_stop"></button> 
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+        <script src="{{ url_for('app.static', filename='client/socketio_client.js') }}"></script>
         <br>
         <div>
             <h3>Temperature</h3>
