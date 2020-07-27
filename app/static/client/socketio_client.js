@@ -21,12 +21,12 @@ led_colorshift.onclick = function()  {
     socketio.emit('START_COLORSHIFT', namespace='/client-user');
 }
 
-led_increaseBrightness.innerHTML = 'Increase Brightness'
+led_increaseBrightness.innerHTML = 'Increase_Brightness'
 led_increaseBrightness.onclick = function()  {
     socketio.emit('INCREASE_BRIGHTNESS', namespace='/client-user');
 }
 
-led_decreaseBrightness.innerHTML = 'Decrease Brightness'
+led_decreaseBrightness.innerHTML = 'Decrease_Brightness'
 led_decreaseBrightness.onclick = function()  {
     socketio.emit('DECREASE_BRIGHTNESS', namespace='/client-user');
 }
