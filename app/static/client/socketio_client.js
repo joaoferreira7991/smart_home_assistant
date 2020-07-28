@@ -6,8 +6,9 @@ var led_decreaseBrightness = document.getElementById('led_decreaseBrightness');
 var led_stop = document.getElementById('led_stop');
 var socketio = io.connect(location.origin + '/client-user');
 
-led_start.innerHTML = 'On'
+
 led_start.addEventListener("click", function()  {
+    led_start.innerHTML = 'On'
     socketio.emit('LED_ON');
     alert('ARRRHG')
 });
