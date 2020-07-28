@@ -7,10 +7,10 @@ var led_stop = document.getElementById('led_stop');
 var socketio = io.connect(location.origin + '/client-user');
 
 led_start.innerHTML = 'On'
-led_start.onclick = function()  {
+led_start.addEventListener("click", function()  {
     socketio.emit('LED_ON');
     led_start.innerHTML = 'Asadad'
-}
+});
 
 led_stop.innerHTML = 'Off'
 led_stop.onclick = function()  {
