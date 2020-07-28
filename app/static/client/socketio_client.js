@@ -1,4 +1,4 @@
-var led = document.getElementById('led');
+//var led = document.getElementById('led');
 var led_start = document.getElementById('led_start');
 var led_colorshift = document.getElementById('led_colorshift');
 var led_increaseBrightness = document.getElementById('led_increaseBrightness');

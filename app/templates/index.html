@@ -28,9 +28,10 @@
            <button id="led_increaseBrightness"></button> 
            <button id="led_decreaseBrightness"></button>
            <button id="led_stop"></button> 
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+           <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
-        <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
+
         <br>
         <div>
             <h3>Temperature</h3>
