@@ -10,12 +10,13 @@ var socketio = io.connect(location.origin + '/client-user');
 led_start.addEventListener("click", function()  {
     //led_start.innerHTML = 'On' 
     socketio.emit('LED_ON');
-    alert('ARRRGH')
+    alert('ARRRGH');
 });
 
 led_stop.innerHTML = 'Off'
 led_stop.onclick = function()  {
     socketio.emit('LED_OFF');
+    alert('BRRRGH');
 }
 
 led_colorshift.innerHTML = 'Colorshift'
