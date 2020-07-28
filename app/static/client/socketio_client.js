@@ -9,7 +9,7 @@ var socketio = io.connect(location.origin + '/client-user');
 led_start.innerHTML = 'On'
 led_start.addEventListener("click", function()  {
     socketio.emit('LED_ON');
-    led_start.innerHTML = 'Asadad'
+    alert('ARRRHG')
 });
 
 led_stop.innerHTML = 'Off'
