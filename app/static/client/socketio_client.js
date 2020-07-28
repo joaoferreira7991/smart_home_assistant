@@ -10,7 +10,7 @@ var socketio = io.connect(location.origin + '/client-user');
 led_start.addEventListener("click", function()  {
     //led_start.innerHTML = 'On' 
     socketio.emit('LED_ON');
-    alert('ARRRHG')
+    alert('ARRRGH')
 });
 
 led_stop.innerHTML = 'Off'
