@@ -8,6 +8,10 @@ var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/clien
 //var socketio = io.connect('http://127.0.0.1:5000' + '/client-user');
 
 
+socketio.on('connect', function()    {
+    alert('connected');
+});
+
 led_start.addEventListener("click", function()  {
     socketio.emit('LED_ON');
     alert('On');
