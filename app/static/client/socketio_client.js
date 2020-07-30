@@ -13,7 +13,7 @@ socketio.on('connect', function()    {
 });
 
 led_start.addEventListener("click", function()  {
-    socketio.emit('LED_ON', '/client-user');
+    socketio.emit('LED_ON');
     alert('On');
 });
 
