@@ -32,6 +32,7 @@ def receive_data(json_data):
 # Led Strip Controller
 @socketio.on('LED_ON', namespace='/client-user')
 def ledInit(handler):
+    print(handler)
     emit('LED_ON', namespace='/client-pi')
 
 @socketio.on('LED_OFF', namespace='/client-user')
