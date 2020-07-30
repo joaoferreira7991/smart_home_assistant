@@ -4,7 +4,7 @@ var led_colorshift = document.getElementById('led_colorshift');
 var led_increaseBrightness = document.getElementById('led_increaseBrightness');
 var led_decreaseBrightness = document.getElementById('led_decreaseBrightness');
 var led_stop = document.getElementById('led_stop');
-var socketio = io.connect('http://smart-home-assistant.herokuapp.com' + '/client-user');
+var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/client-user');
 //var socketio = io.connect('http://127.0.0.1:5000' + '/client-user');
 
 

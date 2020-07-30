@@ -29,18 +29,19 @@
             <button id="led_increaseBrightness"> Increase Brightness</button> 
             <button id="led_decreaseBrightness"> Decrease Brightness</button>
             <button id="led_stop"> Off </button> 
-            <script type='text/javascript'>
+            <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
+            <!--<script type='text/javascript'>
                 $(document).ready(function ()   {
                     
                     var socket = io.connect('https://smart-home-assistant.herokuapp.com/',{secure: true});
-
-                    alert('idk man')
+                    
+                    
                     socket.on('connect', function() {
-                        alert('OLA')
+                        socket.send('')
                     });
 
                 });
-            </script>
+            </script>-->
         </div>
 
         <br>
