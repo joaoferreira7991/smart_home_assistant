@@ -8,8 +8,8 @@
         {% endif %}
     </head>
     <body>
-        <script type=text/javascript src="{{
-            url_for('static', filename='lib/jquery-3-5-1.js') }}"></script>        
+        <script type=text/javascript src="{{url_for('static', filename='lib/jquery-3-5-1.js') }}"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>                   
         <div> flask-app: 
             <a href="index">Home</a>
             {% if current_user.is_anonymous %}

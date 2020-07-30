@@ -24,13 +24,22 @@
         </div>
         <br>
         <div id="led">
-           <button id="led_start"> On</button>
-           <button id="led_colorshift"> Colorshift </button>
-           <button id="led_increaseBrightness"> Increase Brightness</button> 
-           <button id="led_decreaseBrightness"> Decrease Brightness</button>
-           <button id="led_stop"> Off </button> 
-           <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
-           <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>           
+            <button id="led_start"> On</button>
+            <button id="led_colorshift"> Colorshift </button>
+            <button id="led_increaseBrightness"> Increase Brightness</button> 
+            <button id="led_decreaseBrightness"> Decrease Brightness</button>
+            <button id="led_stop"> Off </button> 
+            <script type='text/javascript'>
+                $(document).ready(function ()   {
+                    
+                    var socket = io.connect('http://smart-home-assistant.herokuapp.com/client-user');
+
+                    socket.on('connect', function() {
+                        alert('I connected!')
+                    });
+
+                });
+            </script>
         </div>
 
         <br>
