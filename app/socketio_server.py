@@ -36,16 +36,16 @@ def ledInit():
 
 @socketio.on('LED_OFF', namespace='/client-user')
 def ledStop():
-    emit('LED_OFF', namespace='/client-pi')
+    socketio.emit('LED_OFF', namespace='/client-pi')
 
 @socketio.on('START_COLORSHIFT', namespace='/client-user')
 def colorshiftStart():
-    emit('START_COLORSHIFT', namespace='/client-pi')
+    socketio.emit('START_COLORSHIFT', namespace='/client-pi')
 
 @socketio.on('INCREASE_BRIGHTNESS', namespace='/client-user')
 def brighnessIncrease():
-    emit('INCREASE_BRIGHTNESS', namespace='/client-pi')
+    socketio.emit('INCREASE_BRIGHTNESS', namespace='/client-pi')
 
 @socketio.on('DECREASE_BRIGHTNESS', namespace='/client-user')
 def brighnessDecrease():
-    emit('DECREASE_BRIGHTNESS', namespace='/client-pi')
+    socketio.emit('DECREASE_BRIGHTNESS', namespace='/client-pi')
