@@ -9,30 +9,24 @@ var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/clien
 
 
 socketio.on('connect', function()    {
-    alert('connected');
 });
 
 led_start.addEventListener("click", function()  {
     socketio.emit('LED_ON');
-    alert('On');
 });
 
 led_stop.addEventListener("click", function()  {
     socketio.emit('LED_OFF');
-    alert('Off');
 });
 
 led_colorshift.addEventListener("click", function()  {
     socketio.emit('START_COLORSHIFT');
-    alert('Colorshift');
 });
 
 led_increaseBrightness.addEventListener("click", function()  {
     socketio.emit('INCREASE_BRIGHTNESS');
-    alert('Increase');
 });
 
 led_decreaseBrightness.addEventListener("click", function()  {
     socketio.emit('DECREASE_BRIGHTNESS');
-    alert('Decrease');
 });
