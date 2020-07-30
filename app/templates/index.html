@@ -16,8 +16,7 @@
             </p>
         </form>
     {% else %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
-        <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
+
         <div>
             <h3>Username: {{ user.username }}</h3>
             <h3>Email: {{ user.email }}</h3>            
@@ -30,6 +29,8 @@
            <button id="led_increaseBrightness"> Increase Brightness</button> 
            <button id="led_decreaseBrightness"> Decrease Brightness</button>
            <button id="led_stop"> Off </button> 
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+           <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>           
         </div>
 
         <br>
