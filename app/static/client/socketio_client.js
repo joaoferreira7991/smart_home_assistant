@@ -8,29 +8,26 @@ var socketio = io.connect(location.origin + '/client-user');
 
 
 led_start.addEventListener("click", function()  {
-    //led_start.innerHTML = 'On' 
     socketio.emit('LED_ON');
-    alert('ARRRGH');
+    alert('On');
 });
 
-led_stop.innerHTML = 'Off'
-led_stop.onclick = function()  {
+led_stop.addEventListener("click", function()  {
     socketio.emit('LED_OFF');
-    alert('BRRRGH');
-}
+    alert('Off');
+});
 
-led_colorshift.innerHTML = 'Colorshift'
-led_colorshift.onclick = function()  {
+led_colorshift.addEventListener("click", function()  {
     socketio.emit('START_COLORSHIFT');
-}
+    alert('Colorshift');
+});
 
-led_increaseBrightness.innerHTML = 'Increase_Brightness'
-led_increaseBrightness.onclick = function()  {
+led_increaseBrightness.addEventListener("click", function()  {
     socketio.emit('INCREASE_BRIGHTNESS');
-}
+    alert('Increase');
+});
 
-led_decreaseBrightness.innerHTML = 'Decrease_Brightness'
-led_decreaseBrightness.onclick = function()  {
+led_decreaseBrightness.addEventListener("click", function()  {
     socketio.emit('DECREASE_BRIGHTNESS');
-}
-
+    alert('Decrease');
+});
