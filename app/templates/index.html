@@ -32,10 +32,10 @@
             <script type='text/javascript'>
                 $(document).ready(function ()   {
                     
-                    var socket = io.connect('http://smart-home-assistant.herokuapp.com/client-user');
+                    var socket = io.connect('http://smart-home-assistant.herokuapp.com/');
 
                     socket.on('connect', function() {
-                        alert('I connected!')
+                        alert('OLA')
                     });
 
                 });
