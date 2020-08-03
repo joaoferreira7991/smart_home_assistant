@@ -1,16 +1,24 @@
 //var led = document.getElementById('led');
-var led_start = document.getElementById('led_start');
-var led_colorshift = document.getElementById('led_colorshift');
-var led_increaseBrightness = document.getElementById('led_increaseBrightness');
-var led_decreaseBrightness = document.getElementById('led_decreaseBrightness');
-var led_stop = document.getElementById('led_stop');
+//var led_start = document.getElementById('led_start');
+//var led_colorshift = document.getElementById('led_colorshift');
+//var led_increaseBrightness = document.getElementById('led_increaseBrightness');
+//var led_decreaseBrightness = document.getElementById('led_decreaseBrightness');
+//var led_stop = document.getElementById('led_stop');
 var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/client-user');
 //var socketio = io.connect('http://127.0.0.1:5000' + '/client-user');
 
+// Variables from temp div
+var temp_value = document.getElementById('temp').children[temp_value];
 
 socketio.on('connect', function()    {
 });
 
+// Temperature related events
+socketio.on('updateTemp', function(temp)    {
+    temp_value.innerHTML = temp;
+});
+
+// Led Controller events
 led_start.addEventListener("click", function()  {
     socketio.emit('LED_ON');
 });
