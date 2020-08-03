@@ -12,7 +12,6 @@ def connect_user():
     print('Ola')
 
 # Database reading events
-@socketio.on('updateTemp', namespace='/client-user')
 def updateTemp():
     while True:
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
@@ -66,4 +65,4 @@ def receive_data(json_data):
     emit('response', 'Message was received!', namespace='/client-pi')
 
 # Start background tasks
-# socketio.start_background_task(updateTemp)
+socketio.start_background_task(updateTemp)
