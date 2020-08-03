@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to the smart_house assistant.</h1>
+    <h1>Welcome to the smart home assistant.</h1>
 
     {% if user.home_id == None %}
-        <h1>You must create a new house.</h1>
+        <h1>First you should name your home!</h1>
         <form action="" method="POST" novalidate>
             {{ form.hidden_tag() }}
             <p>
@@ -16,13 +16,45 @@
             </p>
         </form>
     {% else %}
+        <style>
+            .led    { grid-area: led; }
+            .temp   { grid-area: temp; }
+            .hum    { grid-area: hum; }
 
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                    'led temp hum';
+                grid-gap: 10px;
+                background-color: aqua;
+                padding: 10px;
+            }
+            .grid-container > div {
+                background-color: blue;
+                text-align: center;
+                padding: 20px 0;
+                font-size: 20px;
+            }
+        </style>
         <div>
             <h3>Username: {{ user.username }}</h3>
-            <h3>Email: {{ user.email }}</h3>            
-            <h3>{{ home_name }}</h3>            
+            <h3>Email: {{ user.email }}</h3>                     
         </div>
         <br>
+        <div id='dashboard' class='grid-container'>
+            <h2>Dashboard</h2>
+            <h3>{{ home_name }}</h3>
+            <div id='led'>
+                Led
+            </div>
+            <div id='temp'>
+                Temp
+            </div>
+            <div id='hum'>
+                Hum
+            </div>
+        </div>
+        <!--
         <div id="led">
             <button id="led_start"> On</button>
             <button id="led_colorshift"> Colorshift </button>
@@ -30,7 +62,7 @@
             <button id="led_decreaseBrightness"> Decrease Brightness</button>
             <button id="led_stop"> Off </button> 
             <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
-            <!--<script type='text/javascript'>
+            <script type='text/javascript'>
                 $(document).ready(function ()   {
                     
                     var socket = io.connect('https://smart-home-assistant.herokuapp.com/',{secure: true});
@@ -41,7 +73,7 @@
                     });
 
                 });
-            </script>-->
+            </script>
         </div>
 
         <br>
@@ -79,6 +111,6 @@
                 {% endfor %}
             </table>                    
         </div>
-
+        -->
     {% endif %}
 {% endblock content %}
