@@ -12,12 +12,12 @@ var hum_value = document.getElementById('hum').children['hum_value'];
 
 // Load values
 socketio.on('connect', function()    {
-    socketio.emit('updateValues')
+    socketio.emit('updateValues');
 });
 
 // Temperature related events
 socketio.on('updateValues', function(data)    {
-    var data_received = JSON.parse(data)
+    var data_received = JSON.parse(data);
     temp_value.innerHTML = data_received.temp;
     hum_value.innerHTML = data_received.hum;
 });
