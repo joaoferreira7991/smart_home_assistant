@@ -23,7 +23,7 @@ def updateTemp(background=0):
         socketio.emit('updateTemp', data=latestTemp.data_reading, namespace='/client-user')
         if background == 0:
             break
-        eventlet.sleep(60)
+        socketio.sleep(60)
 
 # Actuator handling events
 # Led Strip Controller events
