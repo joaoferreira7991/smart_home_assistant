@@ -2,9 +2,10 @@ from app import db, socketio
 from app.models import Reading, data_type_dict
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
+from utils.fix_data import fix_data
+from datetime import datetime, time, date
 import json, sys
 
-FLAG = True
 
 # ---------------------------------------
 # Namespace '/client-user' related events
@@ -20,10 +21,14 @@ def updateValues(background=0):
         print('background = ', background)
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
+        arrTemp = fix_data(Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > datetime.combine(date.today(),datetime.min.time())).order_by(Reading.id.asc()))
+        arrHum = fix_data(Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > datetime.combine(date.today(),datetime.min.time())).order_by(Reading.id.asc()))
         print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
         print('latest_hum ,', latestHum.data_reading, file=sys.stdout)
         latest =   {'temp'  :   latestTemp.data_reading,
-                    'hum'   :   latestHum.data_reading}
+                    'hum'   :   latestHum.data_reading,
+                    'temp_arr'  :   {arrTemp},
+                    'hum_arr'   :   {arrHum}}
         socketio.emit('updateValues', data=latest, namespace='/client-user')
         if background == 0:
             break

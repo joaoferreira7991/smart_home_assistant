@@ -9,6 +9,8 @@ var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/clien
 // Variables from Dashboard 
 var temp_value = document.getElementById('temp').children['temp_value'];
 var hum_value = document.getElementById('hum').children['hum_value'];
+var temp_canvas = document.getElementById('temp').children['temp_canvas'].getContext('2d');
+var hum_canvas = document.getElementById('hum').children['hum_canvas'].getContext('2d');
 
 // Load values
 socketio.on('connect', function()    {
@@ -19,6 +21,9 @@ socketio.on('connect', function()    {
 socketio.on('updateValues', function(data)    {
     temp_value.innerHTML = data.temp;
     hum_value.innerHTML = data.hum;
+    makeChart(temp_canvas, data.temp_arr);
+    makeChart(hum_canvas, data.hum_arr);
+
 });
 
 // Led Controller events
@@ -43,3 +48,25 @@ led_decreaseBrightness.addEventListener("click", function()  {
     socketio.emit('DECREASE_BRIGHTNESS');
 });
 */
+
+function makeChart(ctx, arr)    {
+    var data = {
+        data: arr,
+        showLine: true
+    };
+
+    return new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                yAxes:  [{
+                    ticks:  {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+};
