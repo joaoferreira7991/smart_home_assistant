@@ -7,7 +7,7 @@ from flask_socketio import SocketIO, send, emit
 import eventlet
 
 # Monkey Patching
-eventlet.monkey_patch(socket=True)
+eventlet.monkey_patch()
 
 # Flask App
 app = Flask(__name__)
