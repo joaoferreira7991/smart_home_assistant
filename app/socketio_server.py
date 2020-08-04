@@ -14,13 +14,17 @@ def connect_user():
     print('Ola')
 
 # Database reading events
-@socketio.on('updateTemp', namespace='/client-user')
-def updateTemp(background=0):
+@socketio.on('updateValues', namespace='/client-user')
+def updateValues(background=0):
     while True:
         print('background = ', background)
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
-        print('here, ', latestTemp.data_reading, file=sys.stdout)
-        socketio.emit('updateTemp', data=latestTemp.data_reading, namespace='/client-user')
+        latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc())
+        print('latest_temp, ', latestTemp.data_reading, file=sys.stdout)
+        print('latest_hum', latestHum.data_reading, file=sys.stdout)
+        latest =   {'temp'  :   latestTemp.data_reading,
+                    'hum'   :   latestHum.data_reading}
+        socketio.emit('updateTemp', data=latest, namespace='/client-user')
         if background == 0:
             break
         socketio.sleep(60)
@@ -71,4 +75,4 @@ def receive_data(json_data):
 
     emit('response', 'Message was received!', namespace='/client-pi')
 
-socketio.start_background_task(updateTemp, '1')
+socketio.start_background_task(updateValues, '1')

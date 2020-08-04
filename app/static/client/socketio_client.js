@@ -6,17 +6,20 @@
 //var led_stop = document.getElementById('led_stop');
 var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/client-user');
 
-// Variables from temp div
+// Variables from Dashboard 
 var temp_value = document.getElementById('temp').children['temp_value'];
+var hum_value = document.getElementById('hum').children['hum_value'];
 
 // Load values
 socketio.on('connect', function()    {
-    socketio.emit('updateTemp')
+    socketio.emit('updateValues')
 });
 
 // Temperature related events
-socketio.on('updateTemp', function(temp)    {
-    temp_value.innerHTML = temp;
+socketio.on('updateValues', function(data)    {
+    var data_received = JSON.parse(data)
+    temp_value.innerHTML = data_received.temp;
+    hum_value.innerHTML = data_received.hum;
 });
 
 // Led Controller events
