@@ -12,7 +12,7 @@ eventlet.monkey_patch(socket=True)
 # Flask App
 app = Flask(__name__)
 app.config.from_object(Config)
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='eventlet')
 
 # Database Related
 # 
