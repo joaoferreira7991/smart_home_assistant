@@ -63,6 +63,3 @@ def receive_data(json_data):
     db.session.commit()
 
     emit('response', 'Message was received!', namespace='/client-pi')
-
-# Start background tasks
-socketio.start_background_task(updateTemp)

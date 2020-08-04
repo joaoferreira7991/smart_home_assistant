@@ -39,6 +39,7 @@ python-editor==1.0.4
 python-engineio==3.13.1
 python-socketio==4.6.0
 pyusb==1.0.2
+redis==3.5.3
 requests==2.24.0
 rpi-ws281x==4.2.3
 RPi.GPIO==0.7.0
