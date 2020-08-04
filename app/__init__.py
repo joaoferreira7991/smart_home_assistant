@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_socketio import SocketIO, send, emit
-import eventlet
+import eventlet, sys
 
 # Monkey Patching
 eventlet.monkey_patch()
@@ -30,7 +30,7 @@ from app import routes, models, forms, errors, socketio_server
 
 def hello(world:str):
     while True:
-        print('hello ',world, sys.stdout)
+        print('hello ', world, sys.stdout)
         socketio.sleep(5)
 
 if __name__ == "__main__":
