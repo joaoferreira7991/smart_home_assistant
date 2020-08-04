@@ -27,4 +27,4 @@ from app import routes, models, forms, errors, socketio_server
 
 if __name__ == "__main__":
     socketio.run(app)
-    socketio.start_background_task(socketio_server.updateTemp, (background=1))
+    socketio.start_background_task(target=socketio_server.updateTemp, args=(background=1))
