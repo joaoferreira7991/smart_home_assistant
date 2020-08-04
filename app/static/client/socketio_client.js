@@ -10,7 +10,9 @@ var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/clien
 // Variables from temp div
 var temp_value = document.getElementById('temp').children['temp_value'];
 
+// Load values
 socketio.on('connect', function()    {
+    //socketio.emit('updateTemp', )
 });
 
 // Temperature related events
@@ -19,6 +21,7 @@ socketio.on('updateTemp', function(temp)    {
 });
 
 // Led Controller events
+/*
 led_start.addEventListener("click", function()  {
     socketio.emit('LED_ON');
 });
@@ -38,3 +41,4 @@ led_increaseBrightness.addEventListener("click", function()  {
 led_decreaseBrightness.addEventListener("click", function()  {
     socketio.emit('DECREASE_BRIGHTNESS');
 });
+*/
