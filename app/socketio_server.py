@@ -2,7 +2,7 @@ from app import db, socketio
 from app.models import Reading, data_type_dict
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder
-import json
+import json, sys
 
 # ---------------------------------------
 # Namespace '/client-user' related events
