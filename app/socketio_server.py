@@ -24,7 +24,7 @@ def updateValues(background=0):
         print('latest_hum ,', latestHum.data_reading, file=sys.stdout)
         latest =   {'temp'  :   latestTemp.data_reading,
                     'hum'   :   latestHum.data_reading}
-        socketio.emit('updateTemp', data=latest, namespace='/client-user')
+        socketio.emit('updateValues', data=latest, namespace='/client-user')
         if background == 0:
             break
         socketio.sleep(60)
