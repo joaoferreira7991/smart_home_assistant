@@ -8,7 +8,7 @@ var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/clien
 //var socketio = io.connect('http://127.0.0.1:5000' + '/client-user');
 
 // Variables from temp div
-var temp_value = document.getElementById('temp').children[temp_value];
+var temp_value = document.getElementById('temp').children['temp_value'];
 
 socketio.on('connect', function()    {
 });
