@@ -21,10 +21,9 @@ def updateTemp(background=0):
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         print('here, ', latestTemp.data_reading, file=sys.stdout)
         socketio.emit('updateTemp', data=latestTemp.data_reading, namespace='/client-user')
-        if background == 1:
-            socketio.sleep(60)
         elif background == 0:
             break
+        socketio.sleep(60)
 
 # Actuator handling events
 # Led Strip Controller events
@@ -72,6 +71,4 @@ def receive_data(json_data):
 
     emit('response', 'Message was received!', namespace='/client-pi')
 
-if FLAG:
-    socketio.start_background_task(updateTemp, '1')
-    FLAG = False
+socketio.start_background_task(updateTemp, '1')
