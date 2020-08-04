@@ -28,7 +28,9 @@ login.login_view = 'sign_in'
 from app import routes, models, forms, errors, socketio_server
 
 def hello(world:str):
-    print('hello ',world, sys.stdout)
+    while True:
+        print('hello ',world, sys.stdout)
+        socketio.sleep(5)
 
 if __name__ == "__main__":
     socketio.run(app)
