@@ -3,8 +3,6 @@
 # This file is part of gunicorn released under the MIT license.
 # See the NOTICE for more information.
 
-from __future__ import with_statement
-
 import errno
 import os
 import tempfile
@@ -26,8 +24,8 @@ class Pidfile(object):
         if oldpid:
             if oldpid == os.getpid():
                 return
-            raise RuntimeError("Already running on PID %s " \
-                "(or pid file '%s' is stale)" % (os.getpid(), self.fname))
+            msg = "Already running on PID %s (or pid file '%s' is stale)"
+            raise RuntimeError(msg % (oldpid, self.fname))
 
         self.pid = pid
 
@@ -68,15 +66,17 @@ class Pidfile(object):
             return
         try:
             with open(self.fname, "r") as f:
-                wpid = int(f.read() or 0)
-
-                if wpid <= 0:
+                try:
+                    wpid = int(f.read())
+                except ValueError:
                     return
 
                 try:
                     os.kill(wpid, 0)
                     return wpid
                 except OSError as e:
+                    if e.args[0] == errno.EPERM:
+                        return wpid
                     if e.args[0] == errno.ESRCH:
                         return
                     raise
