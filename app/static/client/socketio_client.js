@@ -11,7 +11,7 @@ var temp_value = document.getElementById('temp').children['temp_value'];
 
 // Load values
 socketio.on('connect', function()    {
-    //socketio.emit('updateTemp', )
+    socketio.emit('updateTemp', )
 });
 
 // Temperature related events
