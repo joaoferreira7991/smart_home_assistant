@@ -29,11 +29,6 @@ login.login_view = 'sign_in'
 
 from app import routes, models, forms, errors, socketio_server
 
-def hello(world:str):
-    while True:
-        print('hello ', world, sys.stdout)
-        socketio.sleep(5)
-
 if __name__ == "__main__":
     socketio.run(app)
-    socketio.start_background_task(target=hello)#, args=('world'))
+    socketio.start_background_task(target=socketio_server.updateTemp, args=(1))
