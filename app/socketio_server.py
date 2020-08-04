@@ -4,6 +4,8 @@ from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
 import json, sys
 
+FLAG = True
+
 # ---------------------------------------
 # Namespace '/client-user' related events
 # Connect event
@@ -70,4 +72,6 @@ def receive_data(json_data):
 
     emit('response', 'Message was received!', namespace='/client-pi')
 
-socketio.start_background_task(updateTemp, '1')
+if FLAG:
+    socketio.start_background_task(updateTemp, '1')
+    FLAG = False
