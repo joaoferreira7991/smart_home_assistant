@@ -21,7 +21,7 @@ def updateTemp(background=0):
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         print('here, ', latestTemp.data_reading, file=sys.stdout)
         socketio.emit('updateTemp', data=latestTemp.data_reading, namespace='/client-user')
-        elif background == 0:
+        if background == 0:
             break
         socketio.sleep(60)
 
