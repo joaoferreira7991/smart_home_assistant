@@ -5,6 +5,8 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_socketio import SocketIO, send, emit
 
+import sys
+
 # Flask App
 app = Flask(__name__)
 app.config.from_object(Config)

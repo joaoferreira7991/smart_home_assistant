@@ -15,7 +15,7 @@ def connect_user():
 def updateTemp():
     while True:
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
-        print('here, ', latestTemp)
+        print('here, ', latestTemp, file=sys.stdout)
         socketio.emit('updateTemp', data=latestTemp, namespace='/client-user')
         socketio.sleep(60)
 
