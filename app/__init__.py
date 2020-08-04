@@ -4,6 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_socketio import SocketIO, send, emit
+import eventlet
+
+# Monkey Patching
+eventlet.monkey_patch(socket=True)
 
 # Flask App
 app = Flask(__name__)
