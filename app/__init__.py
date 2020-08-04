@@ -28,4 +28,4 @@ def hello(world:str):
 
 if __name__ == "__main__":
     socketio.run(app)
-    socketio.start_background_task(target=hello, args('world'))
+    socketio.start_background_task(target=hello, args=('world'))
