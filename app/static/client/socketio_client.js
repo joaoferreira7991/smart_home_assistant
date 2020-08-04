@@ -17,7 +17,6 @@ socketio.on('connect', function()    {
 
 // Temperature related events
 socketio.on('updateValues', function(data)    {
-    //var data_received = JSON.parse(data);
     temp_value.innerHTML = data.temp;
     hum_value.innerHTML = data.hum;
 });
