@@ -19,9 +19,9 @@ def updateValues(background=0):
     while True:
         print('background = ', background)
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
-        latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc())
-        print('latest_temp, ', latestTemp.data_reading, file=sys.stdout)
-        print('latest_hum', latestHum.data_reading, file=sys.stdout)
+        latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
+        print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
+        print('latest_hum ,', latestHum.data_reading, file=sys.stdout)
         latest =   {'temp'  :   latestTemp.data_reading,
                     'hum'   :   latestHum.data_reading}
         socketio.emit('updateTemp', data=latest, namespace='/client-user')
