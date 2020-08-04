@@ -20,7 +20,7 @@ def updateTemp(background=0):
         socketio.emit('updateTemp', data=latestTemp, namespace='/client-user')
         if background == 1:
             socketio.sleep(60)
-        else if background == 0:
+        elif background == 0:
             break
 
 # Actuator handling events
