@@ -1,6 +1,6 @@
 # Monkey Patching
 import eventlet
-eventlet.monkey_patch()
+eventlet.monkey_patch(thread=False)
 
 from flask import Flask
 from config import Config
