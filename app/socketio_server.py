@@ -1,7 +1,7 @@
 from app import db, socketio
 from app.models import Reading, data_type_dict
 from flask_socketio import emit
-from utils.json_util import DateTimeDecoder
+from utils.json_util import DateTimeDecoder, DateTimeEncoder
 import json, sys
 
 # ---------------------------------------
@@ -16,8 +16,8 @@ def connect_user():
 def updateTemp(background=0):
     while True:
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
-        print('here, ', latestTemp, file=sys.stdout)
-        socketio.emit('updateTemp', data=latestTemp, namespace='/client-user')
+        print('here, ', latestTemp.data_reading, file=sys.stdout)
+        socketio.emit('updateTemp', data=latest_temp.data_reading, namespace='/client-user')
         if background == 1:
             socketio.sleep(60)
         elif background == 0:
