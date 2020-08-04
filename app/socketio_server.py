@@ -70,4 +70,4 @@ def receive_data(json_data):
 
     emit('response', 'Message was received!', namespace='/client-pi')
 
-socketio.start_background_task(target=socketio_server.updateTemp)
+socketio.start_background_task(target=updateTemp)
