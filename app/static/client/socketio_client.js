@@ -86,7 +86,11 @@ function makeChart(ctx, arr, name)    {
             responsive: true,
             scales: {
                 xAxes:[{
-                   type: 'time'
+                   type: 'time',
+                   ticks:   {
+                       min: Math.min.apply(this, data) - 5,
+                       max: Math.max.apply(this, data) + 5
+                   }
                 }],
                 yAxes:  [{
                 }]
