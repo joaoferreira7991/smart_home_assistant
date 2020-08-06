@@ -72,19 +72,16 @@ function makeChart(ctx, arr)    {
         showLine: true
     };
 
-    return new Chart(ctx, {
+    return new Chart.Scatter(ctx, {
         type: 'line',
         data: data,
         options: {
             responsive: true,
             scales: {
                 xAxes:[{
-                   type: 'time',
-
+                   type: 'time'
                 }],
                 yAxes:  [{
-                    ticks:  {
-                    }
                 }]
             }
         }
