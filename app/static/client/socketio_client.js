@@ -75,7 +75,9 @@ function makeChart(ctx, arr, name)    {
             label: name,
             backgroundColor: 'rgba(7, 152, 255, 0.5)',
             showLine: true,
-            data: arr
+            data: arr,
+            min: Math.min.apply(this, arr[0]),
+            max: Math.max.apply(this, arr[0])
         }]
     };
 
@@ -88,14 +90,14 @@ function makeChart(ctx, arr, name)    {
                 xAxes:[{
                    type: 'time',
                    ticks:   {
-                       min: Math.min.apply(this, data) - 5,
-                       max: Math.max.apply(this, data) + 5
+                       min: data.datasets.min - 5,
+                       max: data.datasets.max + 5
                    }
                 }],
                 yAxes:  [{
                     ticks:   {
-                        min: Math.min.apply(this, data) - 5,
-                        max: Math.max.apply(this, data) + 5
+                        min: data.datasets.min - 5,
+                        max: data.datasets.max + 5
                     }
                 }]
             }
