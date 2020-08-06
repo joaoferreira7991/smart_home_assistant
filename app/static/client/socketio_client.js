@@ -93,6 +93,10 @@ function makeChart(ctx, arr, name)    {
                    }
                 }],
                 yAxes:  [{
+                    ticks:   {
+                        min: Math.min.apply(this, data) - 5,
+                        max: Math.max.apply(this, data) + 5
+                    }
                 }]
             }
         }
