@@ -33,7 +33,7 @@ def updateValues(background=0):
                     'hum'   :   latestHum.data_reading,
                     'temp_arr'  :   temp,
                     'hum_arr'   :   hum}
-        socketio.emit('updateValues', data=latest, namespace='/client-user')
+        socketio.emit('updateValues', data=json.dumps(latest, cls=DateTimeEncoder), namespace='/client-user')
         if background == 0:
             break
         socketio.sleep(60)
