@@ -25,8 +25,8 @@ socketio.on('updateValues', function(data)    {
     parsed = JSON.parse(data);
     temp_value.innerHTML = parsed.temp;
     hum_value.innerHTML = parsed.hum;
-    makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature");
-    makeChart(hum_canvas, parse_data(parsed.hum_arr), "Humidity");
+    makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
+    makeChart(hum_canvas, parse_data(parsed.hum_arr), "Humidity", 0, 100);
 
 });
 
@@ -69,7 +69,7 @@ function parse_data(data)   {
     return aux;
 };
 
-function makeChart(ctx, arr, name)    {
+function makeChart(ctx, arr, name, min, max)    {
     var data = {
         datasets: [{
             label: name,
