@@ -31,10 +31,10 @@ socketio.on('updateValues', function(data)    {
     hum_value.innerHTML = parsed.hum;
     if(temp_chart != undefined)
         temp_chart.destroy();
-    makeChart(temp_chart, temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
+    temp_chart = makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
     if(hum_chart != undefined)
         hum_chart.destroy();
-    makeChart(hum_chart, hum_canvas, parse_data(parsed.hum_arr), "Humidity", 0, 100);
+    hum_chart = makeChart(hum_canvas, parse_data(parsed.hum_arr), "Humidity", 0, 100);
 
 });
 
@@ -77,7 +77,7 @@ function parse_data(data)   {
     return aux;
 };
 
-function makeChart(chart, ctx, arr, name, min, max)    {
+function makeChart(ctx, arr, name, min, max)    {
     var data = {
         datasets: [{
             label: name,
@@ -89,7 +89,7 @@ function makeChart(chart, ctx, arr, name, min, max)    {
         }]
     };
 
-    chart = new Chart.Scatter(ctx, {
+    var chart = new Chart.Scatter(ctx, {
         type: 'line',
         data: data,
         options: {
@@ -112,4 +112,5 @@ function makeChart(chart, ctx, arr, name, min, max)    {
             }
         }
     });
+    return chart;
 };
