@@ -85,6 +85,7 @@ function makeChart(ctx, arr, name)    {
         type: 'line',
         data: data,
         options: {
+            lineTension: 1,
             responsive: true,
             scales: {
                 xAxes:[{
