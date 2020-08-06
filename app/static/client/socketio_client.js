@@ -19,10 +19,11 @@ socketio.on('connect', function()    {
 
 // Temperature related events
 socketio.on('updateValues', function(data)    {
-    temp_value.innerHTML = data.temp;
-    hum_value.innerHTML = data.hum;
-    makeChart(temp_canvas, data.temp_arr);
-    makeChart(hum_canvas, data.hum_arr);
+    parsed = JSON.parse(data);
+    temp_value.innerHTML = parsed.temp;
+    hum_value.innerHTML = parsed.hum;
+    makeChart(temp_canvas, parsed.temp_arr);
+    makeChart(hum_canvas, parsed.hum_arr);
 
 });
 
