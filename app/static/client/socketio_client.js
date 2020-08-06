@@ -91,14 +91,14 @@ function makeChart(ctx, arr, name, min, max)    {
                 xAxes:[{
                    type: 'time',
                    ticks:   {
-                       //min: ,
-                       //max: data.datasets.max + 5
+                       min: min,
+                       max: max
                    }
                 }],
                 yAxes:  [{
                     ticks:   {
-                        //min: 0,
-                        //max: 35
+                        min: min,
+                        max: max
                     }
                 }]
             }
