@@ -29,9 +29,11 @@ socketio.on('updateValues', function(data)    {
     parsed = JSON.parse(data);
     temp_value.innerHTML = parsed.temp;
     hum_value.innerHTML = parsed.hum;
-    temp_chart.destroy();
+    if(temp_chart != undefined)
+        temp_chart.destroy();
     makeChart(temp_chart, temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
-    hum_chart.destroy();
+    if(hum_chart != undefined)
+        hum_chart.destroy();
     makeChart(hum_chart, hum_canvas, parse_data(parsed.hum_arr), "Humidity", 0, 100);
 
 });
