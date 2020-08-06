@@ -6,6 +6,9 @@
 //var led_stop = document.getElementById('led_stop');
 var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/client-user');
 
+// Color helper variable
+var color = Chart.helpers.color;
+
 // Variables from Dashboard 
 var temp_value = document.getElementById('temp').children['temp_value'];
 var hum_value = document.getElementById('hum').children['hum_value'];
