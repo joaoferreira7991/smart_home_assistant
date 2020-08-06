@@ -96,8 +96,8 @@ function makeChart(ctx, arr, name)    {
                 }],
                 yAxes:  [{
                     ticks:   {
-                        min: 0,
-                        max: 35
+                        //min: 0,
+                        //max: 35
                     }
                 }]
             }
