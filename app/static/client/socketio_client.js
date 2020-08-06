@@ -91,8 +91,8 @@ function makeChart(ctx, arr, name, min, max)    {
                 xAxes:[{
                    type: 'time',
                    ticks:   {
-                       min: min,
-                       max: max
+                       //min: min,
+                       //max: max
                    }
                 }],
                 yAxes:  [{
