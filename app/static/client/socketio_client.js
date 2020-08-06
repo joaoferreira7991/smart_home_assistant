@@ -84,7 +84,6 @@ function makeChart(ctx, arr)    {
                 }],
                 yAxes:  [{
                     ticks:  {
-                        beginAtZero: true
                     }
                 }]
             }
