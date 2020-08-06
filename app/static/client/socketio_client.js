@@ -68,8 +68,10 @@ function parse_data(data)   {
 
 function makeChart(ctx, arr)    {
     var data = {
-        data: arr,
-        showLine: true
+        datasets: [{
+            showLine: true,
+            data: arr
+        }]
     };
 
     return new Chart.Scatter(ctx, {
