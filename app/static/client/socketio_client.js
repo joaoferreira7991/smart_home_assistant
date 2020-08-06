@@ -9,6 +9,10 @@ var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/clien
 // Color helper variable
 var color = Chart.helpers.color;
 
+// Chart variable declaration to make possible to destroy when reloaded
+var temp_chart;
+var hum_chart;
+
 // Variables from Dashboard 
 var temp_value = document.getElementById('temp').children['temp_value'];
 var hum_value = document.getElementById('hum').children['hum_value'];
@@ -25,8 +29,10 @@ socketio.on('updateValues', function(data)    {
     parsed = JSON.parse(data);
     temp_value.innerHTML = parsed.temp;
     hum_value.innerHTML = parsed.hum;
-    makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
-    makeChart(hum_canvas, parse_data(parsed.hum_arr), "Humidity", 0, 100);
+    temp_chart.destroy();
+    makeChart(temp_chart, temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
+    hum_chart.destroy();
+    makeChart(hum_chart, hum_canvas, parse_data(parsed.hum_arr), "Humidity", 0, 100);
 
 });
 
@@ -69,7 +75,7 @@ function parse_data(data)   {
     return aux;
 };
 
-function makeChart(ctx, arr, name, min, max)    {
+function makeChart(chart, ctx, arr, name, min, max)    {
     var data = {
         datasets: [{
             label: name,
@@ -81,7 +87,7 @@ function makeChart(ctx, arr, name, min, max)    {
         }]
     };
 
-    return new Chart.Scatter(ctx, {
+    chart = new Chart.Scatter(ctx, {
         type: 'line',
         data: data,
         options: {
@@ -104,4 +110,5 @@ function makeChart(ctx, arr, name, min, max)    {
             }
         }
     });
+    return chart;
 };
