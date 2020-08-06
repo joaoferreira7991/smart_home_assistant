@@ -25,6 +25,8 @@ def updateValues(background=0):
         arrHum = fix_data(Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > datetime.combine(date.today(),datetime.min.time())).order_by(Reading.id.asc()))
         print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
         print('latest_hum ,', latestHum.data_reading, file=sys.stdout)
+        print(arrTemp)
+        print(arrHum)
         latest =   {'temp'  :   latestTemp.data_reading,
                     'hum'   :   latestHum.data_reading,
                     'temp_arr'  :   arrTemp,
