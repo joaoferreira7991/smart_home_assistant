@@ -110,5 +110,4 @@ function makeChart(chart, ctx, arr, name, min, max)    {
             }
         }
     });
-    return chart;
 };
