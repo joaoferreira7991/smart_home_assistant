@@ -68,7 +68,7 @@ function makeChart(ctx, arr)    {
     var data = {
         data: arr,
         showLine: true
-    };S
+    };
 
     return new Chart(ctx, {
         type: 'line',
