@@ -59,8 +59,7 @@ function parse_data(data)   {
                                 d: data[i][1].day,
                                 h: data[i][1].hour, 
                                 m: data[i][1].minute,
-                                s: data[i][1].second, 
-                                ms: data[i][1].microsecond}), 
+                                s: data[i][1].second}), 
                 y: data[i][0]};
         aux.push(x);        
     }
