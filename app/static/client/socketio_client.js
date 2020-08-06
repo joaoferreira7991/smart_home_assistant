@@ -54,11 +54,14 @@ led_decreaseBrightness.addEventListener("click", function()  {
 function parse_data(data)   {
     var aux = [];
     for(var i=0; i<data.length; i++)    {
-        var x = {x: new Date(data[i][1].year,
-            data[i][1].month, data[i][1].day,
-            data[i][1].minute, data[i][1].hour,
-            data[i][1].second, data[i][1].microsecond), 
-            y: data[i][0]};
+        var x = {x: new moment({y: data[i][1].year,
+                                M: data[i][1].month, 
+                                d: data[i][1].day,
+                                h: data[i][1].hour, 
+                                m: data[i][1].minute,
+                                s: data[i][1].second, 
+                                ms: data[i][1].microsecond}), 
+                y: data[i][0]};
         aux.push(x);        
     }
     return aux;
