@@ -22,8 +22,8 @@ socketio.on('updateValues', function(data)    {
     parsed = JSON.parse(data);
     temp_value.innerHTML = parsed.temp;
     hum_value.innerHTML = parsed.hum;
-    makeChart(temp_canvas, parsed.temp_arr);
-    makeChart(hum_canvas, parsed.hum_arr);
+    makeChart(temp_canvas, parse_data(parsed.temp_arr));
+    makeChart(hum_canvas, parse_data(parsed.hum_arr));
 
 });
 
@@ -50,6 +50,19 @@ led_decreaseBrightness.addEventListener("click", function()  {
 });
 */
 
+// Takes the unprepared json data and transforms it into working chart.js data
+function parse_data(data)   {
+    var aux = [];
+    for(var i=0; i<data.length; i++)    {
+        var x = [new Date(data[i][1].year,
+            data[i][1].month, data[i][1].day,
+            data[i][1].minute, data[i][1].hour,
+            data[i][1].second, data[i][1].microsecond), data[i][0]];
+        aux.push(x);        
+    }
+    return aux;
+};
+
 function makeChart(ctx, arr)    {
     var data = {
         data: arr,
@@ -62,6 +75,10 @@ function makeChart(ctx, arr)    {
         options: {
             responsive: true,
             scales: {
+                xAxes:[{
+                   type: 'time',
+
+                }],
                 yAxes:  [{
                     ticks:  {
                         beginAtZero: true
