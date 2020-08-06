@@ -73,7 +73,7 @@ function makeChart(ctx, arr, name)    {
     var data = {
         datasets: [{
             label: name,
-            backgroundColor: color(window.chartColors.blue),
+            backgroundColor: 'rgba(7, 152, 255, 0.5)',
             showLine: true,
             data: arr
         }]
