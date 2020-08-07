@@ -34,6 +34,8 @@
                 text-align: center;
                 padding: 20px 0;
                 font-size: 20px;
+                width: 50px;
+                height: 50px;
             }
             #led_onoff_toggle  {
             display: none;
@@ -82,11 +84,11 @@
             </div>
             <div id='temp'>
                 <h4 id='temp_value'></h4>
-                <canvas id='temp_canvas' width="100px" height="100px"></canvas>
+                <canvas id='temp_canvas'></canvas>
             </div>
             <div id='hum'>
                 <h4 id='hum_value'></h4>
-                <canvas id='hum_canvas' width="100px" height="100px"></canvas>                
+                <canvas id='hum_canvas'></canvas>                
             </div>
             <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
         </div>
