@@ -16,7 +16,7 @@ def connect_user():
 
 # Database reading events
 @socketio.on('updateValues', namespace='/client-user')
-def updateValues(background=0, date_range=(datetime.today() - timedelta(hours=1))):
+def updateValues(background=0, date_range=(datetime.today())):
     while True:
         print('background = ', background)
         print(date_range)
