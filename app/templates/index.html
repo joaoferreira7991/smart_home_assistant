@@ -37,8 +37,35 @@
                 width: 300px;
                 height:300px;
             }
-            #led_onoff_toggle  {
-            display: none;
+
+            input[id^='led']  {
+                display: none;
+            }
+
+            button[id^='led'] {
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;  
+                border: none;
+                background: none;
+            }
+
+            button[id^='led_i']:active  {
+                outline: none;
+                color: red;
+            }
+
+            button[id^='led_d']:active  {
+                outline: none;
+                color: blue;
+            }
+
+            button[id^='led']:focus  {
+                outline: none;
             }
 
             #onoff_label #onoff_icon {
@@ -49,15 +76,27 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;  
-                font-size: 50px;
                 color: black;
             }
 
-            :checked+#onoff_label #onoff_icon {
-                font-size: 50px;
-                color: blue;
-            };
+            #colorshift_label {
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;  
+                color: black;
+            }
 
+            :checked+#colorshift_label  {
+                color: yellow;
+            }
+
+            :checked+#onoff_label #onoff_icon {
+                color: green;
+            }
         </style>
         <div>
             <h3>Username: {{ user.username }}</h3>
@@ -74,13 +113,21 @@
                 <h3>Led Controller</h3>
                 <label id='onoff'>
                     <input id='led_onoff_toggle' type='checkbox'>
-                    <label for='led_onoff_toggle' id='onoff_label'><i id='onoff_icon' class='material-icons' > power_settings_new</i></label>
-                  </label>
-                <button id='led_increaseBrightness'></button>
-                <button id='led_decreaseBrightness'></button>
-                <label id='colorshift'>
-                    <input id='led_colorshift_toggle' type='checkbox'>
-                  </label>
+                    <label for='led_onoff_toggle' id='onoff_label'>
+                        <i id='onoff_icon' class='material-icons' >power_settings_new</i>
+                    </label>
+                </label>
+                <button id='led_increaseBrightness' type='checkbox'>
+                    <i id='increaseBrightness_icon' class='material-icons'>add_circle_outline</i>
+                </button>
+                  
+                <button id='led_decreaseBrightness' type='checkbox'>
+                    <i id='decreaseBrightness_icon' class='material-icons'>remove_circle_outline</i>  
+                </button>
+                <input id='led_colorshift_toggle' type='checkbox'>
+                <label for='led_colorshift_toggle' id='colorshift_label'>
+                  Colorshift
+                </label>
             </div>
             <div id='temp'>
                 <h4 id='temp_value'></h4>
