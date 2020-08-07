@@ -51,6 +51,10 @@ def ledStop():
 @socketio.on('START_COLORSHIFT', namespace='/client-user')
 def colorshiftStart():
     socketio.emit('START_COLORSHIFT', namespace='/client-pi')
+    
+@socketio.on('STOP_COLORSHIFT', namespace='/client-user')
+def colorshiftStop():
+    socketio.emit('STOP_COLORSHIFT', namespace='/client-pi')
 
 @socketio.on('INCREASE_BRIGHTNESS', namespace='/client-user')
 def brighnessIncrease():
