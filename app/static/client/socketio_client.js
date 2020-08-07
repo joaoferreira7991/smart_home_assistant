@@ -28,7 +28,7 @@ socketio.on('connect', function()    {
 socketio.on('updateValues', function(data)    {
     parsed = JSON.parse(data);
     temp_value.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
-    hum_value.innerHTML = 'Current humidity is ' + parsed.temp + '%.';
+    hum_value.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
     if(temp_chart != undefined)
         temp_chart.destroy();
     temp_chart = makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
