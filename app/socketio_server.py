@@ -19,6 +19,7 @@ def connect_user():
 def updateValues(background=0, date_range=(datetime.today() - timedelta(hours=1))):
     while True:
         print('background = ', background)
+        print(date_range)
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
         arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).all()
