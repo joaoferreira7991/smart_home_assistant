@@ -1,9 +1,3 @@
-//var led = document.getElementById('led');
-//var led_start = document.getElementById('led_start');
-//var led_colorshift = document.getElementById('led_colorshift');
-//var led_increaseBrightness = document.getElementById('led_increaseBrightness');
-//var led_decreaseBrightness = document.getElementById('led_decreaseBrightness');
-//var led_stop = document.getElementById('led_stop');
 var socketio = io.connect('https://smart-home-assistant.herokuapp.com' + '/client-user');
 
 // Color helper variable
@@ -12,6 +6,12 @@ var color = Chart.helpers.color;
 // Chart variable declaration to make possible to destroy when reloaded
 var temp_chart;
 var hum_chart;
+
+// Variables to control led strip
+var led_onoff_toggle = document.getElementById('led').children['led_onoff_toggle'];
+var led_increaseBrightness = document.getElementById('led').children['led_increaseBrightness'];
+var led_decreaseBrightness = document.getElementById('led').children['led_decreaseBrightness'];
+var led_colorshift_toggle = document.getElementById('led').children['led_colorshift_toggle'];
 
 // Variables from Dashboard 
 var temp_value = document.getElementById('temp').children['temp_value'];
@@ -27,8 +27,8 @@ socketio.on('connect', function()    {
 // Temperature related events
 socketio.on('updateValues', function(data)    {
     parsed = JSON.parse(data);
-    temp_value.innerHTML = parsed.temp;
-    hum_value.innerHTML = parsed.hum;
+    temp_value.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
+    hum_value.innerHTML = 'Current humidity is ' + parsed.temp + '%.';
     if(temp_chart != undefined)
         temp_chart.destroy();
     temp_chart = makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
@@ -39,17 +39,19 @@ socketio.on('updateValues', function(data)    {
 });
 
 // Led Controller events
-/*
-led_start.addEventListener("click", function()  {
-    socketio.emit('LED_ON');
+
+led_onoff_toggle.addEventListener("click", function()  {
+    if(led_onoff_toggle.checked)
+        socketio.emit('LED_ON');    
+    if(!led_onoff_toggle.checked)
+        socketio.emit('LED_OFF');
 });
 
-led_stop.addEventListener("click", function()  {
-    socketio.emit('LED_OFF');
-});
-
-led_colorshift.addEventListener("click", function()  {
-    socketio.emit('START_COLORSHIFT');
+led_colorshift_toggle.addEventListener("click", function()  {
+    if(led_colorshift_toggle.checked)
+        socketio.emit('START_COLORSHIFT');   
+    if(!led_colorshift_toggle.checked)
+        socketio.emit('STOP_COLORSHIFT'); 
 });
 
 led_increaseBrightness.addEventListener("click", function()  {
@@ -59,7 +61,7 @@ led_increaseBrightness.addEventListener("click", function()  {
 led_decreaseBrightness.addEventListener("click", function()  {
     socketio.emit('DECREASE_BRIGHTNESS');
 });
-*/
+
 
 // Takes the unprepared json data and transforms it into working chart.js data
 function parse_data(data)   {

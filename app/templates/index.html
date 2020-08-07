@@ -46,14 +46,20 @@
         <div id='dashboard' class='grid-container'>
             <div id='led'>
                 <h3>Led Controller</h3>
+                <label>
+                    <input id="led_onoff_toggle" type="checkbox">
+                  </label>
+                <button id='led_increaseBrightness'></button>
+                <button id='led_decreaseBrightness'></button>
+                <label>
+                    <input id="led_colorshift_toggle" type="checkbox">
+                  </label>
             </div>
             <div id='temp'>
-                <h3>Temperature</h3>
                 <h4 id='temp_value'></h4>
                 <canvas id='temp_canvas' width="400" height="400"></canvas>
             </div>
             <div id='hum'>
-                <h3>Humidity</h3>
                 <h4 id='hum_value'></h4>
                 <canvas id='hum_canvas' width="400" height="400"></canvas>                
             </div>
