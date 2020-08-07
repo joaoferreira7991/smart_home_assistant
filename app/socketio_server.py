@@ -3,7 +3,7 @@ from app.models import Reading, data_type_dict
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
 from utils.fix_data import fix_data
-from datetime import datetime, time, date
+from datetime import datetime, time, date, timedelta
 import json, sys
 
 
@@ -16,13 +16,13 @@ def connect_user():
 
 # Database reading events
 @socketio.on('updateValues', namespace='/client-user')
-def updateValues(background=0):
+def updateValues(background=0, (date_range=datetime.today() - timedelta(hours=4))):
     while True:
         print('background = ', background)
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
-        arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > datetime.combine(date.today(),datetime.min.time())).order_by(Reading.id.asc()).all()
-        arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > datetime.combine(date.today(),datetime.min.time())).order_by(Reading.id.asc()).all()
+        arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).all()
+        arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).all()
         temp = fix_data(arrTemp)
         hum = fix_data(arrHum)
         print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
