@@ -8,10 +8,10 @@ var temp_chart;
 var hum_chart;
 
 // Variables to control led strip
-var led_onoff_toggle = document.getElementById('led').children['led_onoff_toggle'];
+var led_onoff_toggle = document.getElementById('led').children['onoff'].children['led_onoff_toggle'];
 var led_increaseBrightness = document.getElementById('led').children['led_increaseBrightness'];
 var led_decreaseBrightness = document.getElementById('led').children['led_decreaseBrightness'];
-var led_colorshift_toggle = document.getElementById('led').children['led_colorshift_toggle'];
+var led_colorshift_toggle = document.getElementById('led').children['colorshift'].children['led_colorshift_toggle'];
 
 // Variables from Dashboard 
 var temp_value = document.getElementById('temp').children['temp_value'];
