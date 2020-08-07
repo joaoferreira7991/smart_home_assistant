@@ -40,14 +40,14 @@ socketio.on('updateValues', function(data)    {
 
 // Led Controller events
 
-led_onoff_toggle.addEventListener("click", function()  {
+led_onoff_toggle.addEventListener("change", function()  {
     if(led_onoff_toggle.checked)
         socketio.emit('LED_ON');    
     if(!led_onoff_toggle.checked)
         socketio.emit('LED_OFF');
 });
 
-led_colorshift_toggle.addEventListener("click", function()  {
+led_colorshift_toggle.addEventListener("change", function()  {
     if(led_colorshift_toggle.checked)
         socketio.emit('START_COLORSHIFT');   
     if(!led_colorshift_toggle.checked)
