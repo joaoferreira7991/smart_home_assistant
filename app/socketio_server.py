@@ -16,15 +16,15 @@ def connect_user():
 
 # Database reading events
 @socketio.on('updateValues', namespace='/client-user')
-def updateValues(background=0, date_range=(datetime.today())):
+def updateValues(background=0, date_range=(datetime.today(), max_results=30)):
     while True:
         print('background = ', background)
         print(date_range)
         print(datetime.today())
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
-        arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).all()
-        arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).all()
+        arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
+        arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         temp = fix_data(arrTemp)
         hum = fix_data(arrHum)
         print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
