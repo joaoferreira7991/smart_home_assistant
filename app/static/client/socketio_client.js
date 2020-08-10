@@ -10,13 +10,13 @@ var hum_chart;
 // Variables to control led strip
 var led_onoff_toggle = document.getElementById('led-controller-onoff');
 var led_increaseBrightness = document.getElementById('increase-brightness');
-var led_decreaseBrightness = document.getElementById('led').children['led-controller-decrease'].children['decrease-brightness'];
-var led_colorshift_toggle = document.getElementById('led').children['led-controller-colorshift'].children['colorshift-toggle'];
+var led_decreaseBrightness = document.getElementById('decrease-brightness');
+var led_colorshift_toggle = document.getElementById('colorshift-toggle');
 
 // Variables from Dashboard 
-var temp_canvas = document.getElementById('charts').children['temp-chart'].children['temp-canvas'].getContext('2d');
+var temp_canvas = document.getElementById('temp-canvas').getContext('2d');
 //var hum_value = document.getElementById('charts').children['hum_value'];
-var hum_canvas = document.getElementById('charts').children['hum-chart'].children['hum-canvas'].getContext('2d');
+var hum_canvas = document.getElementById('hum-canvas').getContext('2d');
 //var hum_canvas = document.getElementById('hum').children['hum_canvas'].getContext('2d');
 
 // Load values
