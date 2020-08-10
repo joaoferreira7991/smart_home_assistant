@@ -1,6 +1,6 @@
 body    {
     margin: 0;
-    background-color: rgb(21, 19, 61);
+    background-color: rgb(37, 35, 73);
     display:  grid;
     grid-template-areas: 
         'head'
@@ -15,7 +15,7 @@ body    {
     display: flex;
     grid-template-rows: subgrid;
     grid-template-columns: subgrid;
-    background-color: rgb(95, 111, 138);
+    background-color: rgb(28, 27, 48);
 }
 
 .head > div {
@@ -42,7 +42,7 @@ body    {
     grid-area: led;
     display: grid;
     grid-gap: 5px;
-    background-color: rgb(21, 19, 61);
+    background-color: rgb(37, 35, 73);
     grid-template-rows: subgrid;
     grid-template-columns: subgrid;
     grid-template-areas: 
@@ -59,7 +59,7 @@ body    {
 
 .led-controller {
     display: grid;
-    background-color: rgb(37, 33, 107);
+    background-color: rgb(28, 27, 48);
     grid-template-rows: subgrid;
     grid-template-columns: subgrid;
     grid-template-areas: 
@@ -80,7 +80,7 @@ body    {
 
 .led-switch {
     display: grid;
-    background-color: rgb(37, 33, 107);
+    background-color: rgb(28, 27, 48);
     grid-template-rows: subgrid;
     grid-template-columns: subgrid;
     grid-template-areas: 
@@ -101,7 +101,7 @@ body    {
     grid-area: charts;
     display: grid;
     grid-gap: 20px;
-    background-color: rgb(21, 19, 61);
+    background-color: rgb(37, 35, 73);
     grid-template-rows: subgrid;
     grid-template-columns: subgrid;
     grid-template-areas: 
@@ -114,10 +114,12 @@ body    {
 
 .temp-chart {
     grid-area: temp-chart;
+    background-color: rgb(28, 27, 48);
 }
 
 .hum-chart  {
     grid-area: hum-chart;
+    background-color: rgb(28, 27, 48);
 }
 
 /*
