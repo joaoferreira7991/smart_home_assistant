@@ -15,16 +15,17 @@
         </p>
     </form>
     {% else %}
-    <div class='led'>
-        <div class='led-controller'>
-            <div class='led-controller-onoff'>
+    <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
+    <div class='led' id='led'>
+        <div class='led-controller' id='led-controller'>
+            <div class='led-controller-onoff' id='led-controller-onoff'>
                 <input id='onoff-toggle' type='checkbox'>
                 <label for='onoff-toggle' id='onoff-label'>
                 <i id='onoff-icon' class='material-icons' >power_settings_new</i>
                 </label>          
             </div>
 
-            <div class='led-controller-increase'>
+            <div class='led-controller-increase' id='led-controller-increase'>
                 <button id='increase-brightness' type='checkbox'>
                     <i id='increase-brightness-icon' class='material-icons'>add_circle_outline</i>
                 </button>

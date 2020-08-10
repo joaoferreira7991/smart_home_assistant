@@ -8,16 +8,16 @@ var temp_chart;
 var hum_chart;
 
 // Variables to control led strip
-var led_onoff_toggle = document.getElementById('led').children['led_onoff'].children['led_onoff_toggle'];
-var led_increaseBrightness = document.getElementById('led').children['led_increaseBrightness'];
-var led_decreaseBrightness = document.getElementById('led').children['led_decreaseBrightness'];
-var led_colorshift_toggle = document.getElementById('led').children['led_colorshift_toggle'];
+var led_onoff_toggle = document.getElementById('led').children['led-controller'].children['led-controller-onoff'];
+var led_increaseBrightness = document.getElementById('led').children['led-controller-increase'].children['increase-brightness'];
+var led_decreaseBrightness = document.getElementById('led').children['led-controller-decrease'].children['decrease-brightness'];
+var led_colorshift_toggle = document.getElementById('led').children['led-controller-colorshift'].children['colorshift-toggle'];
 
 // Variables from Dashboard 
-var temp_value = document.getElementById('temp').children['temp_value'];
-var hum_value = document.getElementById('hum').children['hum_value'];
-var temp_canvas = document.getElementById('temp').children['temp_canvas'].getContext('2d');
-var hum_canvas = document.getElementById('hum').children['hum_canvas'].getContext('2d');
+var temp_canvas = document.getElementById('charts').children['temp-chart'].children['temp-canvas'].getContext('2d');
+//var hum_value = document.getElementById('charts').children['hum_value'];
+var hum_canvas = document.getElementById('charts').children['hum-chart'].children['hum-canvas'].getContext('2d');
+//var hum_canvas = document.getElementById('hum').children['hum_canvas'].getContext('2d');
 
 // Load values
 socketio.on('connect', function()    {
@@ -27,8 +27,8 @@ socketio.on('connect', function()    {
 // Temperature related events
 socketio.on('updateValues', function(data)    {
     parsed = JSON.parse(data);
-    temp_value.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
-    hum_value.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
+    //temp_value.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
+    //hum_value.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
     if(temp_chart != undefined)
         temp_chart.destroy();
     temp_chart = makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
