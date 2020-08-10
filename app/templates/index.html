@@ -14,8 +14,7 @@
             {{ form.submit() }}
         </p>
     </form>
-    {% else %}
-    <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
+    {% else %}    
     <div class='led' id='led'>
         <div class='led-controller' id='led-controller'>
             <div class='led-controller-onoff' id='led-controller-onoff'>
@@ -31,7 +30,7 @@
                 </button>
             </div>
 
-            <div class='led-controller-decrease'>
+            <div class='led-controller-decrease' id='led-controller-decrease'>
                 <button id='decrease-brightness' type='checkbox'>
                     <i id='decrease-brightness-icon' class='material-icons'>remove_circle_outline</i>
                 </button>
@@ -70,6 +69,7 @@
             <canvas id='hum-canvas'></canvas>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
     {% endif %}
 </div>
 {% endblock content %}
