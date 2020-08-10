@@ -8,7 +8,7 @@ var temp_chart;
 var hum_chart;
 
 // Variables to control led strip
-var led_onoff_toggle = document.getElementById('led-controller-onoff');
+var led_onoff_toggle = document.getElementById('onoff-toggle');
 var led_increaseBrightness = document.getElementById('increase-brightness');
 var led_decreaseBrightness = document.getElementById('decrease-brightness');
 var led_colorshift_toggle = document.getElementById('colorshift-toggle');
