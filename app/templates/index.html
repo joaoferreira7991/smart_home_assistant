@@ -17,9 +17,15 @@
         </form>
     {% else %}
         <style>
-            .led    { grid-area: led; }
-            .temp   { grid-area: temp; }
-            .hum    { grid-area: hum; }
+            .led-container-grid     { grid-area: led; }
+            .temp-container-grid    { grid-area: temp; }
+            .hum-container-grid     { grid-area: hum; }
+
+            .led-title-grid-item    { grid-area: title; }
+            .led-onoff-grid-item    { grid-area: onoff; }
+            .led-increase-grid-item { grid-area: increase; }
+            .led-decrease-grid-item { grid-area: decrease; }
+            .led-colorshift-grid-item{ grid-area: colorshift; }
 
             .grid-container {
                 display: grid;
@@ -37,11 +43,17 @@
                 width: 300px;
                 height:300px;
             }
-
+            .led-container-grid {
+                display:grid;
+                grid-template-areas:
+                    'title title'
+                    'onoff onoff'
+                    'increase decrease'
+                    'colorshift colorshift';
+            }
             input[id^='led']  {
                 display: none;
             }
-
             button[id^='led'] {
                 cursor: pointer;
                 -webkit-touch-callout: none;
@@ -53,12 +65,10 @@
                 border: none;
                 background: none;
             }
-
             button[id^='led_i']:active  {
                 outline: none;
                 color: red;
             }
-
             button[id^='led_d']:active  {
                 outline: none;
                 color: blue;
@@ -67,7 +77,6 @@
             button[id^='led']:focus  {
                 outline: none;
             }
-
             #onoff_label #onoff_icon {
                 cursor: pointer;
                 -webkit-touch-callout: none;
@@ -78,7 +87,6 @@
                 user-select: none;  
                 color: black;
             }
-
             #colorshift_label {
                 cursor: pointer;
                 -webkit-touch-callout: none;
@@ -89,11 +97,9 @@
                 user-select: none;  
                 color: black;
             }
-
             :checked+#colorshift_label  {
                 color: yellow;
             }
-
             :checked+#onoff_label #onoff_icon {
                 color: green;
             }
@@ -109,31 +115,38 @@
             <!-- Icon loading. -->
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             
-            <div id='led'>
-                <h3>Led Controller</h3>
-                <input id='led_onoff_toggle' type='checkbox'>
-                <label for='led_onoff_toggle' id='onoff_label'>
-                    <i id='onoff_icon' class='material-icons' >power_settings_new</i>
-                </label>
-
-                <button id='led_increaseBrightness' type='checkbox'>
-                    <i id='increaseBrightness_icon' class='material-icons'>add_circle_outline</i>
-                </button>
-                  
-                <button id='led_decreaseBrightness' type='checkbox'>
-                    <i id='decreaseBrightness_icon' class='material-icons'>remove_circle_outline</i>  
-                </button>
-                
-                <input id='led_colorshift_toggle' type='checkbox'>
-                <label for='led_colorshift_toggle' id='colorshift_label'>
-                  Colorshift
-                </label>
+            <div class='led-container-grid' id='led'>
+                <div class='led-title-grid-item'></div>
+                    <h3>Led Controller</h3>
+                </div>
+                <div class='led-onoff-grid-item'>
+                    <input id='led_onoff_toggle' type='checkbox'>
+                    <label for='led_onoff_toggle' id='onoff_label'>
+                        <i id='onoff_icon' class='material-icons' >power_settings_new</i>
+                    </label>
+                </div>
+                <div class='led-increase-grid-item'>
+                    <button id='led_increaseBrightness' type='checkbox'>
+                        <i id='increaseBrightness_icon' class='material-icons'>add_circle_outline</i>
+                    </button>
+                </div>
+                <div class='led-decrease-grid-item'>
+                    <button id='led_decreaseBrightness' type='checkbox'>
+                        <i id='decreaseBrightness_icon' class='material-icons'>remove_circle_outline</i>  
+                    </button>
+                </div>
+                <div class='led-colorshift-grid-item'>  
+                    <input id='led_colorshift_toggle' type='checkbox'>
+                    <label for='led_colorshift_toggle' id='colorshift_label'>
+                      Colorshift
+                    </label>
+                </div>            
             </div>
-            <div id='temp'>
+            <div class='temp-container-grid' id='temp'>
                 <h4 id='temp_value'></h4>
                 <canvas id='temp_canvas'></canvas>
             </div>
-            <div id='hum'>
+            <div class='hum-container-grid' id='hum'>
                 <h4 id='hum_value'></h4>
                 <canvas id='hum_canvas'></canvas>                
             </div>
