@@ -44,10 +44,12 @@ def updateValues(background=0, date_range=datetime.today(), max_results=30):
 # Led Strip Controller events
 @socketio.on('LED_ON', namespace='/client-user')
 def ledInit():
+    print('init')
     socketio.emit('LED_ON', namespace='/client-pi')
 
 @socketio.on('LED_OFF', namespace='/client-user')
 def ledStop():
+    print('stop')
     socketio.emit('LED_OFF', namespace='/client-pi')
 
 @socketio.on('START_COLORSHIFT', namespace='/client-user')
