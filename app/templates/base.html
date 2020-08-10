@@ -6,6 +6,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>        
+        <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
         {% if title %}
             <title> {{ title }} - Smart Home Assistant </title>
         {% else %}
@@ -13,22 +16,21 @@
         {% endif %}
     </head>
     <body>                
-        <div> Smart Home Assistant:
-            <a href="index">Home</a>
+        <div class='head'>
+            <div>Smart Home Assistant</div>
+            <div><a href="index">Home</a></div>
             {% if current_user.is_anonymous %}
-                <a href="sign_in">Sign in</a>
-                <a href="sign_up">Sign up</a>
+                <div><a href="sign_in">Sign in</a></div>
+                <div><a href="sign_up">Sign up</a></div>
             {% else %}
-                <a href="index">{{current_user.username}}</a>
-                <a href="sign_out">Sign out</a>
+                <div><a href="index">{{current_user.username}}</a></div>
+                <div><a href="sign_out">Sign out</a></div>
             {% endif %}
         </div>
-        <hr>
         {% block content %}
         {% endblock content %}
-        <hr>
         <!--This footer style div handles flash messages.-->
-        <div>
+        <div class='flash'>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <ul class=flashes>

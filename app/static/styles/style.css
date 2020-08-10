@@ -1,0 +1,206 @@
+body    {
+    margin: 0;
+    background-color: rgb(21, 19, 61);
+    display:  grid;
+    grid-template-areas: 
+        'head'
+        'body'
+        'flash';
+}
+
+.flash  {grid-area: flash;}
+
+.head {
+    grid-area: head;
+    display: flex;
+    background-color: rgb(95, 111, 138);
+}
+
+.head > div {
+    font-size: 40px;
+    text-align: center;
+    padding: 5px;
+}
+
+.body {
+    grid-area: body;
+    display: grid;
+    grid-template-areas: 
+        'led led led'
+        'charts charts charts';
+    background-color: rgb(21, 19, 61);
+    grid-gap: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.led  {
+    grid-area: led;
+    display: grid;
+    grid-gap: 5px;
+    background-color: rgb(21, 19, 61);
+    grid-template-areas: 
+        'led-controller led-switch . . .';
+    padding: 20px;
+    height: 150px;
+    border-radius: 5px;
+}
+
+.led-controller-onoff       {grid-area: onoff;}
+.led-controller-increase    {grid-area: increase;}
+.led-controller-decrease    {grid-area: decrease;}
+.led-controller-colorshift  {grid-area: colorshift;}
+
+.led-controller {
+    display: grid;
+    background-color: rgb(37, 33, 107);
+    grid-template-areas: 
+        'onoff onoff'
+        'increase decrease'
+        'colorshift colorshift';
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+}
+
+.led-controller > div {
+    text-align: center;
+}
+
+.led-switch-onoff   {grid-area: switch-onoff;}
+.led-switch-id      {grid-area: switch-id;}
+
+.led-switch {
+    display: grid;
+    background-color: rgb(37, 33, 107);
+    grid-template-areas: 
+        'switch-onoff'
+        'switch-onoff'
+        'switch-onoff'
+        'switch-id';
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+}
+
+.led-switch > div {
+    text-align: center;
+}
+
+.charts {
+    grid-area: charts;
+    display: grid;
+    grid-gap: 20px;
+    background-color: rgb(21, 19, 61);
+    grid-template-areas: 
+        'temp-chart'
+        'hum-chart';
+    padding: 20px;
+    height: 150px;
+    border-radius: 5px;    
+}
+
+/*
+Style for switch controller
+*/
+#switch-onoff-toggle  {
+    display: none;
+}
+
+#switch-onoff-label #switch-onoff-icon {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 75px;
+}
+
+:checked+#switch-onoff-label #switch-onoff-icon {
+    color: green;
+}
+
+#switch-id-label {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/*
+Style for led strip controller
+*/
+#onoff-toggle,#colorshift-toggle  {
+    display: none;
+}
+
+#onoff-label #onoff-icon {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 50px;
+}
+
+#colorshift-label {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#increase-brightness,#decrease-brightness {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    border: none;
+    background: none;
+
+}
+
+#increase-brightness-icon,#decrease-brightness-icon {
+    font-size: 35px;
+}
+
+#increase-brightness:active  {
+    outline: none;
+    color: red;
+}
+
+#decrease-brightness:active  {
+    outline: none;
+    color: blue;
+}
+
+#increase-brightness, #decrease-brightness:focus  {
+    outline: none;
+}
+
+:checked+#colorshift-label  {
+    color: yellow;
+}
+:checked+#onoff-label #onoff-icon {
+    color: green;
+}

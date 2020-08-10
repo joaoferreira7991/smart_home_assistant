@@ -1,214 +1,74 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to the smart home assistant.</h1>
-
+<div class='body'>
     {% if user.home_id == None %}
-        <h1>First you should name your home!</h1>
-        <form action="" method="POST" novalidate>
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.name.label }} <br>
-                {{ form.name(size=30) }}                
-            </p>
-            <p>
-                {{ form.submit() }}
-            </p>
-        </form>
+    <h1>First you should name your home!</h1>
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }} <br>
+            {{ form.name(size=30) }}                
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
     {% else %}
-        <style>
-            .led-container-grid     { grid-area: led; }
-            .temp-container-grid    { grid-area: temp; }
-            .hum-container-grid     { grid-area: hum; }
-
-            .led-title-grid-item    { grid-area: title; }
-            .led-onoff-grid-item    { grid-area: onoff; }
-            .led-increase-grid-item { grid-area: increase; }
-            .led-decrease-grid-item { grid-area: decrease; }
-            .led-colorshift-grid-item{ grid-area: colorshift; }
-
-            .grid-container {
-                display: grid;
-                grid-template-areas:
-                    'led temp hum';
-                grid-gap: 10px;
-                background-color: grey;
-                padding: 10px;
-            }
-            .grid-container > div {
-                background-color:darkgray;
-                text-align: center;
-                padding: 20px 0;
-                font-size: 20px;
-                width: 300px;
-                height:300px;
-            }
-            .led-container-grid {
-                display:grid;
-                grid-template-areas:
-                    'title title'
-                    'onoff onoff'
-                    'increase decrease'
-                    'colorshift colorshift';
-            }
-            input[id^='led']  {
-                display: none;
-            }
-            button[id^='led'] {
-                cursor: pointer;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;  
-                border: none;
-                background: none;
-            }
-            button[id^='led_i']:active  {
-                outline: none;
-                color: red;
-            }
-            button[id^='led_d']:active  {
-                outline: none;
-                color: blue;
-            }
-
-            button[id^='led']:focus  {
-                outline: none;
-            }
-            #onoff_label #onoff_icon {
-                cursor: pointer;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;  
-                color: black;
-            }
-            #colorshift_label {
-                cursor: pointer;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;  
-                color: black;
-            }
-            :checked+#colorshift_label  {
-                color: yellow;
-            }
-            :checked+#onoff_label #onoff_icon {
-                color: green;
-            }
-        </style>
-        <div>
-            <h3>Username: {{ user.username }}</h3>
-            <h3>Email: {{ user.email }}</h3>
-        </div>
-        <br>
-        <h2>Dashboard</h2>
-        <h3>{{ home_name }}</h3>
-        <div id='dashboard' class='grid-container'>
-            <!-- Icon loading. -->
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            
-            <div class='led-container-grid' id='led'>
-                <div class='led-title-grid-item'>
-                    <h3>Led Controller</h3>
-                </div>
-                <div class='led-onoff-grid-item'>
-                    <input id='led_onoff_toggle' type='checkbox'>
-                    <label for='led_onoff_toggle' id='onoff_label'>
-                        <i id='onoff_icon' class='material-icons' >power_settings_new</i>
-                    </label>
-                </div>
-                <div class='led-increase-grid-item'>
-                    <button id='led_increaseBrightness' type='checkbox'>
-                        <i id='increaseBrightness_icon' class='material-icons'>add_circle_outline</i>
-                    </button>
-                </div>
-                <div class='led-decrease-grid-item'>
-                    <button id='led_decreaseBrightness' type='checkbox'>
-                        <i id='decreaseBrightness_icon' class='material-icons'>remove_circle_outline</i>  
-                    </button>
-                </div>
-                <div class='led-colorshift-grid-item'>  
-                    <input id='led_colorshift_toggle' type='checkbox'>
-                    <label for='led_colorshift_toggle' id='colorshift_label'>
-                      Colorshift
-                    </label>
-                </div>            
+    <div class='led'>
+        <div class='led-controller'>
+            <div class='led-controller-onoff'>
+                <input id='onoff-toggle' type='checkbox'>
+                <label for='onoff-toggle' id='onoff-label'>
+                <i id='onoff-icon' class='material-icons' >power_settings_new</i>
+                </label>          
             </div>
-            <div class='temp-container-grid' id='temp'>
-                <h4 id='temp_value'></h4>
-                <canvas id='temp_canvas'></canvas>
-            </div>
-            <div class='hum-container-grid' id='hum'>
-                <h4 id='hum_value'></h4>
-                <canvas id='hum_canvas'></canvas>                
-            </div>
-            <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
-        </div>
-        <!--
-        <div id="led">
-            <button id="led_start"> On</button>
-            <button id="led_colorshift"> Colorshift </button>
-            <button id="led_increaseBrightness"> Increase Brightness</button> 
-            <button id="led_decreaseBrightness"> Decrease Brightness</button>
-            <button id="led_stop"> Off </button> 
-            <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
-            <script type='text/javascript'>
-                $(document).ready(function ()   {
-                    
-                    var socket = io.connect('https://smart-home-assistant.herokuapp.com/',{secure: true});
-                    
-                    
-                    socket.on('connect', function() {
-                        socket.send('')
-                    });
 
-                });
-            </script>
-        </div>
+            <div class='led-controller-increase'>
+                <button id='increase-brightness' type='checkbox'>
+                    <i id='increase-brightness-icon' class='material-icons'>add_circle_outline</i>
+                </button>
+            </div>
 
-        <br>
-        <div>
-            <h3>Temperature</h3>
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Value</th>
-                    <th>Timestamp</th>
-                </tr>                
-                {% for temperature in temperature_list %}
-                    <tr>
-                        <td>{{ temperature.id }}</td>
-                        <td>{{ temperature.data_reading }}</td>                          
-                        <td>{{ temperature.timestamp }}</td>                          
-                    </tr>
-                {% endfor %}
-            </table>                    
-        </div>        
-        <div>
-            <h3>Humidity</h3>
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Value</th>
-                    <th>Timestamp</th>
-                </tr>                
-                {% for humidity in humidity_list %}
-                    <tr>
-                        <td>{{ humidity.id }}</td>
-                        <td>{{ humidity.data_reading }}</td>                          
-                        <td>{{ humidity.timestamp }}</td>                          
-                    </tr>
-                {% endfor %}
-            </table>                    
+            <div class='led-controller-decrease'>
+                <button id='decrease-brightness' type='checkbox'>
+                    <i id='decrease-brightness-icon' class='material-icons'>remove_circle_outline</i>
+                </button>
+            </div>        
+
+            <div class='led-controller-colorshift'>
+                <input id='colorshift-toggle' type='checkbox'>
+                <label for='colorshift-toggle' id='colorshift-label'>
+                Colorshift
+                </label>          
+            </div>        
         </div>
-        -->
+        
+        <div class='led-switch'>
+            <div class='led-switch-onoff'>
+                <input id='switch-onoff-toggle' type='checkbox'>
+                <label for='switch-onoff-toggle' id='switch-onoff-label'>
+                <i id='switch-onoff-icon' class='material-icons' >power_settings_new</i>
+                </label>          
+            </div>
+        
+            <div class='led-switch-id'>
+                <label for='switch-id' id='switch-id-label'>
+                Bedroom
+                </label> 
+            </div>
+        </div>
+    </div>
+
+    <div class='charts'>
+        <div class='temp-chart'>
+            <canvas id='temp-canvas'></canvas>
+        </div>
+        
+        <div class='hum-chart'>
+            <canvas id='hum-canvas'></canvas>
+        </div>
+    </div>
     {% endif %}
+</div>
 {% endblock content %}
