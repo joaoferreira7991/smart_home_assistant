@@ -85,9 +85,8 @@ body    {
     grid-gap: 20px;
     background-color: rgb(37, 35, 73);
     grid-template-rows: repeat(auto-fill, minmax(600px, 1fr));
-    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+/*    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));*/
     padding: 20px;
-    height: 150px;
     border-radius: 5px;    
 }
 
