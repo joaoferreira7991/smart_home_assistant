@@ -1,20 +1,12 @@
 body    {
     margin: 0;
     background-color: rgb(37, 35, 73);
-    display:  grid;
-    grid-template-areas: 
-        'head'
-        'body'
-        'flash';
 }
 
 .flash  {grid-area: flash;}
 
 .head {
-    grid-area: head;
     display: flex;
-    grid-template-rows: subgrid;
-    grid-template-columns: subgrid;
     background-color: rgb(28, 27, 48);
 }
 
@@ -23,12 +15,10 @@ body    {
     text-align: center;
     padding: 5px;
 }
-
+/*
 .body {
     grid-area: body;
     display: grid;
-    grid-template-rows: subgrid;
-    grid-template-columns: subgrid;
     grid-template-areas: 
         'led led led'
         'charts charts charts';
@@ -37,16 +27,14 @@ body    {
     padding: 20px;
     border-radius: 5px;
 }
-
+*/
 .led  {
-    grid-area: led;
+    /*
     display: grid;
-    grid-gap: 5px;
+    grid-gap: 5px;*/
     background-color: rgb(37, 35, 73);
-    grid-template-rows: subgrid;
-    grid-template-columns: subgrid;
-    grid-template-areas: 
-        'led-controller led-switch . . .';
+    /*grid-template-areas: 
+        'led-controller led-switch . . .';*/
     padding: 20px;
     height: 150px;
     border-radius: 5px;
@@ -60,8 +48,6 @@ body    {
 .led-controller {
     display: grid;
     background-color: rgb(28, 27, 48);
-    grid-template-rows: subgrid;
-    grid-template-columns: subgrid;
     grid-template-areas: 
         'onoff onoff'
         'increase decrease'
@@ -81,8 +67,6 @@ body    {
 .led-switch {
     display: grid;
     background-color: rgb(28, 27, 48);
-    grid-template-rows: subgrid;
-    grid-template-columns: subgrid;
     grid-template-areas: 
         'switch-onoff'
         'switch-onoff'

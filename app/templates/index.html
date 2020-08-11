@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='body'>
     {% if user.home_id == None %}
     <h1>First you should name your home!</h1>
     <form action="" method="POST" novalidate>
@@ -71,5 +70,4 @@
     </div>
     <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
     {% endif %}
-</div>
 {% endblock content %}
