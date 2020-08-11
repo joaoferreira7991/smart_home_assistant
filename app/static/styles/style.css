@@ -84,8 +84,11 @@ body    {
     display: grid;
     grid-gap: 20px;
     background-color: rgb(37, 35, 73);
-    grid-template-rows: repeat(auto-fill, minmax(600px, 1fr));
-/*    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));*/
+    grid-template-areas: 
+        'temp-chart'
+        'hum-chart';
+    /*grid-template-rows: repeat(auto-fill, minmax(600px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));*/
     padding: 20px;
     border-radius: 5px;    
 }
