@@ -97,7 +97,7 @@ function makeChart(ctx, arr, name, min, max)    {
         options: {
             lineTension: 1,
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             scales: {
                 xAxes:[{
                    type: 'time',
