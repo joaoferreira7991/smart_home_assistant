@@ -29,12 +29,10 @@ body    {
 }
 */
 .led  {
-    /*
     display: grid;
-    grid-gap: 5px;*/
+    grid-gap: 5px;
     background-color: rgb(37, 35, 73);
-    /*grid-template-areas: 
-        'led-controller led-switch . . .';*/
+    grid-template-columns: 1fr, 1fr;
     padding: 20px;
     height: 150px;
     border-radius: 5px;
