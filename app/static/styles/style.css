@@ -96,11 +96,13 @@ body    {
 .temp-chart {
     grid-area: temp-chart;
     background-color: rgb(28, 27, 48);
+    overflow: auto;
 }
 
 .hum-chart  {
     grid-area: hum-chart;
     background-color: rgb(28, 27, 48);
+    overflow: auto;
 }
 
 /*
