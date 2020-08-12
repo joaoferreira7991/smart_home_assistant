@@ -18,24 +18,25 @@ def connect_user():
 @socketio.on('updateValues', namespace='/client-user')
 def updateValues(background=0, date_range=datetime.today(), max_results=30):
     while True:
-        print('background = ', background)
-        print(date_range)
-        print(datetime.today())
+        #print('background = ', background)
+        #print(date_range)
+        #print(datetime.today())
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
         arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         temp = fix_data(arrTemp)
         hum = fix_data(arrHum)
-        print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
-        print('latest_hum ,', latestHum.data_reading, file=sys.stdout)
-        print(arrTemp)
-        print(arrHum)
-        latest =   {'temp'  :   latestTemp.data_reading,
-                    'hum'   :   latestHum.data_reading,
-                    'temp_arr'  :   temp,
-                    'hum_arr'   :   hum}
-        socketio.emit('updateValues', data=json.dumps(latest, cls=DateTimeEncoder), namespace='/client-user')
+        #print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
+        #print('latest_hum ,', latestHum.data_reading, file=sys.stdout)
+        #print(arrTemp)
+        #print(arrHum)
+        if latestTemp is not None and latestHum is not None:
+            latest =   {'temp'  :   latestTemp.data_reading,
+                        'hum'   :   latestHum.data_reading,
+                        'temp_arr'  :   temp,
+                        'hum_arr'   :   hum}
+            socketio.emit('updateValues', data=json.dumps(latest, cls=DateTimeEncoder), namespace='/client-user')
         if background == 0:
             break
         socketio.sleep(60)

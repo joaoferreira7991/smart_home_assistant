@@ -51,7 +51,7 @@ class ControllerLed(Actuator):
     state_colorshift = db.Column(db.Boolean, nullable=False)
     state_red = db.Column(db.Integer, nullable=False)
     state_green = db.Column(db.Integer, nullable=False)
-    state_blue = db.Column(db.integer, nullable=False)
+    state_blue = db.Column(db.Integer, nullable=False)
     state_brightness = db.Column(db.Float, nullable=False)
 
     def updateColor(self, red:int, green:int, blue:int):
