@@ -7,34 +7,11 @@ from flask_login import UserMixin
 def load_user(id):
     return User.query.get(int(id))
 
-class Home(db.Model):
-    # To make naming houses more flexible we could implement a naming
-    # scheme like this 'myHouse#123' where 'myHouse' is the name
-    # and 123 is the id of the house. 'myHouse#123' could be a tag,
-    # that would be unique for each house. 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), index=True, nullable=False)
-    # Creation of a one-to-one relashionship between Home and User
-    user = db.relationship('User', backref='user', lazy=True, uselist=False)
-    # Creation of a one-to-many relationship between Home and (Sensor/Actuator)
-    sensors = db.relationship('Sensor', backref='sensors', lazy=True)
-    actuators = db.relationship('Actuator', backref='actuators', lazy=True)
-    # Could add more info
-
-    def __init__(self, name):
-        self.name = name
-
-    def __repr__(self):
-        return '<Home {}>'.format(self.name)
-
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), index=True, unique=True, nullable=False)
     email = db.Column(db.String(50), index=True, unique=True, nullable=False)
-    # Unsure of password optimal length
     password = db.Column(db.String(512), nullable=False)
-    home_id = db.Column(db.Integer, db.ForeignKey('home.id'), nullable=True)
-    # Might add more information, such as full name not unique and more
 
     def __init__(self, username, email):
         self.username = username
@@ -50,47 +27,52 @@ class User(UserMixin, db.Model):
     def check_password(self, password):    
         return check_password_hash(self.password, password)
 
-    # home_id is supposed to be set as null initially, then it will be created and assigned.
-    def set_home_id(home_id):
-        self.home_id = home_id
-
-class Sensor(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), index=True, nullable=False)
-    home_id = db.Column(db.Integer, db.ForeignKey('home.id'), nullable=False)
-
-    def __init__(self, name):
-        self.name = name
-    
-    def __repr__(self):
-        return '<Sensor {}>'.format(self.name)
-
-    def set_home_id(home_id):
-        self.home_id = home_id
-
 class Actuator(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), index=True, nullable=False)
-    interruptor = db.Column(db.Boolean, nullable=False)
-    home_id = db.Column(db.Integer, db.ForeignKey('home.id'), nullable=False)
+    state_current = db.Column(db.Boolean, nullable=False)
+    ip = db.Column(db.String(15), index=True, nullable=True)
 
-    def __init__(self, name):
+    def __init__(self, name:str):
         self.name = name
-        self.interruptor = False
+        self.state_current = False
+
+    def updateState(self, state:bool):
+        self.state_current = state
+
+    def set_ip(self, ip:str):
+        self.ip = ip
 
     def __repr__(self):
-        return '<Actuator {}>'.format(self.name)
+        return '<Actuator {}>'.format(self.id, self.name, self.ip, self.state_current)
 
-    def set_home_id(home_id):
-        self.home_id = home_id
+class ControllerLed(Actuator):
+    id = Column(db.Integer, db.ForeignKey(Actuator.id), primary_key=True)
+    state_colorshift = db.Column(db.Boolean, nullable=False)
+    state_red = db.Column(db.Integer, nullable=False)
+    state_green = db.Column(db.Integer, nullable=False)
+    state_blue = db.Column(db.integer, nullable=False)
+    state_brightness = db.Column(db.Float, nullable=False)
 
+    def updateColor(self, red:int, green:int, blue:int):
+        self.state_red = red
+        self.state_green = green
+        self.state_blue = blue
+    
+    def updateBrightness(self, brightness:float):
+        self.state_brightness = brightness
+
+    def updateStateColorshift(self, state:bool):
+        self.state_colorshift = state
+
+    def __repr__(self):
+        return '<Led Controller {}>'.format(self.state_red, self.state_green, self.state_blue, self.state_brightness, self.state_colorshift)
 
 # Dictionary meant for assigning data_type string to an integer value, 
 #   to be inserted in the database instead.
 data_type_dict = {
     'dht11_temperature' : 0,
-    'dht11_humidity' : 1,
-    '_luminance' : 2
+    'dht11_humidity' : 1
 }
 
 class Reading(db.Model):
@@ -98,7 +80,6 @@ class Reading(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.now, nullable=False)
     data_reading = db.Column(db.Float, nullable=False)
     data_type = db.Column(db.Integer, nullable=False)
-    #sensor_id = db.Column(db.Integer, db.ForeignKey('sensor.id'), nullable=False)
 
     def __init__(self, timestamp, data_reading, data_type):
         self.timestamp = timestamp
@@ -107,7 +88,11 @@ class Reading(db.Model):
     
     def __repr__(self):
         return '<Reading {}>'.format(self.id, self.data_reading)
-    
-    #def set_sensor_id(sensor_id):
-    #    self.sensor_id = sensor_id
 
+class Schedule(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.Time(), index=True, nullable=False)
+    actuator_id = db.Column(db.Integer, db.ForeignKey('actuator.id'), nullable=False)    
+
+    def __repr__(self):
+        return '<Schedule {}>'.format(self.id, self.timestamp, self.actuator_id)

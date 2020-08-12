@@ -1,73 +1,59 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    {% if user.home_id == None %}
-    <h1>First you should name your home!</h1>
-    <form action="" method="POST" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.name.label }} <br>
-            {{ form.name(size=30) }}                
-        </p>
-        <p>
-            {{ form.submit() }}
-        </p>
-    </form>
-    {% else %}    
-    <div class='led' id='led'>
-        <div class='led-controller' id='led-controller'>
-            <div class='led-controller-onoff'>
-                <input id='onoff-toggle' type='checkbox'>
-                <label for='onoff-toggle' id='onoff-label'>
-                <i id='onoff-icon' class='material-icons' >power_settings_new</i>
-                </label>          
-            </div>
-
-            <div class='led-controller-increase'>
-                <button id='increase-brightness' type='checkbox'>
-                    <i id='increase-brightness-icon' class='material-icons'>add_circle_outline</i>
-                </button>
-            </div>
-
-            <div class='led-controller-decrease'>
-                <button id='decrease-brightness' type='checkbox'>
-                    <i id='decrease-brightness-icon' class='material-icons'>remove_circle_outline</i>
-                </button>
-            </div>        
-
-            <div class='led-controller-colorshift'>
-                <input id='colorshift-toggle' type='checkbox'>
-                <label for='colorshift-toggle' id='colorshift-label'>
-                Colorshift
-                </label>          
-            </div>        
+{% block content %}   
+<div class='led' id='led'>
+    <div class='led-controller' id='led-controller'>
+        <div class='led-controller-onoff'>
+            <input id='onoff-toggle' type='checkbox'>
+            <label for='onoff-toggle' id='onoff-label'>
+            <i id='onoff-icon' class='material-icons' >power_settings_new</i>
+            </label>          
         </div>
-        
-        <div class='led-switch'>
-            <div class='led-switch-onoff'>
-                <input id='switch-onoff-toggle' type='checkbox'>
-                <label for='switch-onoff-toggle' id='switch-onoff-label'>
-                <i id='switch-onoff-icon' class='material-icons' >power_settings_new</i>
-                </label>          
-            </div>
-        
-            <div class='led-switch-id'>
-                <label for='switch-id' id='switch-id-label'>
-                Bedroom
-                </label> 
-            </div>
+
+        <div class='led-controller-increase'>
+            <button id='increase-brightness' type='checkbox'>
+                <i id='increase-brightness-icon' class='material-icons'>add_circle_outline</i>
+            </button>
+        </div>
+
+        <div class='led-controller-decrease'>
+            <button id='decrease-brightness' type='checkbox'>
+                <i id='decrease-brightness-icon' class='material-icons'>remove_circle_outline</i>
+            </button>
+        </div>        
+
+        <div class='led-controller-colorshift'>
+            <input id='colorshift-toggle' type='checkbox'>
+            <label for='colorshift-toggle' id='colorshift-label'>
+            Colorshift
+            </label>          
+        </div>        
+    </div>
+    
+    <div class='led-switch'>
+        <div class='led-switch-onoff'>
+            <input id='switch-onoff-toggle' type='checkbox'>
+            <label for='switch-onoff-toggle' id='switch-onoff-label'>
+            <i id='switch-onoff-icon' class='material-icons' >power_settings_new</i>
+            </label>          
+        </div>
+    
+        <div class='led-switch-id'>
+            <label for='switch-id' id='switch-id-label'>
+            Bedroom
+            </label> 
         </div>
     </div>
+</div>
 
-    <div class='charts'>
-        <div class='temp-chart'>
-            <canvas id='temp-canvas'></canvas>
-        </div>
-        
-        <div class='hum-chart'>
-            <canvas id='hum-canvas'></canvas>
-        </div>
+<div class='charts'>
+    <div class='temp-chart'>
+        <canvas id='temp-canvas'></canvas>
     </div>
-    <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
-    {% endif %}
+    
+    <div class='hum-chart'>
+        <canvas id='hum-canvas'></canvas>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>
 {% endblock content %}

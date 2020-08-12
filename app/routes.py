@@ -1,6 +1,6 @@
-from app import app, db, socketio
-from app.models import User, Home, Sensor, Reading, data_type_dict
-from app.forms import UserSignUpForm, UserSignInForm, HomeCreateForm, SensorCreateForm
+from app import app, db
+from app.models import User
+from app.forms import UserSignUpForm, UserSignInForm
 from flask import redirect, url_for, request, render_template, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -11,27 +11,7 @@ from werkzeug.urls import url_parse
 @login_required
 def index():      
     user = User.query.filter_by(username=current_user.username).first()
-    form = HomeCreateForm()
-    if form.validate_on_submit():
-        home = Home(name=form.name.data)
-        db.session.add(home)
-        db.session.commit()
-        home = Home.query.filter_by(name=form.name.data).first()
-        user = User.query.filter_by(username=current_user.username).first()
-        user.home_id = home.id
-        db.session.commit()
-        flash('Home created with success!')
-        return redirect(url_for('index'))
-    
-    # Checks if home is already assigned, if it is then loads a list of the readings, separated from
-    # reading type.
-    if user.home_id is not None:  
-        home = Home.query.get(user.home_id)
-        temperature_list = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).all()
-        humidity_list = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).all()
-        return render_template('index.html', title='Index', form=form, user=user, home_name=home.name, temperature_list=temperature_list, humidity_list=humidity_list)
-    else:
-        return render_template('index.html', title='Index', form=form, user=user)
+    return render_template('index.html', title='Index', user=user)
 
 @app.route('/user/<username>')
 @login_required
@@ -76,5 +56,3 @@ def sign_in():
 def sign_out():
     logout_user()
     return redirect(url_for('index'))
-
-

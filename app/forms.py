@@ -1,13 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, PasswordField, BooleanField, DateTimeField, FloatField
+from wtforms import StringField, IntegerField, SubmitField, PasswordField, BooleanField, DateTimeField, FloatField, TimeField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from app.models import User
 
 data_required = 'Required Field.'
-
-class HomeCreateForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(data_required)])
-    submit = SubmitField('Create')
 
 class UserSignInForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(data_required)])
@@ -32,6 +28,12 @@ class UserSignUpForm(FlaskForm):
         if user is not None:
             raise ValidationError('Email address already in use.')
 
+class ScheduleForm(FlaskForm):
+    timestamp = TimeField('timestamp', validators=[DataRequired(data_required)])
+    actuator_id = IntegerField('actuator_id', validators=[DataRequired(data_required)])
+    submit = SubmitField('Schedule')
+
+'''
 class SensorCreateForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(data_required)])
     submit = SubmitField('Create')
@@ -44,3 +46,4 @@ class ReadingCreateForm(FlaskForm):
     timestamp = DateTimeField('timestamp', validators=[DataRequired()])
     data_reading = FloatField('data_reading', validators=[DataRequired()])
     submit = SubmitField('submit')
+'''
