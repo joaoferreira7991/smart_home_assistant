@@ -47,7 +47,7 @@ class Actuator(db.Model):
         return '<Actuator {}>'.format(self.id, self.name, self.ip, self.state_current)
 
 class ControllerLed(Actuator):
-    id = Column(db.Integer, db.ForeignKey(Actuator.id), primary_key=True)
+    id = db.Column(db.Integer, db.ForeignKey(Actuator.id), primary_key=True)
     state_colorshift = db.Column(db.Boolean, nullable=False)
     state_red = db.Column(db.Integer, nullable=False)
     state_green = db.Column(db.Integer, nullable=False)
