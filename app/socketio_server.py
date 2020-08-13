@@ -23,6 +23,7 @@ def loadData(background=0, date_range=datetime.today(), max_results=30):
         arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         temp = fix_data(arrTemp)
         hum = fix_data(arrHum)
+        print(arrActuator)
         latest =   {'actuator_arr'  :   arrActuator,
                     #'temp'  :   latestTemp.data_reading,
                     #'hum'   :   latestHum.data_reading,
