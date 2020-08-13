@@ -11,5 +11,5 @@ def readingArr(arr : list()):
 def actuatorArr(arr : list()):
     aux = list()
     for i in arr:
-        aux.append((i.id, i.name, i.state))
+        aux.append((i.id, i.name, i.state_current))
     return aux
