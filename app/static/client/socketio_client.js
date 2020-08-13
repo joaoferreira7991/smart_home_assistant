@@ -76,7 +76,7 @@ function loadButtons(data)  {
         
         // <input id='switch-onoff{id}' type='checkbox'>
         var input = document.createElement('input');
-        input.id = 'switch-onoff'+data[i].id;
+        input.id = 'switch-onoff'+data[i][0];
         input.type = 'checkbox';
         
         // <label for='switch-onoff{id}' id='switch-onoff-label'>
@@ -101,7 +101,7 @@ function loadButtons(data)  {
 
         // <label>
         var label_switch = document.createElement('label');
-        label_switch.innerHTML = data[i].name;
+        label_switch.innerHTML = data[i][1];
 
         // Construct div_name
         div_name.appendChild(label_switch);
@@ -120,7 +120,7 @@ function loadButtons(data)  {
 };
 
 // Takes the unprepared json data and transforms it into working chart.js data
-function parse_data(data)   {
+function parse_chart(data)   {
     var aux = [];
     for(var i=0; i<data.length; i++)    {
         var x = {x: new moment({y: data[i][1].year,

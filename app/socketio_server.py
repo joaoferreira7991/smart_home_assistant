@@ -2,7 +2,7 @@ from app import db, socketio
 from app.models import Reading, data_type_dict, Actuator, ControllerLed
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
-from utils.fix_data import fix_data
+from utils.fix_data import readingArr, actuatorArr
 from datetime import datetime, time, date, timedelta
 import json, sys
 
@@ -18,18 +18,22 @@ def loadData(background=0, date_range=datetime.today(), max_results=30):
         # Query the database
         #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         #latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
-        arrActuator = Actuator.query.all()
-        arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
-        arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
-        temp = fix_data(arrTemp)
-        hum = fix_data(arrHum)
+        Act = Actuator.query.all()
+        Temp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
+        Hum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
+        
+        # Transform data to be sent
+        actuatorArr = actuatorArr(Act)
+        tempArr = readingArr(Temp)
+        humArr = readingArr(Hum)
         print(arrActuator)
-        latest =   {'actuator_arr'  :   arrActuator,
+        
+        data =   {  'actuator_arr'  :   actuatorArr,
                     #'temp'  :   latestTemp.data_reading,
                     #'hum'   :   latestHum.data_reading,
-                    'temp_arr'  :   temp,
-                    'hum_arr'   :   hum}
-        socketio.emit('loadData', data=json.dumps(latest, cls=DateTimeEncoder), namespace='/client-user')
+                    'temp_arr'  :   tempArr,
+                    'hum_arr'   :   humArr}
+        socketio.emit('loadData', data=json.dumps(data, cls=DateTimeEncoder), namespace='/client-user')
         if background == 0:
             break
         socketio.sleep(60)
