@@ -33,9 +33,11 @@ class Actuator(db.Model):
     state_current = db.Column(db.Boolean, nullable=False)
     ip = db.Column(db.String(15), index=True, nullable=True)
 
-    def __init__(self, name:str):
+    def __init__(self, name:str, ip=None):
         self.name = name
         self.state_current = False
+        if ip is not None:
+            self.ip = ip
 
     def updateState(self, state:bool):
         self.state_current = state
@@ -46,13 +48,25 @@ class Actuator(db.Model):
     def __repr__(self):
         return '<Actuator {}>'.format(self.id, self.name, self.ip, self.state_current)
 
-class ControllerLed(Actuator):
-    id = db.Column(db.Integer, db.ForeignKey(Actuator.id), primary_key=True)
+class ControllerLed(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    state_current = db.Column(db.Boolean, nullable=False)
     state_colorshift = db.Column(db.Boolean, nullable=False)
     state_red = db.Column(db.Integer, nullable=False)
     state_green = db.Column(db.Integer, nullable=False)
     state_blue = db.Column(db.Integer, nullable=False)
     state_brightness = db.Column(db.Float, nullable=False)
+
+    def __init__(self, current:bool, colorshift:bool, red:int, green:int, blue:int, brightness:float):
+        self.state_current = current
+        self.state_colorshift = colorshift
+        self.state_red = red
+        self.state_green = green
+        self.state_blue = blue
+        self.state_brightness = brightness
+
+    def updateCurrentState(self, state:bool):
+        self.state_current = state
 
     def updateColor(self, red:int, green:int, blue:int):
         self.state_red = red
@@ -62,11 +76,11 @@ class ControllerLed(Actuator):
     def updateBrightness(self, brightness:float):
         self.state_brightness = brightness
 
-    def updateStateColorshift(self, state:bool):
+    def updateColorshiftState(self, state:bool):
         self.state_colorshift = state
 
     def __repr__(self):
-        return '<Led Controller {}>'.format(self.state_red, self.state_green, self.state_blue, self.state_brightness, self.state_colorshift)
+        return '<Led Controller {}>'.format(self.state_current, self.state_red, self.state_green, self.state_blue, self.state_brightness, self.state_colorshift)
 
 # Dictionary meant for assigning data_type string to an integer value, 
 #   to be inserted in the database instead.
@@ -93,6 +107,10 @@ class Schedule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.Time(), index=True, nullable=False)
     actuator_id = db.Column(db.Integer, db.ForeignKey('actuator.id'), nullable=False)    
+
+    def __init__(self, timestamp:datetime.time, actuator_id:int):
+        self.timestamp = timestamp
+        self.actuator_id = actuator_id
 
     def __repr__(self):
         return '<Schedule {}>'.format(self.id, self.timestamp, self.actuator_id)

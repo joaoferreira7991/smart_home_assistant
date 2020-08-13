@@ -1,5 +1,5 @@
 from app import db, socketio
-from app.models import Reading, data_type_dict
+from app.models import Reading, data_type_dict, Actuator, ControllerLed
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
 from utils.fix_data import fix_data
@@ -72,9 +72,14 @@ def brighnessDecrease():
 # -------------------------------------
 # Namespace '/client-pi' related events
 # Connect event
+# Sends last recorded state of the actuators in the database
 @socketio.on('connect', namespace='/client-pi')
 def connect_pi():
-    emit('response', 'Raspberry Pi is connected.', namespace='/client-pi')
+    arrActuator = Actuator.query.all()
+    arrControllerLed = ControllerLed.query.all()
+    data = {'arrActuator' : arrActuator,
+            'arrControllerLed' : arrControllerLed}
+    emit('loadValues', json.dumps(data), namespace='/client-pi')
 
 # Sensor handling events
 @socketio.on('send_data', namespace='/client-pi')
