@@ -26,7 +26,6 @@ def loadData(background=0, date_range=datetime.today(), max_results=30):
         actArr = actuatorArr(Act)
         tempArr = readingArr(Temp)
         humArr = readingArr(Hum)
-        print(arrActuator)
         
         data =   {  'actuator_arr'  :   actArr,
                     #'temp'  :   latestTemp.data_reading,
