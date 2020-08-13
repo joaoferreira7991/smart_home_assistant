@@ -24,7 +24,7 @@ def index():
         db.session.commit()
         flash('{} was added with success!'.format(controller.name))    
     user = User.query.filter_by(username=current_user.username).first()
-    return render_template('index.html', title='Index', user=user, form=form)
+    return render_template('index.html', title='Index', user=user, formActuator=formActuator, formController=formController)
 
 @app.route('/user/<username>')
 @login_required
