@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}   
+<div class='addActuator'>
+    <form action='' method='POST' novalidate>
+        {{ form.hidden_tag() }}
+        <div class='form-field'>
+            {{ form.name.label }}<br>
+            {{ form.name(size=30) }}
+        </div>        
+        <div class='form-field'>
+            {{ form.ip.label }}<br>
+            {{ form.ip(size=30) }}
+        </div>       
+        {{ form.submit() }}
+        {% for error in form.errors %}
+            <span style='color: red;'> [{{ error }}]</span>
+        {% endfor %}  
+    </form>
+</div>
+
 <div class='led' id='led'>
     <div class='led-controller' id='led-controller'>
         <div class='led-controller-onoff'>

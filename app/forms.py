@@ -33,14 +33,17 @@ class ScheduleForm(FlaskForm):
     actuator_id = IntegerField('actuator_id', validators=[DataRequired(data_required)])
     submit = SubmitField('Schedule')
 
+class ActuatorCreateForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(data_required)])
+    ip = StringField('Ip Address', validators=[DataRequired(data_required)])
+    submit = SubmitField('Add')
+
 '''
 class SensorCreateForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(data_required)])
     submit = SubmitField('Create')
 
-class ActuatorCreateForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(data_required)])
-    submit = SubmitField('Create')
+
 
 class ReadingCreateForm(FlaskForm):
     timestamp = DateTimeField('timestamp', validators=[DataRequired()])
