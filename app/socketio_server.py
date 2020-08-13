@@ -24,8 +24,8 @@ def loadData(background=0, date_range=datetime.today(), max_results=30):
         temp = fix_data(arrTemp)
         hum = fix_data(arrHum)
         latest =   {'actuator_arr'  :   arrActuator,
-                    'temp'  :   latestTemp.data_reading,
-                    'hum'   :   latestHum.data_reading,
+                    #'temp'  :   latestTemp.data_reading,
+                    #'hum'   :   latestHum.data_reading,
                     'temp_arr'  :   temp,
                     'hum_arr'   :   hum}
         socketio.emit('loadData', data=json.dumps(latest, cls=DateTimeEncoder), namespace='/client-user')
