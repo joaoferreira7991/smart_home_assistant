@@ -1,8 +1,8 @@
 """new_model
 
-Revision ID: 6d1da017a490
+Revision ID: d35f26d1a422
 Revises: 
-Create Date: 2020-08-13 15:41:16.850553
+Create Date: 2020-08-13 23:14:07.344997
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6d1da017a490'
+revision = 'd35f26d1a422'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,13 +22,17 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('state_current', sa.Boolean(), nullable=False),
-    sa.Column('ip', sa.String(length=15), nullable=True),
+    sa.Column('ip', sa.String(length=15), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_index(op.f('ix_actuator_ip'), 'actuator', ['ip'], unique=False)
-    op.create_index(op.f('ix_actuator_name'), 'actuator', ['name'], unique=False)
+    op.create_index(op.f('ix_actuator_ip'), 'actuator', ['ip'], unique=True)
+    op.create_index(op.f('ix_actuator_name'), 'actuator', ['name'], unique=True)
     op.create_table('controller_led',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('gpio_red', sa.Integer(), nullable=False),
+    sa.Column('gpio_green', sa.Integer(), nullable=False),
+    sa.Column('gpio_blue', sa.Integer(), nullable=False),
     sa.Column('state_current', sa.Boolean(), nullable=False),
     sa.Column('state_colorshift', sa.Boolean(), nullable=False),
     sa.Column('state_red', sa.Integer(), nullable=False),
@@ -37,6 +41,7 @@ def upgrade():
     sa.Column('state_brightness', sa.Float(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_index(op.f('ix_controller_led_name'), 'controller_led', ['name'], unique=True)
     op.create_table('reading',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('timestamp', sa.DateTime(), nullable=False),
@@ -74,6 +79,7 @@ def downgrade():
     op.drop_table('user')
     op.drop_index(op.f('ix_reading_timestamp'), table_name='reading')
     op.drop_table('reading')
+    op.drop_index(op.f('ix_controller_led_name'), table_name='controller_led')
     op.drop_table('controller_led')
     op.drop_index(op.f('ix_actuator_name'), table_name='actuator')
     op.drop_index(op.f('ix_actuator_ip'), table_name='actuator')
