@@ -137,7 +137,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         input.id = 'onoff-toggle';
         input.type = 'checkbox';
         // controls state_current
-        if(controller_arr[i][2])  {
+        if(controller_arr[j][2])  {
             input.checked = true;
         }
 
