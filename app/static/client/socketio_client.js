@@ -192,7 +192,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         input.id = 'colorshift-toggle'+controller_arr[j][0];
         input.type = 'checkbox';
         // controls state_colorshift
-        if(controller_arr[i][3])  {
+        if(controller_arr[j][3])  {
             input.checked = true;
         }
 
