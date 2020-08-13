@@ -10,33 +10,25 @@ import json, sys
 # ---------------------------------------
 # Namespace '/client-user' related events
 # Connect event
-@socketio.on('connect', namespace='/client-user')
-def connect_user():
-    print('Ola')
 
 # Database reading events
-@socketio.on('updateValues', namespace='/client-user')
-def updateValues(background=0, date_range=datetime.today(), max_results=30):
+@socketio.on('loadData', namespace='/client-user')
+def loadData(background=0, date_range=datetime.today(), max_results=30):
     while True:
-        #print('background = ', background)
-        #print(date_range)
-        #print(datetime.today())
-        latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
-        latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
+        # Query the database
+        #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
+        #latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
+        arrActuator = Actuator.query.all()
         arrTemp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         arrHum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         temp = fix_data(arrTemp)
         hum = fix_data(arrHum)
-        #print('latest_temp ,', latestTemp.data_reading, file=sys.stdout)
-        #print('latest_hum ,', latestHum.data_reading, file=sys.stdout)
-        #print(arrTemp)
-        #print(arrHum)
         if latestTemp is not None and latestHum is not None:
             latest =   {'temp'  :   latestTemp.data_reading,
                         'hum'   :   latestHum.data_reading,
                         'temp_arr'  :   temp,
                         'hum_arr'   :   hum}
-            socketio.emit('updateValues', data=json.dumps(latest, cls=DateTimeEncoder), namespace='/client-user')
+            socketio.emit('loadData', data=json.dumps(latest, cls=DateTimeEncoder), namespace='/client-user')
         if background == 0:
             break
         socketio.sleep(60)
@@ -79,7 +71,7 @@ def connect_pi():
     arrControllerLed = ControllerLed.query.all()
     data = {'arrActuator' : arrActuator,
             'arrControllerLed' : arrControllerLed}
-    emit('loadValues', json.dumps(data), namespace='/client-pi')
+    emit('loadData', json.dumps(data), namespace='/client-pi')
 
 # Sensor handling events
 @socketio.on('send_data', namespace='/client-pi')
@@ -98,4 +90,4 @@ def receive_data(json_data):
 
     emit('response', 'Message was received!', namespace='/client-pi')
 
-socketio.start_background_task(updateValues, '1')
+socketio.start_background_task(loadData, '1')
