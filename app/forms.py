@@ -38,6 +38,13 @@ class ActuatorCreateForm(FlaskForm):
     ip = StringField('Ip Address', validators=[DataRequired(data_required)])
     submit = SubmitField('Add')
 
+class ControllerCreateForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(data_required)])
+    red = IntegerField('Red GPIO Pin', validators=[DataRequired(data_required)])
+    green = IntegerField('Green GPIO Pin', validators=[DataRequired(data_required)])
+    blue = IntegerField('Blue GPIO Pin', validators=[DataRequired(data_required)])
+    submit = SubmitField('Add')    
+
 '''
 class SensorCreateForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(data_required)])

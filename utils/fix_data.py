@@ -13,3 +13,10 @@ def actuatorArr(arr : list()):
     for i in arr:
         aux.append((i.id, i.name, i.state_current))
     return aux
+
+# Transforms a ControllerLed object into an array with (id, name, state_current, state_colorshift)
+def controllerArr(arr : list()):
+    aux = list()
+    for i in arr:
+        aux.append((i.id, i.name, i.state_current, i.state_colorshift))
+    return aux

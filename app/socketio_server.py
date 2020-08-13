@@ -18,20 +18,21 @@ def loadData(background=0, date_range=datetime.today(), max_results=30):
         # Query the database
         #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         #latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
-        Act = Actuator.query.all()
-        Temp = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
-        Hum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
+        aController = ControllerLed.query.all() 
+        aActuator = Actuator.query.all()
+        aTemperature = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
+        aHumidity = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         
         # Transform data to be sent
-        actArr = actuatorArr(Act)
-        tempArr = readingArr(Temp)
-        humArr = readingArr(Hum)
+        arrController = controllerArr(aController)
+        arrActuator = actuatorArr(aActuator)
+        arrTemperature = readingArr(aTemperature)
+        arrHumidity = readingArr(aHumidity)
         
-        data =   {  'actuator_arr'  :   actArr,
-                    #'temp'  :   latestTemp.data_reading,
-                    #'hum'   :   latestHum.data_reading,
-                    'temp_arr'  :   tempArr,
-                    'hum_arr'   :   humArr}
+        data =   {  'controller_arr'    :   arrController,
+                    'actuator_arr'      :   arrActuator,
+                    'temp_arr'          :   arrTemperature,
+                    'hum_arr'           :   arrHumidity}
         socketio.emit('loadData', data=json.dumps(data, cls=DateTimeEncoder), namespace='/client-user')
         if background == 0:
             break

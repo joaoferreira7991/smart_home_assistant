@@ -29,27 +29,29 @@ class User(UserMixin, db.Model):
 
 class Actuator(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), index=True, nullable=False)
+    name = db.Column(db.String(50), index=True, nullable=False, unique=True)
     state_current = db.Column(db.Boolean, nullable=False)
-    ip = db.Column(db.String(15), index=True, nullable=True)
+    ip = db.Column(db.String(15), index=True, nullable=False, unique=True)
 
     def __init__(self, name:str, ip=None):
         self.name = name
         self.state_current = False
-        if ip is not None:
-            self.ip = ip
+        self.ip = ip
 
     def updateState(self, state:bool):
         self.state_current = state
-
-    def set_ip(self, ip:str):
-        self.ip = ip
 
     def __repr__(self):
         return '<Actuator {}>'.format(self.id, self.name, self.ip, self.state_current)
 
 class ControllerLed(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), index=True, nullable=False, unique=True)
+    # GPIO pin numbers for red, green, blue led wires
+    gpio_red = db.Column(db.Integer, nullable=False)
+    gpio_green = db.Column(db.Integer, nullable=False)
+    gpio_blue = db.Column(db.Integer, nullable=False)
+    # Led state
     state_current = db.Column(db.Boolean, nullable=False)
     state_colorshift = db.Column(db.Boolean, nullable=False)
     state_red = db.Column(db.Integer, nullable=False)
@@ -57,13 +59,20 @@ class ControllerLed(db.Model):
     state_blue = db.Column(db.Integer, nullable=False)
     state_brightness = db.Column(db.Float, nullable=False)
 
-    def __init__(self, current:bool, colorshift:bool, red:int, green:int, blue:int, brightness:float):
-        self.state_current = current
-        self.state_colorshift = colorshift
-        self.state_red = red
-        self.state_green = green
-        self.state_blue = blue
-        self.state_brightness = brightness
+    def __init__(self, name:str, gpio_red:int, gpio_green:int, gpio_blue:int):
+        self.name = name
+        
+        self.gpio_red = gpio_red
+        self.gpio_green = gpio_green
+        self.gpio_blue = gpio_blue
+
+        # Default values
+        self.state_current = False
+        self.state_colorshift = False
+        self.state_red = 125
+        self.state_green = 125
+        self.state_blue = 125
+        self.state_brightness = 25.5
 
     def updateCurrentState(self, state:bool):
         self.state_current = state
@@ -80,7 +89,7 @@ class ControllerLed(db.Model):
         self.state_colorshift = state
 
     def __repr__(self):
-        return '<Led Controller {}>'.format(self.state_current, self.state_red, self.state_green, self.state_blue, self.state_brightness, self.state_colorshift)
+        return '<Led Controller {}>'.format(self.name, self.state_current, self.gpio_red, self.gpio_green, self.gpio_blue)
 
 # Dictionary meant for assigning data_type string to an integer value, 
 #   to be inserted in the database instead.

@@ -1,6 +1,6 @@
 from app import app, db
-from app.models import User, Actuator
-from app.forms import UserSignUpForm, UserSignInForm, ActuatorCreateForm
+from app.models import User, Actuator, ControllerLed
+from app.forms import UserSignUpForm, UserSignInForm, ActuatorCreateForm, ControllerCreateForm
 from flask import redirect, url_for, request, render_template, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -10,12 +10,19 @@ from werkzeug.urls import url_parse
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():  
-    form = ActuatorCreateForm()
-    if form.validate_on_submit():
-        actuator = Actuator(name=form.name.data, ip=form.ip.data)
+    formActuator = ActuatorCreateForm()
+    if formActuator.validate_on_submit():
+        actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
         db.session.add(actuator)
         db.session.commit()
-        flash('{} was added with success!'.format(actuator.name))    
+        flash('{} was added with success!'.format(actuator.name))
+    
+    formController = ControllerCreateForm()
+    if formController.validate_on_submit():
+        controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
+        db.session.add(controller)
+        db.session.commit()
+        flash('{} was added with success!'.format(controller.name))    
     user = User.query.filter_by(username=current_user.username).first()
     return render_template('index.html', title='Index', user=user, form=form)
 

@@ -31,7 +31,7 @@ socketio.on('loadData', function(data)    {
     //temp_value.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
     //hum_value.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
     
-    loadButtons(parsed.actuator_arr);
+    loadButtons(parsed.actuator_arr, parsed.controller_arr);
 
     if(temp_chart != undefined)
         temp_chart.destroy();
@@ -67,18 +67,25 @@ led_decreaseBrightness.addEventListener("click", function()  {
 });
 
 // Function to load buttons per actuator received
-function loadButtons(data)  {
-    for(var i=0; i<data.length; i++)    {
+function loadButtons(actuator_arr, controller_arr)  {
+    for(var i=0; i<actuator_arr.length; i++)    {
                 
+        // <div class='led-switch>'
+        var div = document.createElement('div');
+        div.className = 'led-switch';
+
         // <div class='led-switch-onoff>'
         var div_switch = document.createElement('div');
         div_switch.className = 'led-switch-onoff';
         
         // <input id='switch-onoff{id}' type='checkbox'>
         var input = document.createElement('input');
-        input.id = 'switch-onoff'+data[i][0];
+        input.id = 'switch-onoff'+actuator_arr[i][0];
         input.type = 'checkbox';
-        
+        if(actuator_arr[i][2])  {
+            input.checked = true;
+        }
+
         // <label for='switch-onoff{id}' id='switch-onoff-label'>
         var label_switch = document.createElement('label');
         label_switch.htmlFor = input.id;
@@ -101,21 +108,112 @@ function loadButtons(data)  {
 
         // <label>
         var label_switch = document.createElement('label');
-        label_switch.innerHTML = data[i][1];
+        label_switch.innerHTML = actuator_arr[i][1];
 
         // Construct div_name
         div_name.appendChild(label_switch);
 
-        // <div class='led-switch>'
-        var div = document.createElement('div');
-        div.className = 'led-switch';
-
-        // Construct led_switch
+        // Construct led-switch
         div.appendChild(div_switch);
         div.appendChild(div_name);
         
         // Finally append to led div
         led.appendChild(div);
+    }
+
+    for(var j=0; j<controller_arr.length; j++)  {
+
+        // <div class='led-controller>'
+        var div_controller = document.createElement('div');
+        div_controller.className = 'led-controller';
+        div_controller.id = 'led-controller'+controller_arr[i][0];
+
+        // <div class='led-controller-onoff>'
+        var div_onoff = document.createElement('div');
+        div_onoff.className = 'led-led-controller-onoff';
+
+        // <input id='onoff-toggle{id}' type='checkbox'>
+        var input = document.createElement('input');
+        input.id = 'onoff-toggle';
+        input.type = 'checkbox';
+        // controls state_current
+        if(controller_arr[i][2])  {
+            input.checked = true;
+        }
+
+        // <label for='onoff-toggle{id}' id='onoff-label'>
+        var label_onoff = document.createElement('label');
+        label_onoff.htmlFor = input.id;
+        label_onoff.id = 'onoff-label';
+
+        // <i id='onoff-icon' class='material-icons' >power_settings_new</i>
+        var icon = document.createElement('i');
+        icon.id = 'onoff-icon';
+        icon.className = 'material-icons';
+        icon.innerHTML = 'power_settings_new';
+
+        // Construct div_onoff
+        label_onoff.appendChild(icon);
+        div_onoff.appendChild(input);
+        div_onoff.appendChild(label_onoff);
+
+        // <div class='led-controller-increase>'
+        var div_increase = document.createElement('div');
+        div_increase.className = 'led-controller-increase';
+        
+        var increase_button = document.createElement('button');
+        var increase_icon = document.createElement('i');
+        increase_icon.className = 'material-icons';
+        increase_icon.innerHTML = 'add_circle_outline';
+
+        increase_button.appendChild(increase_icon);
+        div_increase.appendChild(increase_button);
+
+        // <div class='led-controller-decrease>'
+        var div_decrease = document.createElement('div');
+        div_decrease.className = 'led-controller-decrease';
+        
+        var decrease_button = document.createElement('button');
+        var decrease_icon = document.createElement('i');
+        decrease_icon.className = 'material-icons';
+        decrease_icon.innerHTML = 'remove_circle_outline';
+
+        decrease_button.appendChild(decrease_icon);
+        div_decrease.appendChild(decrease_button);        
+
+
+        // <div class='led-controller-colorshift>'
+        var div_colorshift = document.createElement('div');
+        div_colorshift.className = 'led-controller-colorshift';        
+
+
+        // <input id='colorshift-toggle{id}' type='checkbox'>
+        var input = document.createElement('input');
+        input.id = 'colorshift-toggle'+controller_arr[i][0];
+        input.type = 'checkbox';
+        // controls state_colorshift
+        if(controller_arr[i][3])  {
+            input.checked = true;
+        }
+
+        // <label for='colorshift-toggle{id}' id='colorshift-label'>
+        var label_colorshift = document.createElement('label');
+        label_colorshift.htmlFor = input.id;
+        label_colorshift.id = 'colorshift-label';
+        label_colorshift.innerHTML = controller_arr[i][1];
+
+        // Construct div_colorshift
+        div_colorshift.appendChild(input);
+        div_colorshift.appendChild(label_colorshift);
+
+        // Construct led-controller
+        div_controller.appendChild(div_onoff)
+        div_controller.appendChild(div_increase)
+        div_controller.appendChild(div_decrease)
+        div_controller.appendChild(div_colorshift)
+
+        // Finally append to led div
+        led.appendChild(div_controller);
     }
 };
 

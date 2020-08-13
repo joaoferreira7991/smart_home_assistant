@@ -3,17 +3,42 @@
 {% block content %}   
 <div class='addActuator'>
     <form action='' method='POST' novalidate>
-        {{ form.hidden_tag() }}
+        {{ formActuator.hidden_tag() }}
         <div class='form-field'>
-            {{ form.name.label }}<br>
-            {{ form.name(size=30) }}
+            {{ formActuator.name.label }}<br>
+            {{ formActuator.name(size=30) }}
         </div>        
         <div class='form-field'>
-            {{ form.ip.label }}<br>
-            {{ form.ip(size=30) }}
+            {{ formActuator.ip.label }}<br>
+            {{ formActuator.ip(size=30) }}
         </div>       
-        {{ form.submit() }}
-        {% for error in form.errors %}
+        {{ formActuator.submit() }}
+        {% for error in formActuator.errors %}
+            <span style='color: red;'> [{{ error }}]</span>
+        {% endfor %}  
+    </form>
+</div>
+<div class='addController'>
+    <form action='' method='POST' novalidate>
+        {{ formController.hidden_tag() }}
+        <div class='form-field'>
+            {{ formController.name.label }}<br>
+            {{ formController.name(size=30) }}
+        </div>        
+        <div class='form-field'>
+            {{ formController.red.label }}<br>
+            {{ formController.red(size=30) }}
+        </div>           
+        <div class='form-field'>
+            {{ formController.green.label }}<br>
+            {{ formController.green(size=30) }}
+        </div>           
+        <div class='form-field'>
+            {{ formController.blue.label }}<br>
+            {{ formController.blue(size=30) }}
+        </div>       
+        {{ formController.submit() }}
+        {% for error in formController.errors %}
             <span style='color: red;'> [{{ error }}]</span>
         {% endfor %}  
     </form>
@@ -46,21 +71,6 @@
             Colorshift
             </label>          
         </div>        
-    </div>
-    
-    <div class='led-switch'>
-        <div class='led-switch-onoff'>
-            <input id='switch-onoff-toggle' type='checkbox'>
-            <label for='switch-onoff-toggle' id='switch-onoff-label'>
-            <i id='switch-onoff-icon' class='material-icons' >power_settings_new</i>
-            </label>          
-        </div>
-    
-        <div class='led-switch-id'>
-            <label for='switch-id' id='switch-id-label'>
-            Bedroom
-            </label> 
-        </div>
     </div>
 </div>
 
