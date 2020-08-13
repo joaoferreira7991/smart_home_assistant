@@ -35,10 +35,10 @@ socketio.on('loadData', function(data)    {
 
     if(temp_chart != undefined)
         temp_chart.destroy();
-    temp_chart = makeChart(temp_canvas, parse_data(parsed.temp_arr), "Temperature", 0, 35);
+    temp_chart = makeChart(temp_canvas, parse_chart(parsed.temp_arr), "Temperature", 0, 35);
     if(hum_chart != undefined)
         hum_chart.destroy();
-    hum_chart = makeChart(hum_canvas, parse_data(parsed.hum_arr), "Humidity", 0, 100);
+    hum_chart = makeChart(hum_canvas, parse_chart(parsed.hum_arr), "Humidity", 0, 100);
 
 });
 
@@ -97,7 +97,7 @@ function loadButtons(data)  {
 
         // <div class='led-switch-name>'
         var div_name = document.createElement('div');
-        div_switch.className = 'led-switch-name';
+        div_name.className = 'led-switch-name';
 
         // <label>
         var label_switch = document.createElement('label');
