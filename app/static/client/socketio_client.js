@@ -200,7 +200,8 @@ function loadButtons(actuator_arr, controller_arr)  {
         var label_colorshift = document.createElement('label');
         label_colorshift.htmlFor = input.id;
         label_colorshift.id = 'colorshift-label';
-        label_colorshift.innerHTML = controller_arr[j][1];
+        //label_colorshift.innerHTML = controller_arr[j][1];
+        label_colorshift.innerHTML = 'Colorshift';
 
         // Construct div_colorshift
         div_colorshift.appendChild(input);
