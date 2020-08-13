@@ -18,25 +18,34 @@ def loadData(background=0, date_range=datetime.today(), max_results=30):
         # Query the database
         #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         #latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
-        aController = ControllerLed.query.all() 
-        aActuator = Actuator.query.all()
         aTemperature = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         aHumidity = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         
         # Transform data to be sent
-        arrController = controllerArr(aController)
-        arrActuator = actuatorArr(aActuator)
         arrTemperature = readingArr(aTemperature)
         arrHumidity = readingArr(aHumidity)
         
-        data =   {  'controller_arr'    :   arrController,
-                    'actuator_arr'      :   arrActuator,
-                    'temp_arr'          :   arrTemperature,
+        data =   {  'temp_arr'          :   arrTemperature,
                     'hum_arr'           :   arrHumidity}
         socketio.emit('loadData', data=json.dumps(data, cls=DateTimeEncoder), namespace='/client-user')
         if background == 0:
             break
         socketio.sleep(60)
+
+@socketio.on('loadActuator', namespace='/client-user')
+def loadActuator():
+    # Query the database
+    aController = ControllerLed.query.all() 
+    aActuator = Actuator.query.all()
+
+    # Transform data to be sent
+    arrController = controllerArr(aController)
+    arrActuator = actuatorArr(aActuator)
+
+    data =  {
+        'controller_arr'    :   arrController,
+        'actuator_arr'      :   arrActuator}
+    socketio.emit('loadActuator', data=json.dumps(data), namespace='/client-user')
 
 # Actuator handling events
 # Led Strip Controller events

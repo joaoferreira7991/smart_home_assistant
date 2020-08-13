@@ -22,6 +22,7 @@ var hum_canvas = document.getElementById('hum-canvas').getContext('2d');
 
 // On connection asks the server for the required data
 socketio.on('connect', function()    {
+    socketio.emit('loadActuator');
     socketio.emit('loadData');
 });
 
@@ -31,8 +32,6 @@ socketio.on('loadData', function(data)    {
     //temp_value.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
     //hum_value.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
     
-    loadButtons(parsed.actuator_arr, parsed.controller_arr);
-
     if(temp_chart != undefined)
         temp_chart.destroy();
     temp_chart = makeChart(temp_canvas, parse_chart(parsed.temp_arr), "Temperature", 0, 35);
@@ -40,6 +39,11 @@ socketio.on('loadData', function(data)    {
         hum_chart.destroy();
     hum_chart = makeChart(hum_canvas, parse_chart(parsed.hum_arr), "Humidity", 0, 100);
 
+});
+
+socketio.on('loadActuator', function(data) {
+    parsed = JSON.parse(data);
+    loadButtons(parsed.actuator_arr, parsed.controller_arr);
 });
 
 // Led Controller events
