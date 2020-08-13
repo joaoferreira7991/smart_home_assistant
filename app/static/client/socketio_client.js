@@ -126,7 +126,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <div class='led-controller>'
         var div_controller = document.createElement('div');
         div_controller.className = 'led-controller';
-        div_controller.id = 'led-controller'+controller_arr[i][0];
+        div_controller.id = 'led-controller'+controller_arr[j][0];
 
         // <div class='led-controller-onoff>'
         var div_onoff = document.createElement('div');
@@ -189,7 +189,7 @@ function loadButtons(actuator_arr, controller_arr)  {
 
         // <input id='colorshift-toggle{id}' type='checkbox'>
         var input = document.createElement('input');
-        input.id = 'colorshift-toggle'+controller_arr[i][0];
+        input.id = 'colorshift-toggle'+controller_arr[j][0];
         input.type = 'checkbox';
         // controls state_colorshift
         if(controller_arr[i][3])  {
@@ -200,7 +200,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         var label_colorshift = document.createElement('label');
         label_colorshift.htmlFor = input.id;
         label_colorshift.id = 'colorshift-label';
-        label_colorshift.innerHTML = controller_arr[i][1];
+        label_colorshift.innerHTML = controller_arr[j][1];
 
         // Construct div_colorshift
         div_colorshift.appendChild(input);
