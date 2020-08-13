@@ -76,7 +76,8 @@ function loadButtons(actuator_arr, controller_arr)  {
                 
         // <div class='led-switch>'
         var div = document.createElement('div');
-        div.className = 'led-switch'+actuator_arr[i][0];
+        div.className = 'led-switch';
+        div.id = 'led-switch'+actuator_arr[i][0];
 
         // <div class='led-switch-onoff>'
         var div_switch = document.createElement('div');
