@@ -2,7 +2,7 @@ from app import db, socketio
 from app.models import Reading, data_type_dict, Actuator, ControllerLed
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
-from utils.fix_data import readingArr, actuatorArr
+from utils.fix_data import readingArr, actuatorArr, controllerArr
 from datetime import datetime, time, date, timedelta
 import json, sys
 
