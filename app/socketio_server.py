@@ -23,12 +23,12 @@ def loadData(background=0, date_range=datetime.today(), max_results=30):
         Hum = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.id.asc()).limit(max_results).all()
         
         # Transform data to be sent
-        actuatorArr = actuatorArr(Act)
+        actArr = actuatorArr(Act)
         tempArr = readingArr(Temp)
         humArr = readingArr(Hum)
         print(arrActuator)
         
-        data =   {  'actuator_arr'  :   actuatorArr,
+        data =   {  'actuator_arr'  :   actArr,
                     #'temp'  :   latestTemp.data_reading,
                     #'hum'   :   latestHum.data_reading,
                     'temp_arr'  :   tempArr,
