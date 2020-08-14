@@ -49,7 +49,7 @@ socketio.on('loadActuator', function(data) {
 // Led Controller events
 led.addEventListener('click', function(e)  {
     if(e.target && e.target.className == 'led-controller') {
-        console.log('', e.target.id);
+        alert(e.target.id);
     }
 });
 
