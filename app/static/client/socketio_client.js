@@ -47,6 +47,11 @@ socketio.on('loadActuator', function(data) {
 });
 
 // Led Controller events
+led.addEventListener('click', function(target)  {
+    if(target.target && e.target.className == 'led-controller') {
+        console.log('', e.target.id);
+    }
+});
 
 led_onoff_toggle.addEventListener("change", function()  {
     if(led_onoff_toggle.checked)
@@ -77,7 +82,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <div class='led-switch>'
         var div = document.createElement('div');
         div.className = 'led-switch';
-        div.id = 'led-switch'+actuator_arr[i][0];
+        div.id = 'led-switch'+actuator_arr[i][0];   
 
         // <div class='led-switch-onoff>'
         var div_switch = document.createElement('div');
