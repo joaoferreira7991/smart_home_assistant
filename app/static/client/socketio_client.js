@@ -53,6 +53,7 @@ led.addEventListener('click', function(e)  {
     }
 });
 
+/*
 led_onoff_toggle.addEventListener("change", function()  {
     if(led_onoff_toggle.checked)
         socketio.emit('LED_ON');    
@@ -74,6 +75,7 @@ led_increaseBrightness.addEventListener("click", function()  {
 led_decreaseBrightness.addEventListener("click", function()  {
     socketio.emit('DECREASE_BRIGHTNESS');
 });
+*/
 
 // Function to load buttons per actuator received
 function loadButtons(actuator_arr, controller_arr)  {
