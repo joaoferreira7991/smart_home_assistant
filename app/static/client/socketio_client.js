@@ -48,8 +48,8 @@ socketio.on('loadActuator', function(data) {
 
 // Led Controller events
 led.addEventListener('click', function(e)  {
-    if(e.target && e.target.className == 'led-controller') {
-        alert('', e.target.className);
+    if(e.target && e.target.className == 'led-switch') {
+        alert(e.target.id);
     }
 });
 
