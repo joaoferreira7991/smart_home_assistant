@@ -48,7 +48,7 @@ socketio.on('loadActuator', function(data) {
 
 // Led Controller events
 document.addEventListener('change', function(e)  {
-    if(e.target && e.target.htmlFor == 'switch-onoff') {
+    if(e.target && e.target.className == 'switch-onoff') {
         alert('ola', e.target.id);
     }
 });
