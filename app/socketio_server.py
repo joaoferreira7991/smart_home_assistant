@@ -59,9 +59,11 @@ def switchClick(data):
         if oActuator.state_current:
             socketio.emit('switchOff', data=data, namespace='/client-pi', callback=switchClick_ack)
         elif not oActuator.state_current:
-            socketio.emit('switchOn', data=data, namespace='/client-pi')            
+            socketio.emit('switchOn', data=data, namespace='/client-pi', callback=switchClick_ack)            
 
-def switchClick_ack():
+def switchClick_ack(data):
+    print(data)
+
 
 # Led Strip Controller events
 @socketio.on('LED_ON', namespace='/client-user')
