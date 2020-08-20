@@ -47,7 +47,7 @@ socketio.on('loadActuator', function(data) {
 });
 
 // Led Controller events
-document.addEventListener('change', function(e)  {
+document.addEventListener('click', function(e)  {
     if(e.target && e.target.className == 'switch-onoff') {
         alert('ola', e.target.id);
     }
@@ -89,29 +89,21 @@ function loadButtons(actuator_arr, controller_arr)  {
         var div_switch = document.createElement('div');
         div_switch.className = 'led-switch-onoff';
         
-        // <input id='switch-onoff{id}' type='checkbox'>
-        var input = document.createElement('input');
-        input.id = 'switch-onoff';
-        input.type = 'checkbox';
+        // <button id='switch-onoff'>
+        var button = document.createElement('button');
+        button.id = 'switch-onoff' + actuator_arr[i][0];
+
+        var power_icon = document.createElement('i');
+        power_icon.className = 'material-icons';
+        power_icon.innerHTML = 'power_settings_new';
+        /* If state is true color it */
         if(actuator_arr[i][2])  {
-            input.checked = true;
+            power_icon.style.color = 'green';
         }
 
-        // <label for='switch-onoff{id}' id='switch-onoff-label'>
-        var label_switch = document.createElement('label');
-        label_switch.htmlFor = input.id;
-        label_switch.id = 'id' + actuator_arr[i][0];
-
-        // <i id='switch-onoff-icon' class='material-icons' >power_settings_new</i>
-        var icon = document.createElement('i');
-        icon.id = 'switch-onoff-icon';
-        icon.className = 'material-icons';
-        icon.innerHTML = 'power_settings_new';
-
         // Construct div_switch
-        label_switch.appendChild(icon);
-        div_switch.appendChild(input);
-        div_switch.appendChild(label_switch);
+        button.appendChild(power_icon);
+        div_switch.appendChild(button);
 
         // <div class='led-switch-name>'
         var div_name = document.createElement('div');
