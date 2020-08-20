@@ -48,7 +48,10 @@ def loadActuator():
     socketio.emit('loadActuator', data=json.dumps(data), namespace='/client-user')
 
 # Actuator handling events
-
+@socketio.on('switchClick', namespace='/client-user')
+def switchClick(data):
+    id = json.loads(data)
+    print(id)
 
 
 # Led Strip Controller events

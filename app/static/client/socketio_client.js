@@ -49,7 +49,8 @@ socketio.on('loadActuator', function(data) {
 // Led Controller events
 document.addEventListener('click', function(e)  {
     if(e.target && e.target.classList.contains('switch-onoff')) {
-        alert('ola ' + e.target.id);
+        data = {'id' : e.target.id}
+        socketio.emit('switchClick', data=data);
     }
 });
 
