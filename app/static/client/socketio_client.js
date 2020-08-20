@@ -91,7 +91,8 @@ function loadButtons(actuator_arr, controller_arr)  {
         
         // <button id='switch-onoff'>
         var button = document.createElement('button');
-        button.id = 'switch-onoff' + actuator_arr[i][0];
+        button.className = 'switch-onoff';
+        button.id = actuator_arr[i][0];
 
         var power_icon = document.createElement('i');
         power_icon.className = 'material-icons';
