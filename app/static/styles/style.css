@@ -123,11 +123,11 @@ Style for switch controller
     color: black;
     font-size: 75px;
 }
-
+/*
 :checked+#switch-onoff-label #switch-onoff-icon {
     color: green;
 }
-
+*/
 #switch-id-label {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
