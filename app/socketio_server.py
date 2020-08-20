@@ -48,6 +48,9 @@ def loadActuator():
     socketio.emit('loadActuator', data=json.dumps(data), namespace='/client-user')
 
 # Actuator handling events
+
+
+
 # Led Strip Controller events
 @socketio.on('LED_ON', namespace='/client-user')
 def ledInit():
@@ -103,5 +106,15 @@ def receive_data(json_data):
     db.session.commit()
 
     emit('response', 'Message was received!', namespace='/client-pi')
+
+# Callback events from gateway pi
+@socketio.on('ack_actuator', namespace='/client-pi')
+def ack_actuator(data):
+    actuator = json.loads(data)
+    oActuator = Actuator.query.filter_by(id=actuator['id']).first()
+    if oActuator is not None:
+        oActuator.state_current = actuator['state']
+        db.session.commit()
+
 
 socketio.start_background_task(loadData, '1')
