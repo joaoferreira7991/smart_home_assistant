@@ -91,19 +91,15 @@ function loadButtons(actuator_arr, controller_arr)  {
         
         // <button id='switch-onoff'>
         var button = document.createElement('button');
-        button.className = 'switch-onoff';
+        button.className = 'switch-onoff material-icons';
         button.id = actuator_arr[i][0];
-
-        var power_icon = document.createElement('i');
-        power_icon.className = 'material-icons';
-        power_icon.innerHTML = 'power_settings_new';
+        button.innerHTML = 'power_settings_new';
         /* If state is true color it */
         if(actuator_arr[i][2])  {
-            power_icon.style.color = 'green';
+            button.style.color = 'green';
         }
 
         // Construct div_switch
-        button.appendChild(power_icon);
         div_switch.appendChild(button);
 
         // <div class='led-switch-name>'
