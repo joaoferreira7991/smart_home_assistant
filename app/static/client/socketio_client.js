@@ -48,8 +48,8 @@ socketio.on('loadActuator', function(data) {
 
 // Led Controller events
 document.addEventListener('click', function(e)  {
-    if(e.target && e.target.className == 'led-switch-onoff') {
-        alert('ola');
+    if(e.target && e.target.htmlFor == 'switch-onoff') {
+        alert(e.target.id);
     }
 });
 
@@ -83,8 +83,7 @@ function loadButtons(actuator_arr, controller_arr)  {
                 
         // <div class='led-switch>'
         var div = document.createElement('div');
-        div.className = 'led-switch';
-        div.id = 'led-switch'+actuator_arr[i][0];   
+        div.className = 'led-switch'; 
 
         // <div class='led-switch-onoff>'
         var div_switch = document.createElement('div');
@@ -101,7 +100,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <label for='switch-onoff{id}' id='switch-onoff-label'>
         var label_switch = document.createElement('label');
         label_switch.htmlFor = input.id;
-        label_switch.id = 'switch-onoff-label';
+        label_switch.id = 'id' + actuator_arr[i][0];
 
         // <i id='switch-onoff-icon' class='material-icons' >power_settings_new</i>
         var icon = document.createElement('i');
