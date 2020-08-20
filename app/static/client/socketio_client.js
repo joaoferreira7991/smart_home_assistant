@@ -48,7 +48,7 @@ socketio.on('loadActuator', function(data) {
 
 // Led Controller events
 document.addEventListener('click', function(e)  {
-    if(e.target && e.target.className == 'switch-onoff') {
+    if(e.target && e.target.className == 'switch-onoff material-icons') {
         alert('ola ' + e.target.id);
     }
 });
