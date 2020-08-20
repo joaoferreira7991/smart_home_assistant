@@ -52,8 +52,16 @@ def loadActuator():
 def switchClick(data):
     oActuator = Actuator.query.filter_by(id=data['id']).first()
     if oActuator is not None:
-        print(oActuator)
+        data = {
+            'id' : oActuator.id,
+            'ip' : oActuator.ip
+        }
+        if oActuator.state_current:
+            socketio.emit('switchOff', data=data, namespace='/client-pi', callback=switchClick_ack)
+        elif not oActuator.state_current:
+            socketio.emit('switchOn', data=data, namespace='/client-pi')            
 
+def switchClick_ack():
 
 # Led Strip Controller events
 @socketio.on('LED_ON', namespace='/client-user')
