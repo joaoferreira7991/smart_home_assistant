@@ -32,5 +32,5 @@ def actuatorArr_pi(arr : list()):
 def controllerArr_pi(arr : list()):
     aux = list()
     for i in arr:
-        aux.append({'id': i.id, 'name': i.name, 'state': i.state_current, i.state_colorshift})
+        aux.append({'id': i.id, 'name': i.name, 'state': i.state_current, 'colorshift': i.state_colorshift})
     return aux
