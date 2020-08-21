@@ -65,7 +65,10 @@ def switchClick_ack(data):
     oActuator = Actuator.query.filter_by(id=data['id']).first()
     if oActuator is not None:
         # Update database
-        oActuator.state_current = data['state']
+        if data['state'] == 'True':
+            oActuator.state_current = True
+        elif data['state'] == 'False':
+            oActuator.state_current = False       
         db.session.commit()
         # Update client-user's button state
         socketio.emit('updateState', data=data, namespace='/client-user')

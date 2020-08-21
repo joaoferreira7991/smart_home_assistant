@@ -49,10 +49,10 @@ socketio.on('loadActuator', function(data) {
 // Update state event
 socketio.on('updateState', function(data)   {
     var button = document.getElementById(data['id']);
-    if(data['state'])   {
+    if(data['state'] == 'True')   {
         button.style.color = 'green';
     }
-    else if(!data['state']) {
+    else if(!data['state'] =='False') {
         button.style.color = 'black';
     }
 });
@@ -107,7 +107,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         button.id = actuator_arr[i][0];
         button.innerHTML = 'power_settings_new';
         /* If state is true color it */
-        if(actuator_arr[i][2])  {
+        if(actuator_arr[i][2] == 'True')  {
             button.style.color = 'green';
         }
 
@@ -149,7 +149,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         input.id = 'onoff-toggle';
         input.type = 'checkbox';
         // controls state_current
-        if(controller_arr[j][2])  {
+        if(controller_arr[j][2] == 'True')  {
             input.checked = true;
         }
 
