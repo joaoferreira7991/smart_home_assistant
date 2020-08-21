@@ -25,7 +25,7 @@ def controllerArr_client(arr : list()):
 def actuatorArr_pi(arr : list()):
     aux = list()
     for i in arr:
-        aux.append(('id' : i.id, 'ip' : i.ip, 'state' : i.state_current))
+        aux.append({'id' : i.id, 'ip' : i.ip, 'state' : i.state_current})
     return aux
 
 # Transforms a ControllerLed object into an array with (id, name, state_current, state_colorshift)
