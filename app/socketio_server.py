@@ -2,7 +2,7 @@ from app import db, socketio
 from app.models import Reading, data_type_dict, Actuator, ControllerLed
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
-from utils.fix_data import readingArr, actuatorArr, controllerArr
+from utils.fix_data import readingArr, actuatorArr_client, actuatorArr_pi, controllerArr_client, controllerArr_pi
 from datetime import datetime, time, date, timedelta
 import json, sys
 
@@ -39,10 +39,8 @@ def loadActuator():
     aActuator = Actuator.query.all()
 
     # Transform data to be sent
-    arrController = controllerArr(aController)
-    arrActuator = actuatorArr(aActuator)
-
-    print(arrActuator)
+    arrController = controllerArr_client(aController)
+    arrActuator = actuatorArr_client(aActuator)
 
     data =  {
         'controller_arr'    :   arrController,
@@ -110,10 +108,11 @@ def brighnessDecrease():
 # Sends last recorded state of the actuators in the database
 @socketio.on('connect', namespace='/client-pi')
 def connect_pi():
-    arrActuator = Actuator.query.all()
-    arrControllerLed = ControllerLed.query.all()
-    data = {'arrActuator' : arrActuator,
-            'arrControllerLed' : arrControllerLed}
+    aActuator = Actuator.query.all()
+    arrActuator = actuatorArr_pi(aActuator)
+    #arrControllerLed = ControllerLed.query.all()
+    data = {'arrActuator' : arrActuator}
+            #'arrControllerLed' : arrControllerLed}
     emit('loadData', json.dumps(data), namespace='/client-pi')
 
 # Sensor handling events

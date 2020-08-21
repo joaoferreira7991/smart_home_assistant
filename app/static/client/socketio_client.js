@@ -106,7 +106,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         button.className = 'switch-onoff material-icons';
         button.id = actuator_arr[i][0];
         button.innerHTML = 'power_settings_new';
-        /* If state is true color it */
+        /* Color it according to state */
         if(actuator_arr[i][2])  {
             button.style.color = 'green';
         }
