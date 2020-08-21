@@ -107,8 +107,11 @@ function loadButtons(actuator_arr, controller_arr)  {
         button.id = actuator_arr[i][0];
         button.innerHTML = 'power_settings_new';
         /* If state is true color it */
-        if(actuator_arr[i][2] == 'True')  {
+        if(actuator_arr[i][2])  {
             button.style.color = 'green';
+        }
+        else if(!actuator_arr[i][2])    {
+            button.style.color = 'black';
         }
 
         // Construct div_switch
