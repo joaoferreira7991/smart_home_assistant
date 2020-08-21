@@ -42,6 +42,8 @@ def loadActuator():
     arrController = controllerArr(aController)
     arrActuator = actuatorArr(aActuator)
 
+    print(arrActuator)
+
     data =  {
         'controller_arr'    :   arrController,
         'actuator_arr'      :   arrActuator}
