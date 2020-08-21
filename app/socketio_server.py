@@ -54,7 +54,8 @@ def switchClick(data):
     if oActuator is not None:
         data = {
             'id' : oActuator.id,
-            'ip' : oActuator.ip
+            'ip' : oActuator.ip,
+            'state' : oActuator.state_current
         }
         if oActuator.state_current:
             socketio.emit('switchOff', data=data, namespace='/client-pi', callback=switchClick_ack)
