@@ -48,11 +48,12 @@ socketio.on('loadActuator', function(data) {
 
 // Update state event
 socketio.on('updateState', function(data)   {
+    parsed = JSON.parse(data);
     var button = document.getElementById(data['id']);
     if(data['state'] == 'True')   {
         button.style.color = 'green';
     }
-    else if(!data['state'] =='False') {
+    else if(data['state'] == 'False') {
         button.style.color = 'black';
     }
 });
