@@ -62,7 +62,14 @@ def switchClick(data):
             socketio.emit('switchOn', data=data, namespace='/client-pi', callback=switchClick_ack)            
 
 def switchClick_ack(data):
-    print(data)
+    oActuator = Actuator.query.filter_by(id=data['id']).first()
+    if oActuator is not None:
+        # Update database
+        oActuator.state_current = data['state']
+        db.session.commit()
+        # Update client-user's button state
+        socketio.emit('updateState', data=data, namespace='/client-user')
+
 
 
 # Led Strip Controller events
@@ -120,15 +127,5 @@ def receive_data(json_data):
     db.session.commit()
 
     emit('response', 'Message was received!', namespace='/client-pi')
-
-# Callback events from gateway pi
-@socketio.on('ack_actuator', namespace='/client-pi')
-def ack_actuator(data):
-    actuator = json.loads(data)
-    oActuator = Actuator.query.filter_by(id=actuator['id']).first()
-    if oActuator is not None:
-        oActuator.state_current = actuator['state']
-        db.session.commit()
-
 
 socketio.start_background_task(loadData, '1')

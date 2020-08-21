@@ -46,6 +46,17 @@ socketio.on('loadActuator', function(data) {
     loadButtons(parsed.actuator_arr, parsed.controller_arr);
 });
 
+// Update state event
+socketio.on('updateState', function(data)   {
+    var button = document.getElementById(data['id']);
+    if(data['state'])   {
+        button.style.color = 'green';
+    }
+    else if(!data['state']) {
+        button.style.color = 'black';
+    }
+});
+
 // Led Controller events
 document.addEventListener('click', function(e)  {
     if(e.target && e.target.classList.contains('switch-onoff')) {
@@ -78,7 +89,7 @@ led_decreaseBrightness.addEventListener("click", function()  {
 });
 */
 
-// Function to load buttons per actuator received
+// Function to load buttons per information received by the arrays
 function loadButtons(actuator_arr, controller_arr)  {
     for(var i=0; i<actuator_arr.length; i++)    {
                 
