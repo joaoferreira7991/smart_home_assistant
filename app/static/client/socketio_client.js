@@ -104,13 +104,13 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <button id='switch-onoff'>
         var button = document.createElement('button');
         button.className = 'switch-onoff material-icons';
-        button.id = actuator_arr[i][0];
+        button.id = actuator_arr[i]['id'];
         button.innerHTML = 'power_settings_new';
         /* Color it according to state */
-        if(actuator_arr[i][2])  {
+        if(actuator_arr[i]['state'])  {
             button.style.color = 'green';
         }
-        else if(!actuator_arr[i][2])    {
+        else if(!actuator_arr[i]['state'])    {
             button.style.color = 'black';
         }
 
@@ -123,7 +123,7 @@ function loadButtons(actuator_arr, controller_arr)  {
 
         // <label>
         var label_switch = document.createElement('label');
-        label_switch.innerHTML = actuator_arr[i][1];
+        label_switch.innerHTML = actuator_arr[i]['name'];
 
         // Construct div_name
         div_name.appendChild(label_switch);
@@ -141,7 +141,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <div class='led-controller>'
         var div_controller = document.createElement('div');
         div_controller.className = 'led-controller';
-        div_controller.id = 'led-controller'+controller_arr[j][0];
+        div_controller.id = 'led-controller'+controller_arr[j]['id'];
 
         // <div class='led-controller-onoff>'
         var div_onoff = document.createElement('div');
@@ -152,7 +152,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         input.id = 'onoff-toggle';
         input.type = 'checkbox';
         // controls state_current
-        if(controller_arr[j][2] == 'True')  {
+        if(controller_arr[j]['state'] == 'True')  {
             input.checked = true;
         }
 
@@ -207,7 +207,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         input.id = 'colorshift-toggle';
         input.type = 'checkbox';
         // controls state_colorshift
-        if(controller_arr[j][3])  {
+        if(controller_arr[j]['colorshift'])  {
             input.checked = true;
         }
 
