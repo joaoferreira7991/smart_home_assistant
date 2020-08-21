@@ -11,14 +11,14 @@ def readingArr(arr : list()):
 def actuatorArr_client(arr : list()):
     aux = list()
     for i in arr:
-        aux.append({'id': i.id, 'name': i.name, 'state': i.state_current))
+        aux.append({'id': i.id, 'name': i.name, 'state': i.state_current})
     return aux
 
 # Transforms a ControllerLed object into an array with (id, name, state_current, state_colorshift)
 def controllerArr_client(arr : list()):
     aux = list()
     for i in arr:
-        aux.append(('id': i.id, 'name': i.name, 'state': i.state_current, 'colorshift': i.state_colorshift))
+        aux.append({'id': i.id, 'name': i.name, 'state': i.state_current, 'colorshift': i.state_colorshift})
     return aux
 
 # Transforms a Actuator object into an array with (id, ip, state)
@@ -32,5 +32,5 @@ def actuatorArr_pi(arr : list()):
 def controllerArr_pi(arr : list()):
     aux = list()
     for i in arr:
-        aux.append({'id': i.id, 'name': i.name, 'state': i.state_current, i.state_colorshift))
+        aux.append({'id': i.id, 'name': i.name, 'state': i.state_current, i.state_colorshift})
     return aux
