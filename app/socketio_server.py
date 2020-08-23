@@ -117,6 +117,10 @@ def colorshiftClick_ack(data):
     if oControllerLed is not None:
         # Update database
         oControllerLed.state_colorshift = parsed['state_colorshift']
+        if not parsed['state_colorshift']:
+            oControllerLed.state_red = parsed['red']
+            oControllerLed.state_green = parsed['green']
+            oControllerLed.state_blue = parsed['blue']
         db.session.commit()
         # Update client-user's button state
         aux = {
