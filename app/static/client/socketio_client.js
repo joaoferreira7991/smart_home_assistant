@@ -59,6 +59,22 @@ document.addEventListener('click', function(e)  {
         data = {'id' : e.target.id}
         socketio.emit('switchClick', data=data);
     }
+    else if(e.target && e.target.classList.contains('controller-onoff'))   {
+        data = {'id' : e.target.id}
+        socketio.emit('ledClick', data=data);
+    }    
+    else if(e.target && e.target.classList.contains('controller-increase'))   {
+        data = {'id' : e.target.id}
+        socketio.emit('increaseBrightness', data=data);  
+    }   
+    else if(e.target && e.target.classList.contains('controller-decrease'))   {
+        data = {'id' : e.target.id}
+        socketio.emit('decrease_brightness', data=data);   
+    }    
+    else if(e.target && e.target.classList.contains('controller-colorshift'))   {
+        data = {'id' : e.target.id}
+        socketio.emit('colorshiftClick', data=data);
+    }
 });
 
 /*
