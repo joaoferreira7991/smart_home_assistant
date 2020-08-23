@@ -157,7 +157,7 @@ def connect_pi():
     arrActuator = actuatorArr_pi(aActuator)
     arrControllerLed = controllerArr_pi(aControllerLed)
     data = {
-        'arrActuator' : arrActuator},
+        'arrActuator' : arrActuator,
         'arrControllerLed' : arrControllerLed
     }
     emit('loadData', json.dumps(data), namespace='/client-pi')
