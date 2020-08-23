@@ -156,8 +156,10 @@ def connect_pi():
     aControllerLed = ControllerLed.query.all()
     arrActuator = actuatorArr_pi(aActuator)
     arrControllerLed = controllerArr_pi(aControllerLed)
-    data = {'arrActuator' : arrActuator},
-            'arrControllerLed' : arrControllerLed}
+    data = {
+        'arrActuator' : arrActuator},
+        'arrControllerLed' : arrControllerLed
+    }
     emit('loadData', json.dumps(data), namespace='/client-pi')
 
 # Background task to emit a request for sensor data to the gateway pi every 60 seconds
