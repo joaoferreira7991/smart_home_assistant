@@ -160,7 +160,7 @@ function loadButtons(actuator_arr, controller_arr)  {
 
         // <button id='onoff-toggle{id}' type='checkbox'>
         var button_onoff = document.createElement('button');
-        button_onoff.className = 'led-onoff material-icons';
+        button_onoff.className = 'controller-onoff material-icons';
         button_onoff.id = controller_arr[j]['id'];
         button_onoff.innerHTML = 'power_settings_new';
         /* Color it according to state */
