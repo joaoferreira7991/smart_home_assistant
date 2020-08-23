@@ -44,12 +44,32 @@ socketio.on('loadActuator', function(data) {
 
 // Update state event
 socketio.on('updateState', function(data)   {
-    var button = document.getElementById(data['id']);
-    if(data['state'] == 'True')   {
-        button.style.color = 'green';
+    if(data['class'] == 'switch-onoff') {
+        var button = document.getElementById('switch-onoff'+data['id']);
+        if(data['state'] == 'True')   {
+            button.style.color = 'green';
+        }
+        else if(data['state'] == 'False') {
+            button.style.color = 'black';
+        }
     }
-    else if(data['state'] == 'False') {
-        button.style.color = 'black';
+    else if(data['class'] == 'controller-onoff') {
+        var button = document.getElementById('controller-onoff'+data['id']);
+        if(data['state'] == 'True')   {
+            button.style.color = 'green';
+        }
+        else if(data['state'] == 'False') {
+            button.style.color = 'black';
+        }
+    }
+    else if(data['class'] == 'controller-colorshift') {
+        var button = document.getElementById('controller-colorshift'+data['id']);
+        if(data['state'] == 'True')   {
+            button.style.color = 'yellow';
+        }
+        else if(data['state'] == 'False') {
+            button.style.color = 'black';
+        }
     }
 });
 
@@ -116,7 +136,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <button>
         var button = document.createElement('button');
         button.className = 'switch-onoff material-icons';
-        button.id = actuator_arr[i]['id'];
+        button.id = 'switch-onoff'+actuator_arr[i]['id'];
         button.innerHTML = 'power_settings_new';
         /* Color it according to state */
         if(actuator_arr[i]['state'])  {
@@ -161,7 +181,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <button id='onoff-toggle{id}' type='checkbox'>
         var button_onoff = document.createElement('button');
         button_onoff.className = 'controller-onoff material-icons';
-        button_onoff.id = controller_arr[j]['id'];
+        button_onoff.id = 'controller-onoff'+controller_arr[j]['id'];
         button_onoff.innerHTML = 'power_settings_new';
         /* Color it according to state */
         if(controller_arr[j]['state'])  {
@@ -180,7 +200,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         
         var increase_button = document.createElement('button');
         increase_button.className = 'controller-increase material-icons';
-        increase_button.id = controller_arr[j]['id'];
+        increase_button.id = 'controller-increase'+controller_arr[j]['id'];
         increase_button.innerHTML = 'add_circle_outline';
 
         // Construct div_increase
@@ -192,7 +212,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         
         var decrease_button = document.createElement('button');
         decrease_button.className = 'controller-decrease material-icons';
-        decrease_button.id = controller_arr[j]['id'];
+        decrease_button.id = 'controller-decrease'+controller_arr[j]['id'];
         decrease_button.innerHTML = 'remove_circle_outline';
 
         // Construct div_increase
@@ -206,7 +226,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <button>
         var button_colorshift = document.createElement('button');
         button_colorshift.className = 'controller-colorshift';
-        button_colorshift.id = controller_arr[j]['id'];
+        button_colorshift.id = 'controller-colorshift'+controller_arr[j]['id'];
         button_colorshift.innerHTML = 'Colorshift';
         /* Color it according to state */
         if(controller_arr[j]['state'])  {

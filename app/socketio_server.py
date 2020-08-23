@@ -71,7 +71,12 @@ def switchClick_ack(data):
         oActuator.state_current = parsed['state']       
         db.session.commit()
         # Update client-user's button state
-        socketio.emit('updateSwitchState', data=data, namespace='/client-user')
+        aux = {
+            'id' : parsed['id'],
+            'state' : parsed['state'],
+            'class' : 'switch-onoff'
+        }
+        socketio.emit('updateState', data=aux, namespace='/client-user')
 
 
 # Led Strip Controller events
@@ -94,11 +99,12 @@ def ledClick_ack(data):
         oControllerLed.state_current = parsed['state']
         db.session.commit()
         # Update client-user's button state
-        button = {
+        aux = {
             'id' : parsed['id'],
-            'state' : parsed['state']
+            'state' : parsed['state'],
+            'class' : 'controller-onoff'
         }
-        socketio.emit('updateLedState', data=button, namespace='/client-user')
+        socketio.emit('updateState', data=aux, namespace='/client-user')
 
 
 @socketio.on('colorshiftClick', namespace='/client-user')
@@ -129,7 +135,8 @@ def colorshiftClick_ack(data):
         # Update client-user's button state
         aux = {
             'id' : parsed['id'],
-            'state' : parsed['state']
+            'state' : parsed['state'],
+            'class' : 'controller-colorshift'
         }
         socketio.emit('updateLedState', data=aux, namespace='/client-user')
 
