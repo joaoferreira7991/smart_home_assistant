@@ -2,7 +2,7 @@ from app import db, socketio
 from app.models import Reading, data_type_dict, Actuator, ControllerLed
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
-from utils.fix_data import readingArr, actuatorArr_client, actuatorArr_pi, controllerArr_client, controllerArr_pi
+from utils.fix_data import readingArr, actuatorArr_client, actuatorArr_pi, controllerArr_client, controllerArr_pi, controller_pi
 from datetime import datetime, time, date, timedelta
 import json, sys
 
@@ -62,63 +62,113 @@ def switchClick(data):
         elif not oActuator.state_current:
             socketio.emit('switchOn', data=data, namespace='/client-pi', callback=switchClick_ack)            
 
+# Callback function that updates data from the actuator and then emits a visual update to all clients connected.
 def switchClick_ack(data):
-    oActuator = Actuator.query.filter_by(id=data['id']).first()
+    parsed = json.loads(data)
+    oActuator = Actuator.query.filter_by(id=parsed['id']).first()
     if oActuator is not None:
         # Update database
-        if data['state'] == 'True':
-            oActuator.state_current = True
-        elif data['state'] == 'False':
-            oActuator.state_current = False       
+        oActuator.state_current = parsed['state']       
         db.session.commit()
         # Update client-user's button state
-        socketio.emit('updateState', data=data, namespace='/client-user')
-
+        socketio.emit('updateSwitchState', data=data, namespace='/client-user')
 
 
 # Led Strip Controller events
-@socketio.on('LED_ON', namespace='/client-user')
-def ledInit():
-    print('init')
-    socketio.emit('LED_ON', namespace='/client-pi')
+@socketio.on('ledClick', namespace='/client-user')
+def ledClick(data):
+    oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
+    if oControllerLed is not None:
+        aux = controller_pi(oControllerLed)
+        if oControllerLed.state_current:
+            socketio.emit('ledOff', data=aux, namespace='/client-pi', callback=ledClick_ack)
+        if not oControllerLed.state_current:
+            socketio.emit('ledOn', data=aux, namespace='/client-pi', callback=ledClick_ack)
 
-@socketio.on('LED_OFF', namespace='/client-user')
-def ledStop():
-    print('stop')
-    socketio.emit('LED_OFF', namespace='/client-pi')
+def ledClick_ack(data):
+    parsed = json.loads(data)
+    oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
+    if oControllerLed is not None:
+        # Update database
+        oControllerLed.state_current = parsed['state']
+        db.session.commit()
+        # Update client-user's button state
+        button = {
+            'id' : parsed['id'],
+            'state' : parsed['state']
+        }
+        socketio.emit('updateLedState', data=button, namespace='/client-user')
 
-@socketio.on('START_COLORSHIFT', namespace='/client-user')
-def colorshiftStart():
-    socketio.emit('START_COLORSHIFT', namespace='/client-pi')
-    
-@socketio.on('STOP_COLORSHIFT', namespace='/client-user')
-def colorshiftStop():
-    socketio.emit('STOP_COLORSHIFT', namespace='/client-pi')
 
-@socketio.on('INCREASE_BRIGHTNESS', namespace='/client-user')
-def brighnessIncrease():
-    socketio.emit('INCREASE_BRIGHTNESS', namespace='/client-pi')
+@socketio.on('colorshiftClick', namespace='/client-user')
+def colorshiftClick(data):
+    oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
+    if oControllerLed is not None:
+        aux = controller_pi(oControllerLed)
+        if oControllerLed.state_colorshift:
+            socketio.emit('stopColorshift', data=aux, namespace='/client-pi', callback=colorshiftClick_ack)
+        if not oControllerLed.state_colorshift:
+            socketio.emit('startColorshift', data=aux, namespace='/client-pi', callback=colorshiftClick_ack)        
 
-@socketio.on('DECREASE_BRIGHTNESS', namespace='/client-user')
-def brighnessDecrease():
-    socketio.emit('DECREASE_BRIGHTNESS', namespace='/client-pi')
+def colorshiftClick_ack(data):
+    parsed = json.loads(data)
+    oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
+    if oControllerLed is not None:
+        # Update database
+        oControllerLed.state_coloshift = parsed['state_colorshift']
+        db.session.commit()
+        # Update client-user's button state
+        button = {
+            'id' : parsed['id'],
+            'state' : parsed['state']
+        }
+        socketio.emit('updateLedState', data=button, namespace='/client-user')
+
+@socketio.on('increaseBrightness', namespace='/client-user')
+def increaseBrightness(data):
+    oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
+    if oControllerLed is not None:
+        aux = controller_pi(oControllerLed)
+        socketio.emit('increaseBrightness', namespace='/client-pi', callback=brightness_ack)
+
+@socketio.on('decreaseBrightness', namespace='/client-user')
+def decreaseBrightness(data):
+    oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
+    if oControllerLed is not None:
+        aux = controller_pi(oControllerLed)
+        socketio.emit('decreaseBrightness', namespace='/client-pi', callback=brightness_ack)
+
+def brightness_ack(data):
+    parsed = json.loads(data)
+    oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
+    if oControllerLed is not None:
+        # Update database
+        oControllerLed.brightness = parsed['brightness']
+        db.session.commit()
 
 # -------------------------------------
 # Namespace '/client-pi' related events
 # Connect event
-# Sends last recorded state of the actuators in the database
+# Sends last recorded state of the actuators and led_controllers in the database
 @socketio.on('connect', namespace='/client-pi')
 def connect_pi():
     aActuator = Actuator.query.all()
+    aControllerLed = ControllerLed.query.all()
     arrActuator = actuatorArr_pi(aActuator)
-    #arrControllerLed = ControllerLed.query.all()
-    data = {'arrActuator' : arrActuator}
-            #'arrControllerLed' : arrControllerLed}
+    arrControllerLed = controllerArr_pi(aControllerLed)
+    data = {'arrActuator' : arrActuator},
+            'arrControllerLed' : arrControllerLed}
     emit('loadData', json.dumps(data), namespace='/client-pi')
 
-# Sensor handling events
-@socketio.on('send_data', namespace='/client-pi')
-def receive_data(json_data):
+# Background task to emit a request for sensor data to the gateway pi every 60 seconds
+def sendData():
+    while True:
+        socketio.emit('sendData', namespace='/client-pi')
+        socketio.sleep(60)
+
+# Receives event with sensor data
+@socketio.on('receiveData', namespace='/client-pi')
+def receiveData(json_data):
     aux = json.loads(json_data, cls=DateTimeDecoder)
     temperature = aux['temperature']
     humidity = aux['humidity']
@@ -130,7 +180,7 @@ def receive_data(json_data):
     db.session.commit()
     db.session.add(humidity_reading)
     db.session.commit()
-
-    emit('response', 'Message was received!', namespace='/client-pi')
+    return 'Message was received!'
 
 socketio.start_background_task(loadData, '1')
+socketio.start_background_task(sendData)
