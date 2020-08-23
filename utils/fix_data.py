@@ -52,22 +52,22 @@ def controllerArr_pi(arr: list()):
     aux = list()
     for i in arr:
         aux.append({
-            'id' : o.id,
-            'red' : o.state_red,
-            'green' : o.state_blue,
-            'blue' : o.state_green,
-            'state': o.state_current,
-            'state_colorshift' : o.state_colorshift,
-            'brightness' : o.state_brightness,
-            'gpio_red' : o.gpio_red,
-            'gpio_green' : o.gpio_green,
-            'gpio_blue' : o.gpio_blue
+            'id' : i.id,
+            'red' : i.state_red,
+            'green' : i.state_blue,
+            'blue' : i.state_green,
+            'state': i.state_current,
+            'state_colorshift' : i.state_colorshift,
+            'brightness' : i.state_brightness,
+            'gpio_red' : i.gpio_red,
+            'gpio_green' : i.gpio_green,
+            'gpio_blue' : i.gpio_blue
         })
     return aux
 
 # Transforms a ControllerLed object into a dictionary.
 def controller_pi(o: ControllerLed):
-    aux = {
+    return {
         'id' : o.id,
         'red' : o.state_red,
         'green' : o.state_blue,
@@ -79,4 +79,4 @@ def controller_pi(o: ControllerLed):
         'gpio_green' : o.gpio_green,
         'gpio_blue' : o.gpio_blue
     }
-    return aux
+    
