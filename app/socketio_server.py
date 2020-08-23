@@ -51,7 +51,7 @@ def loadActuator():
 @socketio.on('switchClick', namespace='/client-user')
 def switchClick(data):
     print(data)
-    oActuator = Actuator.query.filter_by(id=int(data['id'])).first()
+    oActuator = Actuator.query.filter_by(id=data['id']).first()
     if oActuator is not None:
         data = {
             'id' : oActuator.id,
