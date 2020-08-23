@@ -116,6 +116,10 @@ def colorshiftClick_ack(data):
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
         # Update database
+        print(oControllerLed.state_red)
+        print(oControllerLed.state_green)
+        print(oControllerLed.state_blue)
+        print(parsed['state_colorshift'])
         oControllerLed.state_colorshift = parsed['state_colorshift']
         if not parsed['state_colorshift']:
             oControllerLed.state_red = parsed['red']
