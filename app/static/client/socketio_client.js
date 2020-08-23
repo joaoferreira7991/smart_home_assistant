@@ -77,27 +77,27 @@ socketio.on('updateState', function(data)   {
 document.addEventListener('click', function(e)  {
     if(e.target && e.target.classList.contains('switch-onoff')) {
         var id = e.target.id.match(/\d+/);
-        data = {'id' : id}
+        data = {'id' : int(id)}
         socketio.emit('switchClick', data=data);
     }
     else if(e.target && e.target.classList.contains('controller-onoff'))   {
         var id = e.target.id.match(/\d+/);
-        data = {'id' : id}
+        data = {'id' : int(id)}
         socketio.emit('ledClick', data=data);
     }    
     else if(e.target && e.target.classList.contains('controller-increase'))   {
         var id = e.target.id.match(/\d+/);
-        data = {'id' : ididid}
+        data = {'id' : int(id)}
         socketio.emit('increaseBrightness', data=data);  
     }   
     else if(e.target && e.target.classList.contains('controller-decrease'))   {
         var id = e.target.id.match(/\d+/);
-        data = {'id' : idid}
+        data = {'id' : int(id)}
         socketio.emit('decreaseBrightness', data=data);   
     }    
     else if(e.target && e.target.classList.contains('controller-colorshift'))   {
         var id = e.target.id.match(/\d+/);
-        data = {'id' : id}
+        data = {'id' : int(id)}
         socketio.emit('colorshiftClick', data=data);
     }
 });
