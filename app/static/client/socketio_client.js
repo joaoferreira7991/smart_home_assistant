@@ -165,7 +165,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         var increase_button = document.createElement('button');
         increase_button.className = 'controller-increase material-icons';
         increase_button.id = controller_arr[j]['id'];
-        increase_icon.innerHTML = 'add_circle_outline';
+        increase_button.innerHTML = 'add_circle_outline';
 
         // Construct div_increase
         div_increase.appendChild(increase_button);
