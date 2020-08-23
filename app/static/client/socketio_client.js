@@ -172,7 +172,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         
         // <div class='led-controller-decrease>'
         var div_decrease = document.createElement('div');
-        div_decrease.className = 'led-controller-increase';
+        div_decrease.className = 'led-controller-decrease';
         
         var decrease_button = document.createElement('button');
         decrease_button.className = 'controller-decrease material-icons';
