@@ -76,23 +76,28 @@ socketio.on('updateState', function(data)   {
 // Led Controller events
 document.addEventListener('click', function(e)  {
     if(e.target && e.target.classList.contains('switch-onoff')) {
-        data = {'id' : e.target.id}
+        var id = e.target.id.match(/\d+/);
+        data = {'id' : id}
         socketio.emit('switchClick', data=data);
     }
     else if(e.target && e.target.classList.contains('controller-onoff'))   {
-        data = {'id' : e.target.id}
+        var id = e.target.id.match(/\d+/);
+        data = {'id' : id}
         socketio.emit('ledClick', data=data);
     }    
     else if(e.target && e.target.classList.contains('controller-increase'))   {
-        data = {'id' : e.target.id}
+        var id = e.target.id.match(/\d+/);
+        data = {'id' : ididid}
         socketio.emit('increaseBrightness', data=data);  
     }   
     else if(e.target && e.target.classList.contains('controller-decrease'))   {
-        data = {'id' : e.target.id}
+        var id = e.target.id.match(/\d+/);
+        data = {'id' : idid}
         socketio.emit('decreaseBrightness', data=data);   
     }    
     else if(e.target && e.target.classList.contains('controller-colorshift'))   {
-        data = {'id' : e.target.id}
+        var id = e.target.id.match(/\d+/);
+        data = {'id' : id}
         socketio.emit('colorshiftClick', data=data);
     }
 });
