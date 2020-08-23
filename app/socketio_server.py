@@ -79,6 +79,7 @@ def switchClick_ack(data):
 def ledClick(data):
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
+        print(oControllerLed.state_current)
         aux = controller_pi(oControllerLed)
         if oControllerLed.state_current:
             socketio.emit('ledOff', data=aux, namespace='/client-pi', callback=ledClick_ack)
