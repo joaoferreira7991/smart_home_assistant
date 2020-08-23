@@ -88,7 +88,6 @@ def ledClick(data):
 
 def ledClick_ack(data):
     parsed = json.loads(data)
-    print(parsed)
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
         # Update database
@@ -120,7 +119,7 @@ def colorshiftClick_ack(data):
         oControllerLed.state_coloshift = parsed['state_colorshift']
         db.session.commit()
         # Update client-user's button state
-        button = {
+        aux = {
             'id' : parsed['id'],
             'state' : parsed['state']
         }
@@ -131,14 +130,14 @@ def increaseBrightness(data):
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
         aux = controller_pi(oControllerLed)
-        socketio.emit('increaseBrightness', namespace='/client-pi', callback=brightness_ack)
+        socketio.emit('increaseBrightness', data=aux, namespace='/client-pi', callback=brightness_ack)
 
 @socketio.on('decreaseBrightness', namespace='/client-user')
 def decreaseBrightness(data):
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
         aux = controller_pi(oControllerLed)
-        socketio.emit('decreaseBrightness', namespace='/client-pi', callback=brightness_ack)
+        socketio.emit('decreaseBrightness', data=aux, namespace='/client-pi', callback=brightness_ack)
 
 def brightness_ack(data):
     parsed = json.loads(data)
