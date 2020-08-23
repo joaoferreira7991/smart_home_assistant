@@ -87,6 +87,7 @@ def ledClick(data):
 
 def ledClick_ack(data):
     parsed = json.loads(data)
+    print(parsed)
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
         # Update database
