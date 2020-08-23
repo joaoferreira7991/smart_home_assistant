@@ -69,7 +69,7 @@ document.addEventListener('click', function(e)  {
     }   
     else if(e.target && e.target.classList.contains('controller-decrease'))   {
         data = {'id' : e.target.id}
-        socketio.emit('decrease_brightness', data=data);   
+        socketio.emit('decreaseBrightness', data=data);   
     }    
     else if(e.target && e.target.classList.contains('controller-colorshift'))   {
         data = {'id' : e.target.id}
