@@ -144,7 +144,9 @@ def brightness_ack(data):
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
         # Update database
+        print(oControllerLed.brightness)
         oControllerLed.brightness = parsed['brightness']
+        print(oControllerLed.brightness)
         db.session.commit()
 
 # -------------------------------------
