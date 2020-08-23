@@ -123,7 +123,7 @@ def colorshiftClick_ack(data):
             'id' : parsed['id'],
             'state' : parsed['state']
         }
-        socketio.emit('updateLedState', data=button, namespace='/client-user')
+        socketio.emit('updateLedState', data=aux, namespace='/client-user')
 
 @socketio.on('increaseBrightness', namespace='/client-user')
 def increaseBrightness(data):
