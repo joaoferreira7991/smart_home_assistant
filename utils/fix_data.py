@@ -67,7 +67,7 @@ def controllerArr_pi(arr: list()):
 
 # Transforms a ControllerLed object into a dictionary.
 def controller_pi(o: ControllerLed):
-    return {
+    aux = {
         'id' : o.id,
         'red' : o.state_red,
         'green' : o.state_blue,
@@ -79,4 +79,4 @@ def controller_pi(o: ControllerLed):
         'gpio_green' : o.gpio_green,
         'gpio_blue' : o.gpio_blue
     }
-    
+    return aux
