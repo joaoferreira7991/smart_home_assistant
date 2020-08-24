@@ -15,7 +15,7 @@ def index():
     formController = ControllerCreateForm()
     if request.method == 'POST':
         print('ola')
-        form_name = request.form['form-name']
+        form_name = request.form
         print(form_name)
         if form_name == 'formActuator':
             formActuator.validate()
