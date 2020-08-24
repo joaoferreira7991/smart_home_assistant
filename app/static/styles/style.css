@@ -17,10 +17,19 @@ body    {
     outline: none;
     text-decoration: none;
 }
-
+/* Forms */
 .forms  {
     display: grid;
+    grid-template-areas: 
+        'actuatorform controllerform';
+}
 
+.div_actuatorform   {
+    grid-area: actuatorform;
+}
+
+.div_controllerform   {
+    grid-area: controllerform;
 }
 
 .addActuator    {
@@ -30,6 +39,7 @@ body    {
 .addController  {
     display: none;
 }
+/* End Forms */
 
 .led    {
 

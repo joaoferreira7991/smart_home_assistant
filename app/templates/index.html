@@ -2,51 +2,55 @@
 
 {% block content %}   
 <div class='forms'>
-    <button id='button_addActuator'>Add new Actuator</button>
-    <div class='formwrapper addActuator' id='addActuator'>
-        <form action='' method='POST' novalidate>
-            {{ formActuator.csrf_token() }}
-            {{ formActuator.form_type }}
-            <div class='form-field'>
-                {{ formActuator.name.label }}<br>
-                {{ formActuator.name(size=30) }}
-            </div>        
-            <div class='form-field'>
-                {{ formActuator.ip.label }}<br>
-                {{ formActuator.ip(size=30) }}
-            </div>       
-            {{ formActuator.submitActuator() }}
-            {% for error in formActuator.errors %}
-                <span style='color: red;'> [{{ error }}]</span>
-            {% endfor %}  
-        </form>
+    <div class='div_actuatorform'>
+        <button id='button_addActuator'>Add new Actuator</button>
+        <div class='formwrapper addActuator' id='addActuator'>
+            <form action='' method='POST' novalidate>
+                {{ formActuator.csrf_token() }}
+                {{ formActuator.form_type }}
+                <div class='form-field'>
+                    {{ formActuator.name.label }}<br>
+                    {{ formActuator.name(size=30) }}
+                </div>        
+                <div class='form-field'>
+                    {{ formActuator.ip.label }}<br>
+                    {{ formActuator.ip(size=30) }}
+                </div>       
+                {{ formActuator.submitActuator() }}
+                {% for error in formActuator.errors %}
+                    <span style='color: red;'> [{{ error }}]</span>
+                {% endfor %}  
+            </form>
+        </div>
     </div>
-    <button id='button_addController'>Add new Controller</button>
-    <div class='formwrapper addController' id='addController'>        
-        <form action='' method='POST' novalidate>
-            {{ formController.csrf_token() }}
-            {{ formController.form_type }}
-            <div class='form-field'>
-                {{ formController.name.label }}<br>
-                {{ formController.name(size=30) }}
-            </div>        
-            <div class='form-field'>
-                {{ formController.red.label }}<br>
-                {{ formController.red(size=30) }}
-            </div>           
-            <div class='form-field'>
-                {{ formController.green.label }}<br>
-                {{ formController.green(size=30) }}
-            </div>           
-            <div class='form-field'>
-                {{ formController.blue.label }}<br>
-                {{ formController.blue(size=30) }}
-            </div>       
-            {{ formController.submitController() }}
-            {% for error in formController.errors %}
-                <span style='color: red;'> [{{ error }}]</span>
-            {% endfor %}  
-        </form>
+    <div class='div_controllerform'>
+        <button id='button_addController'>Add new Controller</button>
+        <div class='formwrapper addController' id='addController'>        
+            <form action='' method='POST' novalidate>
+                {{ formController.csrf_token() }}
+                {{ formController.form_type }}
+                <div class='form-field'>
+                    {{ formController.name.label }}<br>
+                    {{ formController.name(size=30) }}
+                </div>        
+                <div class='form-field'>
+                    {{ formController.red.label }}<br>
+                    {{ formController.red(size=30) }}
+                </div>           
+                <div class='form-field'>
+                    {{ formController.green.label }}<br>
+                    {{ formController.green(size=30) }}
+                </div>           
+                <div class='form-field'>
+                    {{ formController.blue.label }}<br>
+                    {{ formController.blue(size=30) }}
+                </div>       
+                {{ formController.submitController() }}
+                {% for error in formController.errors %}
+                    <span style='color: red;'> [{{ error }}]</span>
+                {% endfor %}  
+            </form>
+        </div>
     </div>
 </div>
 

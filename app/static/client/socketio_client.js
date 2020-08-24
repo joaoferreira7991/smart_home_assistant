@@ -106,14 +106,14 @@ document.addEventListener('click', function(e)  {
         var x = document.getElementById('addActuator');
         if(x.style.display == 'none')
             x.style.display = 'block';
-        else
+        else if(x.style.display = 'block')
             x.style.display = 'none';
     }    
     else if(e.target && e.target.id == 'button_addController')    {
         var x = document.getElementById('addController');
         if(x.style.display == 'none')
             x.style.display = 'block';
-        else
+        else if(x.style.display = 'block')
             x.style.display = 'none';        
     }
 });
