@@ -6,7 +6,8 @@ body    {
 
 /* Classes */
 .head   {
-
+    display: flex;
+    background: rgba(50, 50, 53, 0.726);
 }
 
 .forms  {
@@ -22,5 +23,5 @@ body    {
 }
 
 .flash  {
-    
+
 }
