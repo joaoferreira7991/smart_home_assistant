@@ -1,47 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}   
-<div class='addActuator'>
-    <form action='' method='POST' novalidate>
-        {{ formActuator.hidden_tag() }}
-        <div class='form-field'>
-            {{ formActuator.name.label }}<br>
-            {{ formActuator.name(size=30) }}
-        </div>        
-        <div class='form-field'>
-            {{ formActuator.ip.label }}<br>
-            {{ formActuator.ip(size=30) }}
-        </div>       
-        {{ formActuator.submit() }}
-        {% for error in formActuator.errors %}
-            <span style='color: red;'> [{{ error }}]</span>
-        {% endfor %}  
-    </form>
-</div>
-<div class='addController'>
-    <form action='' method='POST' novalidate>
-        {{ formController.hidden_tag() }}
-        <div class='form-field'>
-            {{ formController.name.label }}<br>
-            {{ formController.name(size=30) }}
-        </div>        
-        <div class='form-field'>
-            {{ formController.red.label }}<br>
-            {{ formController.red(size=30) }}
-        </div>           
-        <div class='form-field'>
-            {{ formController.green.label }}<br>
-            {{ formController.green(size=30) }}
-        </div>           
-        <div class='form-field'>
-            {{ formController.blue.label }}<br>
-            {{ formController.blue(size=30) }}
-        </div>       
-        {{ formController.submit() }}
-        {% for error in formController.errors %}
-            <span style='color: red;'> [{{ error }}]</span>
-        {% endfor %}  
-    </form>
+<div class='forms'>
+    <div class='addActuator'>
+        <form action='' method='POST' novalidate>
+            {{ formActuator.hidden_tag() }}
+            <div class='form-field'>
+                {{ formActuator.name.label }}<br>
+                {{ formActuator.name(size=30) }}
+            </div>        
+            <div class='form-field'>
+                {{ formActuator.ip.label }}<br>
+                {{ formActuator.ip(size=30) }}
+            </div>       
+            {{ formActuator.submit() }}
+            {% for error in formActuator.errors %}
+                <span style='color: red;'> [{{ error }}]</span>
+            {% endfor %}  
+        </form>
+    </div>
+    <div class='addController'>
+        <form action='' method='POST' novalidate>
+            {{ formController.hidden_tag() }}
+            <div class='form-field'>
+                {{ formController.name.label }}<br>
+                {{ formController.name(size=30) }}
+            </div>        
+            <div class='form-field'>
+                {{ formController.red.label }}<br>
+                {{ formController.red(size=30) }}
+            </div>           
+            <div class='form-field'>
+                {{ formController.green.label }}<br>
+                {{ formController.green(size=30) }}
+            </div>           
+            <div class='form-field'>
+                {{ formController.blue.label }}<br>
+                {{ formController.blue(size=30) }}
+            </div>       
+            {{ formController.submit() }}
+            {% for error in formController.errors %}
+                <span style='color: red;'> [{{ error }}]</span>
+            {% endfor %}  
+        </form>
+    </div>
 </div>
 
 <div class='led' id='led'>

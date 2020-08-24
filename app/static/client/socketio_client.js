@@ -102,30 +102,6 @@ document.addEventListener('click', function(e)  {
     }
 });
 
-/*
-led_onoff_toggle.addEventListener("change", function()  {
-    if(led_onoff_toggle.checked)
-        socketio.emit('LED_ON');    
-    if(!led_onoff_toggle.checked)
-        socketio.emit('LED_OFF');
-});
-
-led_colorshift_toggle.addEventListener("change", function()  {
-    if(led_colorshift_toggle.checked)
-        socketio.emit('START_COLORSHIFT');   
-    if(!led_colorshift_toggle.checked)
-        socketio.emit('STOP_COLORSHIFT'); 
-});
-
-led_increaseBrightness.addEventListener("click", function()  {
-    socketio.emit('INCREASE_BRIGHTNESS');
-});
-
-led_decreaseBrightness.addEventListener("click", function()  {
-    socketio.emit('DECREASE_BRIGHTNESS');
-});
-*/
-
 // Function to load buttons per information received by the arrays
 function loadButtons(actuator_arr, controller_arr)  {
     for(var i=0; i<actuator_arr.length; i++)    {
@@ -259,13 +235,15 @@ function loadButtons(actuator_arr, controller_arr)  {
 function parse_chart(data)   {
     var aux = [];
     for(var i=0; i<data.length; i++)    {
-        var x = {x: new moment({y: data[i][1].year,
-                                M: data[i][1].month, 
-                                d: data[i][1].day,
-                                h: data[i][1].hour, 
-                                m: data[i][1].minute,
-                                s: data[i][1].second}), 
-                y: data[i][0]};
+        var x = {
+            x: new moment({
+                y: data[i][1].year,
+                M: data[i][1].month, 
+                d: data[i][1].day,
+                h: data[i][1].hour, 
+                m: data[i][1].minute,
+                s: data[i][1].second}), 
+            y: data[i][0]};
         aux.push(x);        
     }
     return aux;
