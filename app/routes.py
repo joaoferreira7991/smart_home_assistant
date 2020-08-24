@@ -10,8 +10,10 @@ from werkzeug.urls import url_parse
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():  
+    print('alo')
     formActuator = ActuatorCreateForm()
     if formActuator.validate_on_submit():
+        print('one step')
         actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
         db.session.add(actuator)
         db.session.commit()
