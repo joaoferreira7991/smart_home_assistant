@@ -14,7 +14,7 @@
                 {{ formActuator.ip.label }}<br>
                 {{ formActuator.ip(size=30) }}
             </div>       
-            {{ formActuator.submit() }}
+            {{ formActuator.submitActuator() }}
             {% for error in formActuator.errors %}
                 <span style='color: red;'> [{{ error }}]</span>
             {% endfor %}  
@@ -40,7 +40,7 @@
                 {{ formController.blue.label }}<br>
                 {{ formController.blue(size=30) }}
             </div>       
-            {{ formController.submit() }}
+            {{ formController.submitController() }}
             {% for error in formController.errors %}
                 <span style='color: red;'> [{{ error }}]</span>
             {% endfor %}  
