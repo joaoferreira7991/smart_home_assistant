@@ -22,13 +22,15 @@ def index():
                 actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
                 db.session.add(actuator)
                 db.session.commit()
-                flash('{} was added with success!'.format(actuator.name))            
+                flash('{} was added with success!'.format(actuator.name)) 
+                return redirect(url_for('index'))          
         elif form_type == 'Controller': 
             if formController.validate():
                 controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
                 db.session.add(controller)
                 db.session.commit()
-                flash('{} was added with success!'.format(controller.name))    
+                flash('{} was added with success!'.format(controller.name)) 
+                return redirect(url_for('index'))  
     user = User.query.filter_by(username=current_user.username).first()
     return render_template('index.html', title='Index', user=user, formActuator=formActuator, formController=formController)
 
