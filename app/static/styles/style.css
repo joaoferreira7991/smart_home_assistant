@@ -20,8 +20,8 @@ body    {
 /* Forms */
 .forms  {
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    padding-top: 10px;
+    grid-template-columns: repeat(2, 1fr);
+   
 }
 
 .div_actuatorform   {
