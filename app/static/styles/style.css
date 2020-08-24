@@ -10,6 +10,10 @@ body    {
     background: rgba(50, 50, 53, 0.726);
 }
 
+.head > div {
+    color:rgba(198, 205, 212, 0.726);
+}
+
 .forms  {
 
 }
