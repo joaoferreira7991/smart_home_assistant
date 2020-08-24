@@ -14,6 +14,8 @@ body    {
     color:rgba(198, 205, 212, 0.726);
     padding-left: 5px;
     padding-right: 10px;
+    outline: none;
+    text-decoration: none;
 }
 
 .forms  {
