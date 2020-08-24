@@ -16,20 +16,20 @@ def index():
     if request.method == 'POST':
         print('ola')
         print(request.form)
-        form_name = request.form['form_type']
+        form_type = request.form['form_type']
         print(form_name)
-        if form_name == 'Actuator':
-            formActuator.validate()
-            actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
-            db.session.add(actuator)
-            db.session.commit()
-            flash('{} was added with success!'.format(actuator.name))            
-        elif form_name == 'Controller': 
-            formController.validate()
-            controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
-            db.session.add(controller)
-            db.session.commit()
-            flash('{} was added with success!'.format(controller.name))    
+        if form_type == 'Actuator':        
+            if formActuator.validate():
+                actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
+                db.session.add(actuator)
+                db.session.commit()
+                flash('{} was added with success!'.format(actuator.name))            
+        elif form_type == 'Controller': 
+            if formController.validate()
+                controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
+                db.session.add(controller)
+                db.session.commit()
+                flash('{} was added with success!'.format(controller.name))    
     user = User.query.filter_by(username=current_user.username).first()
     return render_template('index.html', title='Index', user=user, formActuator=formActuator, formController=formController)
 
