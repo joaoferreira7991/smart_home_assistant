@@ -19,6 +19,7 @@ body    {
 .forms  {
     display: flex;
     background-color: rgb(28, 27, 48);
+    padding: 10px;
 }
 
 .forms > div {
