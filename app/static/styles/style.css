@@ -26,6 +26,16 @@ body    {
     text-align: center;
     padding: 5px;
 }
+
+/* Forms */
+.addActuator    {
+    display: none;
+}
+
+.addController  {
+    display: none;
+}
+
 /*
 .body {
     grid-area: body;

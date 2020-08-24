@@ -3,7 +3,7 @@
 {% block content %}   
 <div class='forms'>
     <button id='button_addActuator'>Add new Actuator</button>
-    <div class='formwrapper' id='addActuator'>
+    <div class='formwrapper addActuator' id='addActuator'>
         <form action='' method='POST' novalidate>
             {{ formActuator.csrf_token() }}
             {{ formActuator.form_type }}
@@ -22,7 +22,7 @@
         </form>
     </div>
     <button id='button_addController'>Add new Controller</button>
-    <div class='formwrapper' id='addController'>        
+    <div class='formwrapper addController' id='addController'>        
         <form action='' method='POST' novalidate>
             {{ formController.csrf_token() }}
             {{ formController.form_type }}
