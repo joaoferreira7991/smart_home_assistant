@@ -23,6 +23,14 @@ body    {
 
 }
 
+.addActuator    {
+    display: none;
+}
+
+.addController  {
+    display: none;
+}
+
 .led    {
 
 }
