@@ -25,7 +25,7 @@ def index():
                 db.session.commit()
                 flash('{} was added with success!'.format(actuator.name))            
         elif form_type == 'Controller': 
-            if formController.validate()
+            if formController.validate():
                 controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
                 db.session.add(controller)
                 db.session.commit()
