@@ -12,19 +12,21 @@ from werkzeug.urls import url_parse
 def index():  
     print('alo')
     formActuator = ActuatorCreateForm()
-    if formActuator.validate_on_submit():
-        print('one step')
-        actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
-        db.session.add(actuator)
-        db.session.commit()
-        flash('{} was added with success!'.format(actuator.name))
-    
     formController = ControllerCreateForm()
-    if formController.validate_on_submit():
-        controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
-        db.session.add(controller)
-        db.session.commit()
-        flash('{} was added with success!'.format(controller.name))    
+    if request.method == 'POST':
+        form_name = request.form['form-name']
+        if form_name == 'formActuator':
+            formActuator.validate()
+            actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
+            db.session.add(actuator)
+            db.session.commit()
+            flash('{} was added with success!'.format(actuator.name))            
+        elif form_name == 'formController': 
+            formController.validate()
+            controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
+            db.session.add(controller)
+            db.session.commit()
+            flash('{} was added with success!'.format(controller.name))    
     user = User.query.filter_by(username=current_user.username).first()
     return render_template('index.html', title='Index', user=user, formActuator=formActuator, formController=formController)
 
