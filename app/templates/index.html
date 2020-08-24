@@ -2,7 +2,8 @@
 
 {% block content %}   
 <div class='forms'>
-    <div class='addActuator'>
+    <button id='button_addActuator'>Add new Actuator</button>
+    <div class='formwrapper' id='addActuator'>
         <form action='' method='POST' novalidate>
             {{ formActuator.hidden_tag() }}
             <div class='form-field'>
@@ -19,7 +20,8 @@
             {% endfor %}  
         </form>
     </div>
-    <div class='addController'>
+    <button id='button_addController'>Add new Controller</button>
+    <div class='formwrapper' id='addController'>        
         <form action='' method='POST' novalidate>
             {{ formController.hidden_tag() }}
             <div class='form-field'>

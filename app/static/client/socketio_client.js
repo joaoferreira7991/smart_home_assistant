@@ -100,6 +100,22 @@ document.addEventListener('click', function(e)  {
         data = {'id' : id}
         socketio.emit('colorshiftClick', data=data);
     }
+
+    // Form toggle buttons
+    else if(e.target && e.target.id == 'button_addActuator')    {
+        var x = document.getElementById('addActuator');
+        if(x.style.display == 'none')
+            x.style.display = 'block';
+        else
+            x.style.display == 'none';
+    }    
+    else if(e.target && e.target.id == 'button_addController')    {
+        var x = document.getElementById('addController');
+        if(x.style.display == 'none')
+            x.style.display = 'block';
+        else
+            x.style.display == 'none';        
+    }
 });
 
 // Function to load buttons per information received by the arrays
