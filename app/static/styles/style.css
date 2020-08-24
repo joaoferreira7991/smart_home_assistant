@@ -20,13 +20,13 @@ body    {
 /* Forms */
 .forms  {
     display: grid;
-    grid-template-areas: 
-        'actuatorform controllerform';
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding-top: 10px;
 }
 
 .div_actuatorform   {
     grid-area: actuatorform;
-    display: grid;
+    border-radius: 5px;
 }
 
 .div_controllerform   {
