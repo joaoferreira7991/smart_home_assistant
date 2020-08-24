@@ -17,7 +17,6 @@ def index():
         print('ola')
         print(request.form)
         form_type = request.form['form_type']
-        print(form_name)
         if form_type == 'Actuator':        
             if formActuator.validate():
                 actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
