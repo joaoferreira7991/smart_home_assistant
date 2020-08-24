@@ -5,7 +5,7 @@
     <button id='button_addActuator'>Add new Actuator</button>
     <div class='formwrapper' id='addActuator'>
         <form action='' method='POST' novalidate>
-            {{ formActuator.hidden_tag() }}
+            {{ formActuator.csrf_token() }}
             <div class='form-field'>
                 {{ formActuator.name.label }}<br>
                 {{ formActuator.name(size=30) }}
@@ -23,7 +23,7 @@
     <button id='button_addController'>Add new Controller</button>
     <div class='formwrapper' id='addController'>        
         <form action='' method='POST' novalidate>
-            {{ formController.hidden_tag() }}
+            {{ formController.csrf_token() }}
             <div class='form-field'>
                 {{ formController.name.label }}<br>
                 {{ formController.name(size=30) }}
