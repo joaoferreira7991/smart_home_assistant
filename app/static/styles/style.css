@@ -18,7 +18,7 @@ body    {
 
 .forms  {
     display: flex;
-    background-color: rgb(28, 27, 48);
+    background-color: rgb(37, 35, 73);
     padding: 10px;
 }
 
@@ -26,6 +26,7 @@ body    {
     font-size: 16px;
     text-align: center;
     padding: 5px;
+    background-color: rgb(28, 27, 48);
 }
 
 /* Forms */
