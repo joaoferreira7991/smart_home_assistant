@@ -14,6 +14,7 @@ def index():
     formActuator = ActuatorCreateForm()
     formController = ControllerCreateForm()
     if request.method == 'POST':
+        print('ola')
         form_name = request.form['form-name']
         print(form_name)
         if form_name == 'formActuator':
