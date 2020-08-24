@@ -25,12 +25,13 @@ body    {
 }
 
 .div_actuatorform   {
-    grid-area: actuatorform;
+    
     border-radius: 5px;
 }
 
 .div_controllerform   {
-    grid-area: controllerform;
+    
+    border-radius: 5px;
 }
 
 .addActuator    {
