@@ -6,7 +6,7 @@
     <div class='formwrapper' id='addActuator'>
         <form action='' method='POST' novalidate>
             {{ formActuator.csrf_token() }}
-            {{ formActuator.form_type('Actuator') }}
+            {{ formActuator.form_type }}
             <div class='form-field'>
                 {{ formActuator.name.label }}<br>
                 {{ formActuator.name(size=30) }}
@@ -25,7 +25,7 @@
     <div class='formwrapper' id='addController'>        
         <form action='' method='POST' novalidate>
             {{ formController.csrf_token() }}
-            {{ formController.form_type('Controller') }}
+            {{ formController.form_type }}
             <div class='form-field'>
                 {{ formController.name.label }}<br>
                 {{ formController.name(size=30) }}
