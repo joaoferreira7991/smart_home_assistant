@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, PasswordField, BooleanField, DateTimeField, FloatField, TimeField
+from wtforms import StringField, IntegerField, SubmitField, PasswordField, BooleanField, DateTimeField, FloatField, TimeField, HiddenField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from app.models import User, ControllerLed, Actuator
 
@@ -45,6 +45,7 @@ class ScheduleForm(FlaskForm):
     submit = SubmitField('Schedule')
 
 class ActuatorCreateForm(FlaskForm):
+    form_type = HiddenField(default='Actuator')
     name = StringField('Name', validators=[DataRequired(data_required),
         Unique(
             Actuator, 
@@ -58,6 +59,7 @@ class ActuatorCreateForm(FlaskForm):
     submitActuator = SubmitField('Add')
 
 class ControllerCreateForm(FlaskForm):
+    form_type = HiddenField(default='Controller')
     name = StringField('Name', validators=[DataRequired(data_required),
         Unique(
             ControllerLed, 
