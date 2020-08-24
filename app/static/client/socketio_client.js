@@ -107,11 +107,11 @@ document.addEventListener('click', function(e)  {
         if(x.style.display == 'none')
             x.style.display = 'block';
         else
-            x.style.display == 'none';
+            x.style.display = 'none';
     }    
     else if(e.target && e.target.id == 'button_addController')    {
         var x = document.getElementById('addController');
-        if(x.style.display = 'none')
+        if(x.style.display == 'none')
             x.style.display = 'block';
         else
             x.style.display = 'none';        
