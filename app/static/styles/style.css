@@ -1,6 +1,6 @@
 body    {
     margin: 0;
-    background-color: rgb(37, 35, 73);
+    background-color: rgb(88, 87, 99);
 }
 
 .flash  {grid-area: flash;}
@@ -18,7 +18,7 @@ body    {
 
 .forms  {
     display: flex;
-    background-color: rgb(37, 35, 73);
+    background-color: rgb(88, 87, 99);
     padding: 10px;
 }
 
@@ -54,7 +54,7 @@ body    {
 .led  {
     display: grid;
     grid-gap: 5px;
-    background-color: rgb(37, 35, 73);
+    background-color: rgb(88, 87, 99);
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     padding: 20px;
     height: 150px;
@@ -106,7 +106,7 @@ body    {
     grid-area: charts;
     display: grid;
     grid-gap: 20px;
-    background-color: rgb(37, 35, 73);
+    background-color: rgb(88, 87, 99);
     grid-template-areas: 
         'temp-chart'
         'hum-chart';
