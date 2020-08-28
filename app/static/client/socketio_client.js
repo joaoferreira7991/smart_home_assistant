@@ -121,7 +121,10 @@ document.addEventListener('click', function(e)  {
 // Function to load buttons per information received by the arrays
 function loadButtons(actuator_arr, controller_arr)  {
     for(var i=0; i<actuator_arr.length; i++)    {
-                
+        
+        if(document.getElementById('switch-onoff'+actuator_arr[i]['id']))
+            continue;
+        
         // <div class='led-switch>'
         var div = document.createElement('div');
         div.className = 'led-switch'; 
@@ -166,6 +169,9 @@ function loadButtons(actuator_arr, controller_arr)  {
     }
 
     for(var j=0; j<controller_arr.length; j++)  {
+
+        if(document.getElementById('controller-onoff'+actuator_arr[i]['id']))
+            continue;
 
         // <div class='led-controller>'
         var div_controller = document.createElement('div');
