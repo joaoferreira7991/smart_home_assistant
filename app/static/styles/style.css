@@ -35,11 +35,11 @@ body    {
 }
 
 .addActuator    {
-    visibility: hidden;
+    display: none;
 }
 
 .addController  {
-    visibility: hidden;
+    display: none;
 }
 /* End Forms */
 
