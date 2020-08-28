@@ -1,6 +1,7 @@
 /* Body */
 body    {
     margin: 0;
+    height: 900px;
     background: rgb(81, 80, 85);
 }
 
@@ -8,6 +9,7 @@ body    {
 .head   {
     display: flex;
     background: rgba(50, 50, 53, 0.726);
+    height: 1fr;
 }
 
 .head > div >  a{
@@ -23,7 +25,7 @@ body    {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
-    height: 1fr;
+    height: 3fr;
     background-color: black;
 }
 
@@ -47,13 +49,13 @@ body    {
 /* End Forms */
 
 .led    {
-
+    height: 5fr;
 }
 
 .charts {
-
+    height: 7fr;
 }
 
 .flash  {
-
+    height: 1fr;
 }
