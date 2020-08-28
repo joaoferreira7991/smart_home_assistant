@@ -1,7 +1,7 @@
 /* Body */
 body    {
     margin: 0;
-    max-height: 10fr;
+    max-height: 5fr;
     background: rgb(81, 80, 85);
     overflow: hidden;
 }
