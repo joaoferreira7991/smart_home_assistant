@@ -104,17 +104,17 @@ document.addEventListener('click', function(e)  {
     // Form toggle buttons
     else if(e.target && e.target.id == 'button_addActuator')    {
         var x = document.getElementById('addActuator');
-        if(x.style.visibility == 'visible')
-            x.style.visibility = 'hidden';
-        else if(x.style.display == 'hidden')
-            x.style.display = 'visible';
+        if(x.style.display == 'none')
+            x.style.display = 'block';
+        else if(x.style.display = 'block')
+            x.style.display = 'none';
     }    
     else if(e.target && e.target.id == 'button_addController')    {
         var x = document.getElementById('addController');
-        if(x.style.visibility == 'visible')
-            x.style.visibility = 'hidden';
-        else if(x.style.display == 'hidden')
-            x.style.display = 'visible';      
+        if(x.style.display == 'none')
+            x.style.display = 'block';
+        else if(x.style.display = 'block')
+            x.style.display = 'none';        
     }
 });
 
