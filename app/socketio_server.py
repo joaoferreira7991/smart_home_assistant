@@ -188,7 +188,7 @@ def connect_pi():
 def sendData():
     while True:
         print('sendData')
-        socketio.emit('sendData', namespace='/client-pi')
+        emit('sendData', namespace='/client-pi')
         socketio.sleep(60)
 
 # Receives event with sensor data
