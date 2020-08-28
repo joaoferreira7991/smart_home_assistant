@@ -54,7 +54,18 @@ body    {
 }
 
 .charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;    
     height: 7fr;
+}
+
+.charts > div   {
+    max-height: 300px;
+    max-width: 500px;
+    min-height: 300px;
+    min-width: 400px;
 }
 
 .flash  {
