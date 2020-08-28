@@ -6,7 +6,7 @@ var color = Chart.helpers.color;
 // Chart variable declaration to make possible to destroy when reloaded
 var temp_chart;
 var hum_chart;
-
+//
 // Variables to control led strip
 var led = document.getElementById('led');
 
@@ -104,10 +104,10 @@ document.addEventListener('click', function(e)  {
     // Form toggle buttons
     else if(e.target && e.target.id == 'button_addActuator')    {
         var x = document.getElementById('addActuator');
-        if(x.style.display == 'none')
-            x.style.display = 'block';
-        else if(x.style.display = 'block')
-            x.style.display = 'none';
+        if(x.style.visibility == 'visible')
+            x.style.visibility = 'hidden';
+        else if(x.style.display == 'hidden')
+            x.style.display = 'visible';
     }    
     else if(e.target && e.target.id == 'button_addController')    {
         var x = document.getElementById('addController');
