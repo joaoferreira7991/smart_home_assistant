@@ -3,6 +3,7 @@ body    {
     margin: 0;
     height: 900px;
     background: rgb(81, 80, 85);
+    overflow: scroll;
 }
 
 /* Classes */
