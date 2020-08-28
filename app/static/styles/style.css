@@ -48,11 +48,24 @@ body    {
     display: none;
 }
 /* End Forms */
-
+/* Start Led div */
 .led    {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch; 
     height: 5fr;
 }
 
+.led-switch {
+    display: grid;
+}
+
+.led-controller {
+    display: grid;
+}
+
+/* End led div */
 .charts {
     display: flex;
     flex-direction: row;
