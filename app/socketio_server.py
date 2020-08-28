@@ -182,13 +182,13 @@ def connect_pi():
         'arrActuator' : arrActuator,
         'arrControllerLed' : arrControllerLed
     }
-    emit('loadData', json.dumps(data), namespace='/client-pi')
+    socketio.emit('loadData', json.dumps(data), namespace='/client-pi')
 
 # Background task to emit a request for sensor data to the gateway pi every 60 seconds
 def sendData():
     while True:
         print('sendData')
-        emit('sendData', namespace='/client-pi')
+        emit('sendData', namespace='/client-pi', broadcast=True)
         socketio.sleep(60)
 
 # Receives event with sensor data
