@@ -111,10 +111,10 @@ document.addEventListener('click', function(e)  {
     }    
     else if(e.target && e.target.id == 'button_addController')    {
         var x = document.getElementById('addController');
-        if(x.style.display == 'none')
-            x.style.display = 'block';
-        else if(x.style.display = 'block')
-            x.style.display = 'none';        
+        if(x.style.visibility == 'visible')
+            x.style.visibility = 'hidden';
+        else if(x.style.display == 'hidden')
+            x.style.display = 'visible';      
     }
 });
 
