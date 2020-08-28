@@ -187,6 +187,7 @@ def connect_pi():
 # Background task to emit a request for sensor data to the gateway pi every 60 seconds
 def sendData():
     while True:
+        print('sendData')
         socketio.emit('sendData', namespace='/client-pi')
         socketio.sleep(60)
 
