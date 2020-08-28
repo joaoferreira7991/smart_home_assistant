@@ -17,10 +17,10 @@ var hum_canvas = document.getElementById('hum-canvas').getContext('2d');
 //var hum_canvas = document.getElementById('hum').children['hum_canvas'].getContext('2d');
 
 // On connection asks the server for the required data
-socketio.on('connect', function()    {
-    socketio.emit('loadActuator');
-    socketio.emit('loadData');
-});
+//socketio.on('connect', function()    {
+//    socketio.emit('loadActuator');
+//    socketio.emit('loadData');
+//});
 
 // Temperature related events
 socketio.on('loadData', function(data)    {

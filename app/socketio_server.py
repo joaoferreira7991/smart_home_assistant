@@ -10,6 +10,10 @@ import json, sys
 # ---------------------------------------
 # Namespace '/client-user' related events
 # Connect event
+@socketio.on('connect', namespace='/client-user')
+def connect_user():
+    loadActuator()
+    loadData()
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
