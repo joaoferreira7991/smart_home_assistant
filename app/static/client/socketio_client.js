@@ -170,7 +170,7 @@ function loadButtons(actuator_arr, controller_arr)  {
 
     for(var j=0; j<controller_arr.length; j++)  {
 
-        if(document.getElementById('controller-onoff'+actuator_arr[j]['id']))
+        if(document.getElementById('controller-onoff'+controller_arr[j]['id']))
             continue;
 
         // <div class='led-controller>'
