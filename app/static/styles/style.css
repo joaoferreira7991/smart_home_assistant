@@ -61,6 +61,10 @@ body    {
 
 }
 
+button:focus  {
+    outline: none;
+}
+
 .led-switch {
     display: grid;
     grid-template-areas: 
@@ -158,6 +162,11 @@ body    {
     font-size: 30px;
 }
 
+.controller-increase:active  {
+    outline: none;
+    color: red;
+}
+
 .led-controller-decrease   {
     margin: auto;
     grid-area: controller-decrease;
@@ -176,6 +185,11 @@ body    {
     color: black;
     font-size: 30px;
 }
+
+.controller-decrease:active {
+    outline: none;
+    color: blue;
+} 
 
 .led-controller-colorshift   {
     margin: auto;
