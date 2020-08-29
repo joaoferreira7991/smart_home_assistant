@@ -47,7 +47,7 @@
     transition: 0.5s;
 }
 
-.sign-frame input {
+.sign-frame > input {
     position: relative;
     display: inline-block;
     padding: 10px, 20px;
@@ -56,7 +56,7 @@
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
-    
+
 }
 
 /* Form Style */
