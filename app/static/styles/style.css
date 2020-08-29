@@ -67,6 +67,7 @@ body    {
     height: 150px;
     width: 150px;
     padding: 2px;
+    border-style: groove;
     border: 2px;
     border-radius: 5px;
     border-color: black;
@@ -94,6 +95,7 @@ body    {
         'controller-colorshift controller-colorshift';    
     height: 150px;
     width: 150px;
+    border-style: solid;
     border: 2px;
     border-radius: 5px;
     border-color: black;
