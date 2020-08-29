@@ -1,16 +1,18 @@
 /* Body */
 body    {
     margin: 0;
-    max-height: 5fr;
+    max-height: 100px;
+    min-width: fit-content;
     background: rgb(81, 80, 85);
-    overflow: hidden;
+    overflow: auto;
 }
 
 /* Classes */
 .head   {
     display: flex;
     background: rgba(50, 50, 53, 0.726);
-    height: 1fr;
+    margin: 20px;
+    padding: 15px;
 }
 
 .head > div >  a{
@@ -26,8 +28,9 @@ body    {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
-    height: 3fr;
     background-color: black;
+    margin: 20px;
+    padding: 15px;
 }
 
 .div_actuatorform   {
@@ -54,7 +57,8 @@ body    {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch; 
-    height: 5fr;
+    margin: 20px;
+    padding: 15px;
 
 }
 
@@ -199,7 +203,8 @@ body    {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;    
-    height: 7fr;
+    margin: 20px;
+    padding: 15px;
 }
 
 .charts > div   {
@@ -210,5 +215,6 @@ body    {
 }
 
 .flash  {
-    height: 1fr;
+    margin: 20px;
+    padding: 15px;
 }
