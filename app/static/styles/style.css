@@ -59,10 +59,19 @@ body    {
 
 .led-switch {
     display: grid;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    gap: 20px;
+
 }
 
 .led-controller {
     display: grid;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    gap: 20px;
 }
 
 /* End led div */
