@@ -230,5 +230,6 @@ body    {
 }
 
 button:focus  {
+    cursor: pointer;
     outline: none;
 }
