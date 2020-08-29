@@ -68,6 +68,11 @@ def switchClick(data):
 
 # Callback function that updates data from the actuator and then emits a visual update to all clients connected.
 def switchClick_ack(data):
+
+    # if the callback is called with no data then just pass
+    if data is None:
+        pass
+
     parsed = json.loads(data)
     oActuator = Actuator.query.filter_by(id=parsed['id']).first()
     if oActuator is not None:
@@ -96,6 +101,11 @@ def ledClick(data):
             socketio.emit('ledOn', data=aux, namespace='/client-pi', callback=ledClick_ack)
 
 def ledClick_ack(data):
+
+    # if the callback is called with no data then just pass
+    if data is None:
+        pass
+
     parsed = json.loads(data)
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
@@ -121,7 +131,12 @@ def colorshiftClick(data):
         if not oControllerLed.state_colorshift:
             socketio.emit('startColorshift', data=aux, namespace='/client-pi', callback=colorshiftClick_ack)        
 
-def colorshiftClick_ack(data):
+def colorshiftClick_ack(data=None):
+
+    # if the callback is called with no data then just pass
+    if data is None:
+        pass
+
     parsed = json.loads(data)
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
@@ -159,6 +174,11 @@ def decreaseBrightness(data):
         socketio.emit('decreaseBrightness', data=aux, namespace='/client-pi', callback=brightness_ack)
 
 def brightness_ack(data):
+
+    # if the callback is called with no data then just pass
+    if data is None:
+        pass
+
     parsed = json.loads(data)
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
