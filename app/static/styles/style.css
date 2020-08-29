@@ -79,9 +79,25 @@ body    {
     grid-area: switch-onoff;
 }
 
+.switch-onoff   {
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 75px;
+}
+
 .led-switch-name   {
     margin: auto;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
     grid-area: switch-label;
 }
 
@@ -106,9 +122,37 @@ body    {
     grid-area: controller-onoff;    
 }
 
+.controller-onoff   {
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 75px;
+}
+
 .led-controller-increase   {
     margin: auto;
     grid-area: controller-increase;
+}
+
+.controller-increase  {
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 75px;
 }
 
 .led-controller-decrease   {
@@ -116,11 +160,38 @@ body    {
     grid-area: controller-decrease;
 }
 
+.controller-decrease   {
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 75px;
+}
+
 .led-controller-colorshift   {
     margin: auto;
     grid-area: controller-colorshift;
 }
 
+.controller-colorshift  {
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
+    font-size: 75px;
+}
 
 /* End led div */
 .charts {
