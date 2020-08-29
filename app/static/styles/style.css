@@ -27,19 +27,29 @@ body    {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
-    background-color: black;
+    color:rgba(198, 205, 212, 0.726);
     margin: 20px;
     padding: 15px;
 }
 
 .div_actuatorform   {
-    
+    margin: 20px;
+    padding: 15px;
     border-radius: 5px;
 }
 
+.div_actuatorform > button  {
+    margin: auto;
+}
+
 .div_controllerform   {
-    
+    margin: 20px;
+    padding: 15px;    
     border-radius: 5px;
+}
+
+.div_controllerform > button  {
+    margin: auto;
 }
 
 .addActuator    {
