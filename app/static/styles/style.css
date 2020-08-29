@@ -66,6 +66,7 @@ body    {
     height: 150px;
     width: 150px;
     border-radius: 5px;
+    border-color: black;
 }
 
 .led-switch-onoff   {
@@ -83,11 +84,13 @@ body    {
     display: grid;
     grid-template-areas: 
         'controller-onoff controller-onoff'
+        'controller-onoff controller-onoff'
         'controller-increase controller-decrease'
         'controller-colorshift controller-colorshift';    
     height: 150px;
     width: 150px;
     border-radius: 5px;
+    border-color: black;
 }
 
 .led-controller-onoff   {
