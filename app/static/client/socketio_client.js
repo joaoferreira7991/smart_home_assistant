@@ -46,28 +46,28 @@ socketio.on('loadActuator', function(data) {
 socketio.on('updateState', function(data)   {
     if(data['class'] == 'switch-onoff') {
         var button = document.getElementById('switch-onoff'+data['id']);
-        if(data['state'] == 'True')   {
+        if(data['state'])   {
             button.style.color = 'green';
         }
-        else if(data['state'] == 'False') {
+        else if(!data['state']) {
             button.style.color = 'black';
         }
     }
     else if(data['class'] == 'controller-onoff') {
         var button = document.getElementById('controller-onoff'+data['id']);
-        if(data['state'] == 'True')   {
+        if(data['state'])   {
             button.style.color = 'green';
         }
-        else if(data['state'] == 'False') {
+        else if(!data['state']) {
             button.style.color = 'black';
         }
     }
     else if(data['class'] == 'controller-colorshift') {
         var button = document.getElementById('controller-colorshift'+data['id']);
-        if(data['state'] == 'True')   {
+        if(data['state'])   {
             button.style.color = 'yellow';
         }
-        else if(data['state'] == 'False') {
+        else if(!data['state']) {
             button.style.color = 'black';
         }
     }
