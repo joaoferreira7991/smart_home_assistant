@@ -42,6 +42,11 @@ body    {
     margin: auto;
 }
 
+.formwrapper    {
+    margin: 20px;
+    padding: 15px;    
+}
+
 .div_controllerform   {
     margin: 20px;
     padding: 15px;    
