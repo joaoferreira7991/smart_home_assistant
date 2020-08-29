@@ -96,7 +96,7 @@ body    {
     font-size: 75px;
 }
 
-.switch-onoff:focus    {
+.switch-onoff::selection    {
     border: none;
 }
 
