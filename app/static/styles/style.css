@@ -133,7 +133,7 @@ body    {
     -ms-user-select: none;
     user-select: none;  
     color: black;
-    font-size: 75px;
+    font-size: 50px;
 }
 
 .led-controller-increase   {
@@ -152,7 +152,7 @@ body    {
     -ms-user-select: none;
     user-select: none;  
     color: black;
-    font-size: 75px;
+    font-size: 30px;
 }
 
 .led-controller-decrease   {
@@ -171,7 +171,7 @@ body    {
     -ms-user-select: none;
     user-select: none;  
     color: black;
-    font-size: 75px;
+    font-size: 30px;
 }
 
 .led-controller-colorshift   {
@@ -190,7 +190,7 @@ body    {
     -ms-user-select: none;
     user-select: none;  
     color: black;
-    font-size: 75px;
+    font-size: 20px;
 }
 
 /* End led div */
