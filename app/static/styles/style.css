@@ -61,6 +61,7 @@ body    {
     display: grid;
     grid-template-areas: 
         'switch-onoff'
+        'switch-onoff'
         'switch-label';
     height: 150px;
     width: 150px;
@@ -72,7 +73,7 @@ body    {
     grid-area: switch-onoff;
 }
 
-.led-switch-label   {
+.led-switch-name   {
     margin: auto;
     text-align: center;
     grid-area: switch-label;
