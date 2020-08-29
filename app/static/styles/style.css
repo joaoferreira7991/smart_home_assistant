@@ -47,6 +47,11 @@ body    {
     padding: 15px;    
 }
 
+.formfield  {
+    margin: 5px;
+    padding: 5px;     
+}
+
 .div_controllerform   {
     margin: 20px;
     padding: 15px;    
