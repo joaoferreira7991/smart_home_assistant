@@ -65,8 +65,6 @@ body    {
     height: 150px;
     width: 150px;
     border-radius: 5px;
-    gap: 20px;
-
 }
 
 .led-switch-onoff   {
@@ -86,7 +84,6 @@ body    {
     height: 150px;
     width: 150px;
     border-radius: 5px;
-    gap: 20px;
 }
 
 .led-controller-onoff   {
