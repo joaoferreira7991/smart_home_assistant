@@ -68,10 +68,12 @@ body    {
 }
 
 .led-switch-onoff   {
+    margin: auto;
     grid-area: switch-onoff;
 }
 
 .led-switch-label   {
+    margin: auto;
     grid-area: switch-label;
 }
 
@@ -87,18 +89,22 @@ body    {
 }
 
 .led-controller-onoff   {
+    margin: auto;
     grid-area: controller-onoff;    
 }
 
 .led-controller-increase   {
+    margin: auto;
     grid-area: controller-increase;
 }
 
 .led-controller-decrease   {
+    margin: auto;
     grid-area: controller-decrease;
 }
 
 .led-controller-colorshift   {
+    margin: auto;
     grid-area: controller-colorshift;
 }
 
