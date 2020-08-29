@@ -61,10 +61,6 @@ body    {
 
 }
 
-button:focus  {
-    outline: none;
-}
-
 .led-switch {
     display: grid;
     grid-template-areas: 
@@ -231,4 +227,8 @@ button:focus  {
 .flash  {
     margin: 20px;
     padding: 15px;
+}
+
+button:focus  {
+    outline: none;
 }
