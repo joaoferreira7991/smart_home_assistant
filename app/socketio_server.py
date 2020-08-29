@@ -173,7 +173,7 @@ def decreaseBrightness(data):
         aux = controller_pi(oControllerLed)
         socketio.emit('decreaseBrightness', data=aux, namespace='/client-pi', callback=brightness_ack)
 
-def brightness_ack(data):
+def brightness_ack(data=None):
 
     # if the callback is called with no data then just pass
     if data is None:
