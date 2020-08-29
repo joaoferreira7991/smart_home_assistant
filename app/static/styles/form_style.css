@@ -47,7 +47,13 @@
     transition: 0.5s;
 }
 
+.sign-frame-submit  {
+    height: 40px;
+}
+
 .sign-frame-submit input {
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
     width: -webkit-fill-available;
     background: transparent;
     position: relative;
