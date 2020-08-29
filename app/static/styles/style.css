@@ -1,9 +1,24 @@
+/* Form Style */
+.formwrapper    {
+    margin: 20px;
+    padding: 15px;    
+}
+
+.form-field  {
+    margin: 5px;
+    padding: 5px;     
+}
+
+
+
 /* Body */
 body    {
     margin: 0;
+    padding: 0;
+    font-family: sans-serif;
     max-height: 100px;
     min-width: fit-content;
-    background: rgb(81, 80, 85);
+    background: linear-gradient(rgb(20, 30, 48), rgb(36, 59, 85));
     overflow: auto;
 }
 
@@ -15,7 +30,7 @@ body    {
 }
 
 .head > div >  a{
-    color:rgba(198, 205, 212, 0.726);
+    /*color:rgba(198, 205, 212, 0.726);*/
     padding-left: 5px;
     padding-right: 10px;
     outline: none;
@@ -27,7 +42,7 @@ body    {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
-    color:rgba(198, 205, 212, 0.726);
+    /*color:rgba(198, 205, 212, 0.726);*/
     margin: 20px;
     padding: 15px;
 }
@@ -40,16 +55,6 @@ body    {
 
 .div_actuatorform > button  {
     margin: auto;
-}
-
-.formwrapper    {
-    margin: 20px;
-    padding: 15px;    
-}
-
-.form-field  {
-    margin: 5px;
-    padding: 5px;     
 }
 
 .div_controllerform   {
