@@ -19,7 +19,6 @@ class Unique(object):
 class UserSignInForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(data_required)])
     password = PasswordField('Password', validators=[DataRequired(data_required)])
-    remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
 class UserSignUpForm(FlaskForm):

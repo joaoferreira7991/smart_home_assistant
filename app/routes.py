@@ -10,12 +10,9 @@ from werkzeug.urls import url_parse
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():  
-    print('alo')
     formActuator = ActuatorCreateForm()
     formController = ControllerCreateForm()
     if request.method == 'POST':
-        print('ola')
-        print(request.form)
         form_type = request.form['form_type']      
         if formActuator.submitActuator.data and formActuator.validate():
             actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
@@ -64,7 +61,7 @@ def sign_in():
         if not user.check_password(form.password.data):
             flash('Invalid password')
             return redirect(url_for('sign_in'))
-        login_user(user, remember=form.remember_me.data)
+        login_user(user)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
