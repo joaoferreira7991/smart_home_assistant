@@ -55,6 +55,7 @@ body    {
     flex-wrap: wrap;
     align-items: stretch; 
     height: 5fr;
+
 }
 
 .led-switch {
@@ -65,9 +66,11 @@ body    {
         'switch-label';
     height: 150px;
     width: 150px;
+    padding: 2px;
     border: 2px;
     border-radius: 5px;
     border-color: black;
+    margin: 5px;
 
 }
 
