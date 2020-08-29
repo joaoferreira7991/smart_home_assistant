@@ -11,7 +11,6 @@ body    {
 .head   {
     display: flex;
     background: rgba(50, 50, 53, 0.726);
-    margin: 20px;
     padding: 15px;
 }
 
