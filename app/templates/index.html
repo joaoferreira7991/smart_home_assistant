@@ -10,16 +10,19 @@
                 {{ formActuator.form_type }}
                 <div class='form-field'>
                     {{ formActuator.name.label }}<br>
-                    {{ formActuator.name(size=30) }}
+                    {{ formActuator.name(size=30) }}<br>
+                    {% for error in formActuator.name.errors %}
+                    <span style='color: red;'> {{ error }}</span>
+                    {% endfor %}   
                 </div>        
                 <div class='form-field'>
                     {{ formActuator.ip.label }}<br>
-                    {{ formActuator.ip(size=30) }}
+                    {{ formActuator.ip(size=30) }}<br>
+                    {% for error in formActuator.ip.errors %}
+                    <span style='color: red;'> {{ error }}</span>
+                    {% endfor %}   
                 </div>       
                 {{ formActuator.submitActuator() }}
-                {% for error in formActuator.errors %}
-                    <span style='color: red;'> [{{ error }}]</span>
-                {% endfor %}  
             </form>
         </div>
     </div>
@@ -31,24 +34,33 @@
                 {{ formController.form_type }}
                 <div class='form-field'>
                     {{ formController.name.label }}<br>
-                    {{ formController.name(size=30) }}
+                    {{ formController.name(size=30) }}<br>
+                    {% for error in formController.name.errors %}
+                    <span style='color: red;'> {{ error }}</span>
+                    {% endfor %}   
                 </div>        
                 <div class='form-field'>
                     {{ formController.red.label }}<br>
-                    {{ formController.red(size=30) }}
+                    {{ formController.red(size=30) }}<br>
+                    {% for error in formController.red.errors %}
+                    <span style='color: red;'> {{ error }}</span>
+                    {% endfor %}   
                 </div>           
                 <div class='form-field'>
                     {{ formController.green.label }}<br>
-                    {{ formController.green(size=30) }}
+                    {{ formController.green(size=30) }}<br>
+                    {% for error in formController.green.errors %}
+                    <span style='color: red;'> {{ error }}</span>
+                    {% endfor %}   
                 </div>           
                 <div class='form-field'>
                     {{ formController.blue.label }}<br>
-                    {{ formController.blue(size=30) }}
+                    {{ formController.blue(size=30) }}<br>
+                    {% for error in formController.blue.errors %}
+                    <span style='color: red;'> {{ error }}</span>
+                    {% endfor %}   
                 </div>       
                 {{ formController.submitController() }}
-                {% for error in formController.errors %}
-                    <span style='color: red;'> [{{ error }}]</span>
-                {% endfor %}  
             </form>
         </div>
     </div>
