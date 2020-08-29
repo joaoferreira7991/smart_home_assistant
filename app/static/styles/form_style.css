@@ -47,6 +47,18 @@
     transition: 0.5s;
 }
 
+.sign-frame input {
+    position: relative;
+    display: inline-block;
+    padding: 10px, 20px;
+    color: rgb(3, 233, 244);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    
+}
+
 /* Form Style */
 .formwrapper    {
     position: relative;
