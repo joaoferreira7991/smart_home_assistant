@@ -154,7 +154,7 @@ def colorshiftClick_ack(data=None):
         # Update client-user's button state
         aux = {
             'id' : parsed['id'],
-            'state' : parsed['state'],
+            'state' : parsed['state_colorshift'],
             'class' : 'controller-colorshift'
         }
         socketio.emit('updateState', data=aux, namespace='/client-user')
