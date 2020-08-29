@@ -57,6 +57,14 @@ body    {
     height: 5fr;
 }
 
+.led-switch-onoff   {
+    grid-area: switch-onoff;
+}
+
+.led-switch-label   {
+    grid-area: switch-label;
+}
+
 .led-switch {
     display: grid;
     grid-template-areas: 
@@ -67,26 +75,6 @@ body    {
     border-radius: 5px;
     gap: 20px;
 
-}
-
-.led-switch-onoff   {
-    grid-area: switch-onoff;
-}
-
-.led-switch-label   {
-    grid-area: switch-label;
-}
-
-.led-controller {
-    display: grid;
-    grid-template-areas: 
-        'controller-onoff'
-        'controller-increase controller-decrease'
-        'controller-colorshift';    
-    height: 150px;
-    width: 150px;
-    border-radius: 5px;
-    gap: 20px;
 }
 
 .led-controller-onoff   {
@@ -105,6 +93,17 @@ body    {
     grid-area: controller-colorshift;
 }
 
+.led-controller {
+    display: grid;
+    grid-template-areas: 
+        'controller-onoff'
+        'controller-increase controller-decrease'
+        'controller-colorshift';    
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+    gap: 20px;
+}
 
 /* End led div */
 .charts {
