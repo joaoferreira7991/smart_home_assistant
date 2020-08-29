@@ -29,7 +29,7 @@ def controllerArr_client(arr: list()):
             'id': i.id, 
             'name': i.name, 
             'state': i.state_current, 
-            'colorshift': i.state_colorshift
+            'state_colorshift': i.state_colorshift
         })
     return aux
 

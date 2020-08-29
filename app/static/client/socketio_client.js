@@ -232,10 +232,10 @@ function loadButtons(actuator_arr, controller_arr)  {
         button_colorshift.id = 'controller-colorshift'+controller_arr[j]['id'];
         button_colorshift.innerHTML = 'Colorshift';
         /* Color it according to state */
-        if(controller_arr[j]['state'])  {
+        if(controller_arr[j]['state_colorshift'])  {
             button_colorshift.style.color = 'yellow';
         }
-        else if(!controller_arr[j]['state'])    {
+        else if(!controller_arr[j]['state_colorshift'])    {
             button_colorshift.style.color = 'black';
         }
 
