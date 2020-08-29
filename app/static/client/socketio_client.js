@@ -108,17 +108,17 @@ document.addEventListener('click', function(e)  {
     // Form toggle buttons
     else if(e.target && e.target.id == 'button_addActuator')    {
         var x = document.getElementById('addActuator');
-        if(x.style.display == 'none')
+        if(x.style.display == '')
             x.style.display = 'block';
         else if(x.style.display == 'block')
-            x.style.display = 'none';
+            x.style.display = '';
     }    
     else if(e.target && e.target.id == 'button_addController')    {
         var x = document.getElementById('addController');
-        if(x.style.display == 'none')
+        if(x.style.display == '')
             x.style.display = 'block';
         else if(x.style.display == 'block')
-            x.style.display = 'none';        
+            x.style.display = '';        
     }
 });
 
