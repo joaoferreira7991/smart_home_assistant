@@ -55,11 +55,15 @@ socketio.on('updateState', function(data)   {
     }
     else if(data['class'] == 'controller-onoff') {
         var button = document.getElementById('controller-onoff'+data['id']);
+        var button_colorshift = document.getElementById('controller-colorshift'+data['id']);
         if(data['state'])   {
             button.style.color = 'green';
+            if(data['state_colorshift'])
+                button_colorshift.style.color = 'yellow';            
         }
         else if(!data['state']) {
             button.style.color = 'black';
+            button_colorshift.style.color = 'black';
         }
     }
     else if(data['class'] == 'controller-colorshift') {

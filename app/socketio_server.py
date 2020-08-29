@@ -116,6 +116,7 @@ def ledClick_ack(data=None):
         aux = {
             'id' : parsed['id'],
             'state' : parsed['state'],
+            'state_colorshift' : oControllerLed.state_colorshift,
             'class' : 'controller-onoff'
         }
         socketio.emit('updateState', data=aux, namespace='/client-user')
