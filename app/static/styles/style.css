@@ -96,8 +96,8 @@ body    {
     font-size: 75px;
 }
 
-.switch-onoff::selection    {
-    border: none;
+.switch-onoff:focus    {
+    outline: none;
 }
 
 .led-switch-name   {
@@ -144,7 +144,7 @@ body    {
 }
 
 .controller-onoff:focus    {
-    border: none;
+    outline: none;
 }
 
 .led-controller-increase   {
@@ -172,7 +172,7 @@ body    {
 }
 
 .controller-increase:focus    {
-    border: none;
+    outline: none;
 }
 
 .led-controller-decrease   {
@@ -200,7 +200,7 @@ body    {
 } 
 
 .controller-decrease:focus    {
-    border: none;
+    outline: none;
 }
 
 .led-controller-colorshift   {
@@ -224,7 +224,7 @@ body    {
 }
 
 .controller-colorshift:focus    {
-    border: none;
+    outline: none;
 }
 
 /* End led div */
