@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class='formwrapper'>
-        <h2 class="title">Sign in</h2>
+    <div class='sign-frame'>
+        <h2>Sign in</h2>
         <form action='' method='POST' novalidate>
             {{ form.hidden_tag() }}
-            <div class="form-field">
+            <div class="sign-frame-field">
                 {{ form.username.label }} <br>
                 {{ form.username(size=30) }}
                 {% for error in form.username.errors %}
                     <span style='color: red;'> [{{ error }}]</span>
                 {% endfor %}            
             </div>        
-            <div class="form-field">
+            <div class="sign-frame-field">
                 {{ form.password.label }} <br>
                 {{ form.password(size=30) }}
                 {% for error in form.password.errors %}
                     <span style='color: red;'> [{{ error }}]</span>
                 {% endfor %}         
             </div>        
-            <div class="form-field">
+            <div class="sign-frame-field">
                 {{ form.remember_me() }} {{ form.remember_me.label }}          
             </div>
             {{ form.submit() }}

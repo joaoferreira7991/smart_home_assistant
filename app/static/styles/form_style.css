@@ -1,3 +1,52 @@
+/* Signing Frame Style */
+
+.sign-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.sign-frame h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.sign-frame-field    {
+    position: relative;
+}
+
+.sign-frame-field input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background: transparent;
+}
+
+.sign-frame-field label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
 /* Form Style */
 .formwrapper    {
     position: relative;
