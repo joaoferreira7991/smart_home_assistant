@@ -17,7 +17,7 @@ def connect_user():
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
-def loadData(background=0, date_range=datetime.today(), max_results=30):
+def loadData(background=0, date_range=datetime.today(), max_results=300):
     while True:
         # Query the database
         #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
