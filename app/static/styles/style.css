@@ -229,7 +229,3 @@ body    {
     padding: 15px;
 }
 
-button:focus  {
-    cursor: pointer;
-    outline: none;
-}
