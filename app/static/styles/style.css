@@ -74,6 +74,7 @@ body    {
 
 .led-switch-label   {
     margin: auto;
+    text-align: center;
     grid-area: switch-label;
 }
 
