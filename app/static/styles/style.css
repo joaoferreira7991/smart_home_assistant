@@ -88,7 +88,7 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 5px;
-    color: 	rgb(28, 37, 49);
+    background-color: 	rgb(28, 37, 49);
 
 }
 
@@ -137,7 +137,7 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 5px;
-    color: 	rgb(28, 37, 49);
+    background-color: 	rgb(28, 37, 49);
 }
 
 .led-controller-onoff   {
@@ -265,6 +265,7 @@ body    {
     max-width: 500px;
     min-height: 300px;
     min-width: 400px;
+    background-color: 	rgb(28, 37, 49);
 }
 
 .flash  {
