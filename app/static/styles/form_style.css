@@ -35,7 +35,7 @@
     border: none;
     border-bottom: 1px solid rgb(235, 236, 237); ;
     outline: none;
-    background: transparent;
+    background: rgba(0,0,0,.6);
 }
 
 .sign-frame-field label {
