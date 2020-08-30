@@ -207,6 +207,7 @@ def controllerDel(data):
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
         # Delete row
+        print('ola')
         db.session.delete(oControllerLed)
         db.session.commit()
         socketio.emit('deleteController', data=data, namespace='/client-pi')
