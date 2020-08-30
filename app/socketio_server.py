@@ -203,7 +203,7 @@ def brightness_ack(data=None):
         db.session.commit()
 
 @socketio.on('controllerDel', namespace='/client-user')
-def controllerDel():
+def controllerDel(data):
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
         # Delete row
