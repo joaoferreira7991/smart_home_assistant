@@ -97,7 +97,7 @@ def switchDel(data):
     oActuator = Actuator.query.filter_by(id=data['id']).first()
     if oActuator is not None:
         # Delete row
-        db.session.del(oActuator)
+        db.session.delete(oActuator)
         db.session.commit()
         socketio.emit('deleteActuator', data=data, namespace='/client-user')
 
@@ -207,7 +207,7 @@ def controllerDel():
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
         # Delete row
-        db.session.del(oControllerLed)
+        db.session.delete(oControllerLed)
         db.session.commit()
         socketio.emit('deleteController', data=data, namespace='/client-pi')
         socketio.emit('deleteController', data=data, namespace='/client-user')
