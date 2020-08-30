@@ -53,7 +53,7 @@ socketio.on('updateState', function(data)   {
         if(data['state'])   {
             button.style.color = 'rgb(3, 118, 254)';
             if(data['state_colorshift'])
-                button_colorshift.style.color = 'yellow';            
+                button_colorshift.style.color = 'rgb(239, 206, 106)';            
         }
         else if(!data['state']) {
             button.style.color = 'black';
@@ -63,7 +63,7 @@ socketio.on('updateState', function(data)   {
     else if(data['class'] == 'controller-colorshift') {
         var button = document.getElementById('controller-colorshift'+data['id']);
         if(data['state'])   {
-            button.style.color = 'yellow';
+            button.style.color = 'rgb(239, 206, 106)';
         }
         else if(!data['state']) {
             button.style.color = 'black';
@@ -232,7 +232,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         /* Color it according to state_colorshift if state is true */
         if(controller_arr[j]['state'])  {
             if(controller_arr[j]['state_colorshift'])  {
-                button_colorshift.style.color = 'yellow';
+                button_colorshift.style.color = 'rgb(239, 206, 106)';
             }
             else if(!controller_arr[j]['state_colorshift'])    {
                 button_colorshift.style.color = 'black';
