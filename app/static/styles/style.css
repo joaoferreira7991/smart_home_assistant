@@ -21,7 +21,7 @@ body    {
     padding: 15px;
 }
 
-.head > div >  a{
+.head > div > a{
     padding-left: 5px;
     padding-right: 10px;
     outline: none;
@@ -45,7 +45,7 @@ body    {
     border-radius: 5px;
 }
 
-.button-form > button  {
+.button-form {
     margin: auto;
     padding: 2px;
     border-style: solid;
