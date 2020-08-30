@@ -19,6 +19,8 @@ def connect_user():
 @socketio.on('loadData', namespace='/client-user')
 def loadData(background=0, date_range=datetime.today()):
     while True:
+        # Fix date_range to correctly show today without time values
+        date_range.replace(hour=0, minute=0, second=0,microsecond=0)
         # Query the database
         #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         #latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
