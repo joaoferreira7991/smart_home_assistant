@@ -7,7 +7,9 @@ body    {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    
     background: linear-gradient(	rgb(37, 47, 61), 	rgb(46, 60, 75));
+
 }
 
 /* Classes */
@@ -88,7 +90,7 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 5px;
-    background-color: 	rgb(28, 37, 49);
+    background: 	rgb(28, 37, 49);
 
 }
 
@@ -137,7 +139,7 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 5px;
-    background-color: 	rgb(28, 37, 49);
+    background: 	rgb(28, 37, 49);
 }
 
 .led-controller-onoff   {
@@ -253,6 +255,7 @@ body    {
     align-items: stretch;    
     margin: 20px;
     padding: 15px;
+    row-gap: 40px;
 }
 
 .charts > div   {
