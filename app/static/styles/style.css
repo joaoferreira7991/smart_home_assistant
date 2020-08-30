@@ -116,7 +116,7 @@ body    {
         'switch-onoff'
         'switch-onoff'
         'switch-label';
-    height: 150px;
+    height: 170px;
     width: 150px;
     padding: 2px;
     border-style: solid;
@@ -187,7 +187,7 @@ body    {
         'controller-onoff controller-onoff'
         'controller-increase controller-decrease'
         'controller-colorshift controller-colorshift';    
-    height: 150px;
+    height: 170px;
     width: 150px;
     padding: 2px;
     border-style: solid;
