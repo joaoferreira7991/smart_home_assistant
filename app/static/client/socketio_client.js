@@ -14,7 +14,7 @@ var led = document.getElementById('led');
 var temp_canvas = document.getElementById('temp-canvas').getContext('2d');
 var hum_canvas = document.getElementById('hum-canvas').getContext('2d');
 
-// Temperature related events
+// Receives event to load temperatur and humidity data
 socketio.on('loadData', function(data)    {
     parsed = JSON.parse(data);
     var latest_temp = document.getElementById('latest_temp');
@@ -31,6 +31,7 @@ socketio.on('loadData', function(data)    {
 
 });
 
+// Receives event to load actuator data
 socketio.on('loadActuator', function(data) {
     parsed = JSON.parse(data);
     loadButtons(parsed.actuator_arr, parsed.controller_arr);
@@ -71,13 +72,32 @@ socketio.on('updateState', function(data)   {
     }
 });
 
-// Led Controller events
+socketio.on('deleteActuator', function(data) {
+    var remove = document.getElementById('led-switch'+data['id']);
+    led.removeChild(remove);
+});
+
+socketio.on('deleteController', function(data) {
+    var remove = document.getElementById('led-controller'+data['id']);
+    led.removeChild(remove);
+});
+
+// Event Listener
 document.addEventListener('click', function(e)  {
+
+    // Led Switch Events
     if(e.target && e.target.classList.contains('switch-onoff')) {
         var id = e.target.id.match(/\d+/).join('');
         data = {'id' : id}
         socketio.emit('switchClick', data=data);
     }
+    else if(e.target && e.target.classList.contains('switch-del-button'))   {
+        var id = e.target.id.match(/\d+/).join('');
+        data = {'id' : id}
+        socketio.emit('switchDel', data=data);
+    }
+
+    // Led Controller Events
     else if(e.target && e.target.classList.contains('controller-onoff'))   {
         var id = e.target.id.match(/\d+/).join('');
         data = {'id' : id}
@@ -97,6 +117,11 @@ document.addEventListener('click', function(e)  {
         var id = e.target.id.match(/\d+/).join('');
         data = {'id' : id}
         socketio.emit('colorshiftClick', data=data);
+    }
+    else if(e.target && e.target.classList.contains('controller-del-button'))   {
+        var id = e.target.id.match(/\d+/).join('');
+        data = {'id' : id}
+        socketio.emit('controllerDel', data=data);
     }
 
     // Form toggle buttons
@@ -126,6 +151,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <div class='led-switch>'
         var div = document.createElement('div');
         div.className = 'led-switch'; 
+        div.id = 'led-switch'+actuator_arr[i]['id'];
 
         // <div class='led-switch-onoff>'
         var div_switch = document.createElement('div');
@@ -188,6 +214,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <div class='led-controller>'
         var div_controller = document.createElement('div');
         div_controller.className = 'led-controller';
+        div_controller.id = 'led-switch'+controller_arr[j]['id'];
 
         // <div class='led-controller-onoff>'
         var div_onoff = document.createElement('div');

@@ -92,6 +92,14 @@ def switchClick_ack(data=None):
         }
         socketio.emit('updateState', data=aux, namespace='/client-user')
 
+@socketio.on('switchDel', namespace='/client-user')
+def switchDel(data):
+    oActuator = Actuator.query.filter_by(id=data['id']).first()
+    if oActuator is not None:
+        # Delete row
+        db.session.del(oActuator)
+        db.session.commit()
+        socketio.emit('deleteActuator', data=data, namespace='/client-user')
 
 # Led Strip Controller events
 @socketio.on('ledClick', namespace='/client-user')
@@ -193,6 +201,16 @@ def brightness_ack(data=None):
         oControllerLed.state_brightness = parsed['brightness']
         print(oControllerLed.state_brightness)
         db.session.commit()
+
+@socketio.on('controllerDel', namespace='/client-user')
+def controllerDel():
+    oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
+    if oControllerLed is not None:
+        # Delete row
+        db.session.del(oControllerLed)
+        db.session.commit()
+        socketio.emit('deleteController', data=data, namespace='/client-pi')
+        socketio.emit('deleteController', data=data, namespace='/client-user')
 
 # -------------------------------------
 # Namespace '/client-pi' related events
