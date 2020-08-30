@@ -34,7 +34,6 @@ body    {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
-    /*color:rgba(198, 205, 212, 0.726);*/
     margin: 20px;
     padding: 15px;
 }
@@ -54,6 +53,7 @@ body    {
     margin: 20px;
     background: 	rgb(28, 37, 49);
     box-shadow: 0 15px 25px rgba(0,0,0,.6);    
+    color: rgb(235, 236, 237);   
 }
 
 .div_controllerform   {
