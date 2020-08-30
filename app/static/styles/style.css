@@ -91,7 +91,7 @@ body    {
     border-color: black;
     margin: 5px;
     background: 	rgb(28, 37, 49);
-
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
 }
 
 .led-switch-onoff   {
@@ -140,6 +140,7 @@ body    {
     border-color: black;
     margin: 5px;
     background: 	rgb(28, 37, 49);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
 }
 
 .led-controller-onoff   {
@@ -268,6 +269,7 @@ body    {
     max-width: 800px;
     position: relative;
     background-color: 	rgb(28, 37, 49);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
 }
 
 .chart-container h3  {
