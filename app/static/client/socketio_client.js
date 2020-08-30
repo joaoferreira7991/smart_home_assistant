@@ -26,9 +26,9 @@ var hum_canvas = document.getElementById('hum-canvas').getContext('2d');
 socketio.on('loadData', function(data)    {
     parsed = JSON.parse(data);
     var latest_temp = document.getElementById('latest_temp');
-    latest_temp.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
+    latest_temp.innerHTML = 'Current temperature is ' + parsed.latest_temp + 'ºC.';
     var latest_hum = document.getElementById('latest_hum');
-    latest_hum.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
+    latest_hum.innerHTML = 'Current humidity is ' + parsed.latest_hum + '%.';
     
     if(temp_chart != undefined)
         temp_chart.destroy();
