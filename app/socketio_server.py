@@ -17,13 +17,13 @@ def connect_user():
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
-def loadData(background=0, date_range=datetime.today(), max_results=300):
+def loadData(background=0, date_range=datetime.today()):
     while True:
         # Query the database
         #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         #latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
-        aTemperature = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).limit(max_results).all()
-        aHumidity = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).limit(max_results).all()
+        aTemperature = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).all()
+        aHumidity = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).all()
         
         # Transform data to be sent
         arrTemperature = readingArr(aTemperature)
