@@ -63,6 +63,7 @@ body    {
     display: none;
 }
 /* End Forms */
+
 /* Start Led div */
 .led    {
     display: flex;
@@ -241,6 +242,8 @@ body    {
 }
 
 /* End led div */
+
+
 .charts {
     display: flex;
     flex-direction: row;
@@ -251,6 +254,11 @@ body    {
 }
 
 .charts > div   {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: black;
+    margin: 10px, 20px;
+    padding: 10px, 20px;
     max-height: 300px;
     max-width: 500px;
     min-height: 300px;
