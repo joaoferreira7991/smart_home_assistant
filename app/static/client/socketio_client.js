@@ -6,29 +6,21 @@ var color = Chart.helpers.color;
 // Chart variable declaration to make possible to destroy when reloaded
 var temp_chart;
 var hum_chart;
-//
+
 // Variables to control led strip
 var led = document.getElementById('led');
 
-// Variables from Dashboard 
+// Canvas variables
 var temp_canvas = document.getElementById('temp-canvas').getContext('2d');
-//var hum_value = document.getElementById('charts').children['hum_value'];
 var hum_canvas = document.getElementById('hum-canvas').getContext('2d');
-//var hum_canvas = document.getElementById('hum').children['hum_canvas'].getContext('2d');
-
-// On connection asks the server for the required data
-//socketio.on('connect', function()    {
-//    socketio.emit('loadActuator');
-//    socketio.emit('loadData');
-//});
 
 // Temperature related events
 socketio.on('loadData', function(data)    {
     parsed = JSON.parse(data);
     var latest_temp = document.getElementById('latest_temp');
-    latest_temp.innerHTML = 'Current temperature is ' + parsed.latest_temp + 'ºC.';
+    latest_temp.innerHTML = 'Current temperature: ' + parsed.latest_temp + 'ºC';
     var latest_hum = document.getElementById('latest_hum');
-    latest_hum.innerHTML = 'Current humidity is ' + parsed.latest_hum + '%.';
+    latest_hum.innerHTML = 'Current humidity: ' + parsed.latest_hum + '%';
     
     if(temp_chart != undefined)
         temp_chart.destroy();
@@ -146,7 +138,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         button.innerHTML = 'power_settings_new';
         /* Color it according to state */
         if(actuator_arr[i]['state'])  {
-            button.style.color = 'green';
+            button.style.color = 'rgb(3, 118, 254)';
         }
         else if(!actuator_arr[i]['state'])    {
             button.style.color = 'black';
@@ -194,7 +186,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         button_onoff.innerHTML = 'power_settings_new';
         /* Color it according to state */
         if(controller_arr[j]['state'])  {
-            button_onoff.style.color = 'green';
+            button_onoff.style.color = 'rgb(3, 118, 254)';
         }
         else if(!controller_arr[j]['state'])    {
             button_onoff.style.color = 'black';
