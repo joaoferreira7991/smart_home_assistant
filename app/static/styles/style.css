@@ -270,6 +270,7 @@ body    {
 }
 
 .charts div h3  {
+    text-align: center;
     color: rgb(235, 236, 237);
 } 
 
