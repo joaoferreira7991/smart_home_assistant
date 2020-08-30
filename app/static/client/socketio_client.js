@@ -270,7 +270,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         div_del.appendChild(del_button);
 
         // Construct led-controller
-        div.appendChild(div_del);
+        div_controller.appendChild(div_del);
         div_controller.appendChild(div_onoff);
         div_controller.appendChild(div_increase);
         div_controller.appendChild(div_decrease);
