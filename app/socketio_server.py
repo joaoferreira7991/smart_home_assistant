@@ -17,7 +17,7 @@ def connect_user():
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
-def loadData(background=0, date_range=datetime.today(), max_results=60):
+def loadData(background=0, date_range=datetime.today(), max_results=120):
     while True:
         # Fix date_range to correctly show today without time values
         date_range = date_range.replace(hour=0, minute=0, second=0,microsecond=0)
