@@ -17,7 +17,7 @@ def connect_user():
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
-def loadData(background=0, date_range=datetime.today()):
+def loadData(background=0, date_range=datetime.today(), max_results=60):
     while True:
         # Fix date_range to correctly show today without time values
         date_range = date_range.replace(hour=0, minute=0, second=0,microsecond=0)
@@ -25,8 +25,8 @@ def loadData(background=0, date_range=datetime.today()):
         # Query the database
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
         latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
-        aTemperature = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).all()
-        aHumidity = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).all()
+        aTemperature = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).limit(max_results).all()
+        aHumidity = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).limit(max_results).all()
         
         # Transform data to be sent
         arrTemperature = readingArr(aTemperature)
