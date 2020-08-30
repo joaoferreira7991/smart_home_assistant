@@ -128,7 +128,6 @@ body    {
 }
 
 .led-switch-del {
-    margin: right;
     grid-area: switch-del;
 }
 
@@ -143,6 +142,7 @@ body    {
     -ms-user-select: none;
     user-select: none;  
     color: black;
+    font-weight: bold;
 }
 
 .led-switch-onoff   {
@@ -196,7 +196,10 @@ body    {
 }
 
 .led-controller-del {
-    grid-area: controller-del;
+    grid-area: switch-del;
+}
+
+.controller-del-button  {
     border: none;
     background: none;
     cursor: pointer;
@@ -207,6 +210,7 @@ body    {
     -ms-user-select: none;
     user-select: none;  
     color: black;
+    font-weight: bold;
 }
 
 .led-controller-onoff   {
