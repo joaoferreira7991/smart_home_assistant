@@ -50,11 +50,11 @@ class ActuatorCreateForm(FlaskForm):
             Actuator, 
             Actuator.name,
             message='This name was already used!')])
-    ip = StringField('Ip Address', validators=[DataRequired(data_required),
+    ip = StringField('IP Address', validators=[DataRequired(data_required),
         Unique(
             Actuator, 
             Actuator.ip, 
-            message='This ip was already assigned!')])
+            message='This IP was already assigned!')])
     submitActuator = SubmitField('Add')
 
 class ControllerCreateForm(FlaskForm):
