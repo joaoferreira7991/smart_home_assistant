@@ -45,7 +45,7 @@ body    {
 }
 
 .div_actuatorform > button  {
-    margin: atuo;
+    margin: auto;
 }
 
 .div_controllerform   {
@@ -72,10 +72,12 @@ body    {
 }
 
 .addActuator    {
+    margin: auto;
     display: none;
 }
 
 .addController  {
+    margin: auto;
     display: none;
 }
 /* End Forms */
