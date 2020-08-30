@@ -158,7 +158,21 @@ function loadButtons(actuator_arr, controller_arr)  {
         // Construct div_name
         div_name.appendChild(label_switch);
 
+        // <div class='led-switch-del'
+        var del = document.createElement('div');
+        del.className = 'led-switch-del';
+
+        // <button class='del-button>
+        var del_button = document.createElement('button');
+        button.className = 'switch-del-button';
+        button.id = 'del-button'+actuator_arr[i]['id'];
+        button.innerHTML = 'X';
+
+        // Construct led-switch-del
+        del.appendChild(del_button);
+
         // Construct led-switch
+        div.appendChild(del);
         div.appendChild(div_switch);
         div.appendChild(div_name);
         
@@ -242,7 +256,21 @@ function loadButtons(actuator_arr, controller_arr)  {
         // Contruct div_colorshift
         div_colorshift.appendChild(button_colorshift);
 
+        // <div class='led-controller-del'
+        var del = document.createElement('div');
+        del.className = 'led-controller-del';
+
+        // <button class='controller-del-button>
+        var del_button = document.createElement('button');
+        button.className = 'controller-del-button';
+        button.id = 'del-button'+controller_arr[j]['id'];
+        button.innerHTML = 'X';
+
+        // Construct led-controller-del
+        del.appendChild(del_button);
+
         // Construct led-controller
+        div.appendChild(del);
         div_controller.appendChild(div_onoff)
         div_controller.appendChild(div_increase)
         div_controller.appendChild(div_decrease)
