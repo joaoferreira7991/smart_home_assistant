@@ -5,67 +5,41 @@
     <div class='div_actuatorform'>
         <button class='button-form' id='button_addActuator'>New Actuator</button>
         <div class='formwrapper addActuator' id='addActuator'>
-            <form action='' method='POST' novalidate>
-                {{ formActuator.csrf_token() }}
-                {{ formActuator.form_type }}
-                <div class='form-field'>
-                    {{ formActuator.name.label }}<br>
-                    {{ formActuator.name(size=30) }}<br>
-                    {% for error in formActuator.name.errors %}
-                    <span style='color: red;'> {{ error }}</span>
-                    {% endfor %}   
-                </div>        
-                <div class='form-field'>
-                    {{ formActuator.ip.label }}<br>
-                    {{ formActuator.ip(size=30) }}<br>
-                    {% for error in formActuator.ip.errors %}
-                    <span style='color: red;'> {{ error }}</span>
-                    {% endfor %}   
-                </div>   
-                <div class='form-field-submit'>
-                    {{ formActuator.submitActuator() }}
-                </div>    
-            </form>
+            <div class='form-field'>
+                <label for='nameActuator'>Name</label>
+                <input id='nameActuator'type="text" size='30px'>
+            </div>        
+            <div class='form-field'>
+                <label for='ipActuator'>Name</label>
+                <input id='ipActuator'type="text" size='30px'> 
+            </div>   
+            <div class='form-field-submit'>
+                <button id='submitActuator' type='submit'>Add</button>
+            </div>    
         </div>
     </div>
     <div class='div_controllerform'>
         <button class='button-form' id='button_addController'>New Controller</button>
         <div class='formwrapper addController' id='addController'>        
-            <form action='' method='POST' novalidate>
-                {{ formController.csrf_token() }}
-                {{ formController.form_type }}
-                <div class='form-field'>
-                    {{ formController.name.label }}<br>
-                    {{ formController.name(size=30) }}<br>
-                    {% for error in formController.name.errors %}
-                    <span style='color: red;'> {{ error }}</span>
-                    {% endfor %}   
-                </div>        
-                <div class='form-field'>
-                    {{ formController.red.label }}<br>
-                    {{ formController.red(size=30) }}<br>
-                    {% for error in formController.red.errors %}
-                    <span style='color: red;'> {{ error }}</span>
-                    {% endfor %}   
-                </div>           
-                <div class='form-field'>
-                    {{ formController.green.label }}<br>
-                    {{ formController.green(size=30) }}<br>
-                    {% for error in formController.green.errors %}
-                    <span style='color: red;'> {{ error }}</span>
-                    {% endfor %}   
-                </div>           
-                <div class='form-field'>
-                    {{ formController.blue.label }}<br>
-                    {{ formController.blue(size=30) }}<br>
-                    {% for error in formController.blue.errors %}
-                    <span style='color: red;'> {{ error }}</span>
-                    {% endfor %}   
-                </div>       
-                <div class='form-field-submit'>
-                    {{ formController.submitController() }}
-                </div>  
-            </form>
+            <div class='form-field'>
+                <label for='nameController'>Name</label>
+                <input id='nameController'type="text" size='30px'>  
+            </div>        
+            <div class='form-field'>
+                <label for='redController'>Name</label>
+                <input id='redController'type="text" size='30px'>   
+            </div>           
+            <div class='form-field'>
+                <label for='greenController'>Name</label>
+                <input id='greenController'type="text" size='30px'>  
+            </div>           
+            <div class='form-field'>
+                <label for='blueController'>Name</label>
+                <input id='blueController'type="text" size='30px'>  
+            </div>       
+            <div class='form-field-submit'>
+                <button id='submitController' type='submit'>Add</button>
+            </div>  
         </div>
     </div>
 </div>
