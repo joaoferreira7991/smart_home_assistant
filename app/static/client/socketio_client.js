@@ -41,7 +41,7 @@ socketio.on('updateState', function(data)   {
     if(data['class'] == 'switch-onoff') {
         var button = document.getElementById('switch-onoff'+data['id']);
         if(data['state'])   {
-            button.style.color = 'green';
+            button.style.color = 'rgb(3, 118, 254)';
         }
         else if(!data['state']) {
             button.style.color = 'black';
@@ -51,7 +51,7 @@ socketio.on('updateState', function(data)   {
         var button = document.getElementById('controller-onoff'+data['id']);
         var button_colorshift = document.getElementById('controller-colorshift'+data['id']);
         if(data['state'])   {
-            button.style.color = 'green';
+            button.style.color = 'rgb(3, 118, 254)';
             if(data['state_colorshift'])
                 button_colorshift.style.color = 'yellow';            
         }
