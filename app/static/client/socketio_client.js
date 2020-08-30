@@ -85,8 +85,36 @@ socketio.on('deleteController', function(data) {
 // Event Listener
 document.addEventListener('click', function(e)  {
 
+    // Form Events
+    if(e.target && e.target.id == 'submitActuator') {
+        var name = document.getElementById('nameActuator').innerText;
+        var ip = document.getElementById('ipActuator').innerText;
+        data =  {
+            'type'  : 'actuator',
+            'name'  : name,
+            'ip'   : ip
+        }
+        socketio.emit('submitForm', data=data);
+    }
+
+    else if(e.target && e.target.id == 'submitController') {
+        var name = document.getElementById('nameController').innerText;
+        var red = document.getElementById('redController').innerText;
+        var green = document.getElementById('greenController').innerText;
+        var blue = document.getElementById('blueController').innerText;
+        data =  {
+            'type'  : 'controller',
+            'name'  : name,
+            'red'   : red,
+            'green' : green,
+            'blue'  : blue
+        }
+        socketio.emit('submitForm', data=data);
+    }
+
+
     // Led Switch Events
-    if(e.target && e.target.classList.contains('switch-onoff')) {
+    else if(e.target && e.target.classList.contains('switch-onoff')) {
         var id = e.target.id.match(/\d+/).join('');
         data = {'id' : id}
         socketio.emit('switchClick', data=data);

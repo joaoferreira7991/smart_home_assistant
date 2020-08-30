@@ -15,6 +15,11 @@ def connect_user():
     loadActuator()
     loadData()
 
+# Form events
+@socketio.on('submitForm', namespace='/client-user')
+def submitForm(data):
+    print(data)
+
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
 def loadData(background=0, date_range=datetime.today(), max_results=120):
