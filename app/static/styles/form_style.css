@@ -43,7 +43,6 @@
     font-size: 16px;
     color: white;
     pointer-events: none;
-    transition: 0.5s;
 }
 
 .sign-frame-submit  {
@@ -80,6 +79,27 @@
 }
 
 .form-field  {
-    margin: 5px;
-    padding: 5px;     
+    position: relative;
+}
+
+.form-field input   {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background: transparent;
+}
+
+.form-field label   {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: white;
+    pointer-events: none;
 }
