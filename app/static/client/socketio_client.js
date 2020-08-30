@@ -283,7 +283,9 @@ function makeChart(ctx, arr, name, min, max)    {
     var data = {
         datasets: [{
             label: name,
-            backgroundColor: 'rgba(7, 152, 255, 0.5)',
+            pointBackgroundColor: 'rgba(239, 206, 106, 1.0)',
+            pointBorderColor: 'rgba(242, 212, 122, 0.7)',
+            backgroundColor: 'rgba(141, 123, 68, 0.5)',
             showLine: true,
             data: arr,
             min: Math.min.apply(this, arr[0]),
