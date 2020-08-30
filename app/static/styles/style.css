@@ -263,13 +263,17 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 10px 20px;
-    padding: 10px 40px;
+    padding: 100px 10px 10px 10px;
     max-height: 300px;
     max-width: 500px;
     min-height: 300px;
     min-width: 400px;
     background-color: 	rgb(28, 37, 49);
 }
+
+.charts div h2  {
+    color: rgb(235, 236, 237);
+} 
 
 .flash  {
     margin: 20px;

@@ -25,8 +25,10 @@ var hum_canvas = document.getElementById('hum-canvas').getContext('2d');
 // Temperature related events
 socketio.on('loadData', function(data)    {
     parsed = JSON.parse(data);
-    //temp_value.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
-    //hum_value.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
+    var latest_temp = document.getElementById('latest_temp');
+    latest_temp.innerHTML = 'Current temperature is ' + parsed.temp + 'ºC.';
+    var latest_hum = document.getElementById('latest_hum');
+    latest_hum.innerHTML = 'Current humidity is ' + parsed.hum + '%.';
     
     if(temp_chart != undefined)
         temp_chart.destroy();

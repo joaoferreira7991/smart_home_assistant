@@ -21,9 +21,10 @@ def loadData(background=0, date_range=datetime.today()):
     while True:
         # Fix date_range to correctly show today without time values
         date_range = date_range.replace(hour=0, minute=0, second=0,microsecond=0)
+        
         # Query the database
-        #latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
-        #latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
+        latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
+        latestHum = Reading.query.filter_by(data_type=data_type_dict['dht11_humidity']).order_by(Reading.id.desc()).first()
         aTemperature = Reading.query.filter(Reading.data_type==data_type_dict['dht11_temperature'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).all()
         aHumidity = Reading.query.filter(Reading.data_type==data_type_dict['dht11_humidity'], Reading.timestamp > date_range).order_by(Reading.timestamp.desc()).all()
         
@@ -31,7 +32,9 @@ def loadData(background=0, date_range=datetime.today()):
         arrTemperature = readingArr(aTemperature)
         arrHumidity = readingArr(aHumidity)
         
-        data =   {  'temp_arr'          :   arrTemperature,
+        data =   {  'latest_temp'       :   latestTemp,
+                    'latest_hum'        :   latestHum,
+                    'temp_arr'          :   arrTemperature,
                     'hum_arr'           :   arrHumidity}
         socketio.emit('loadData', data=json.dumps(data, cls=DateTimeEncoder), namespace='/client-user')
         if background == 0:
