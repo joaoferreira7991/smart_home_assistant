@@ -69,6 +69,9 @@ body    {
     background: 	rgb(28, 37, 49);
     box-shadow: 0 15px 25px rgba(0,0,0,.6);    
     color: rgb(235, 236, 237);   
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
 }
 
 .addActuator    {
