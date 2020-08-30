@@ -9,8 +9,10 @@
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
     background: 	rgb(28, 37, 49);
+    border-style: solid;
+    border-radius: 5px;
+    border-color: black;
 }
 
 .sign-frame h2 {
