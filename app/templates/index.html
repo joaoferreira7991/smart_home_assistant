@@ -70,14 +70,18 @@
 </div>
 
 <div class='charts'>
-    <div class='temp-chart'>
+    <div class='chart-container'>
         <h3 id='latest_temp'></h3>
-        <canvas id='temp-canvas'></canvas>
+        <div class=temp-chart>
+            <canvas id='temp-canvas'></canvas>
+        </div>
     </div>
     
-    <div class='hum-chart'>
+    <div class='chart-container'>
         <h3 id='latest_hum'></h3>
-        <canvas id='hum-canvas'></canvas>
+        <div class='hum-chart'>
+            <canvas id='hum-canvas'></canvas>
+        </div>
     </div>
 </div>
 <script src="{{ url_for('static', filename='client/socketio_client.js') }}"></script>

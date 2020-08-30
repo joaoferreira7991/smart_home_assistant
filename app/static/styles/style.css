@@ -258,7 +258,7 @@ body    {
     gap: 40px;
 }
 
-.charts > div   {
+.chart-container {
     border-style: solid;
     border-radius: 5px;
     border-color: black;
@@ -270,14 +270,21 @@ body    {
     background-color: 	rgb(28, 37, 49);
 }
 
-.charts div h3  {
+.chart-container h3  {
     text-align: center;
     color: rgb(235, 236, 237);
 } 
 
-.canvas {
-    width: 600px !important;
-    height: 400px !important;
+.temp-chart {
+    position: relative;
+    width: 600px;
+    height: 400px;
+}
+
+.hum-chart  {
+    position: relative;
+    width: 600px;
+    height: 400px;
 }
 
 .flash  {
