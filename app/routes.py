@@ -10,24 +10,24 @@ from werkzeug.urls import url_parse
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():  
-    formActuator = ActuatorCreateForm()
-    formController = ControllerCreateForm()
-    if request.method == 'POST':
-        form_type = request.form['form_type']      
-        if formActuator.submitActuator.data and formActuator.validate():
-            actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
-            db.session.add(actuator)
-            db.session.commit()
-            flash('{} was added with success!'.format(actuator.name)) 
-            return redirect(url_for('index'))          
-        if formController.submitController.data and formController.validate():
-            controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
-            db.session.add(controller)
-            db.session.commit()
-            flash('{} was added with success!'.format(controller.name)) 
-            return redirect(url_for('index'))  
+    #formActuator = ActuatorCreateForm()
+    #formController = ControllerCreateForm()
+    #if request.method == 'POST':
+    #    form_type = request.form['form_type']      
+    #    if formActuator.submitActuator.data and formActuator.validate():
+    #        actuator = Actuator(name=formActuator.name.data, ip=formActuator.ip.data)
+    #        db.session.add(actuator)
+    #        db.session.commit()
+    #        flash('{} was added with success!'.format(actuator.name)) 
+    #        return redirect(url_for('index'))          
+    #    if formController.submitController.data and formController.validate():
+    #        controller = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
+    #        db.session.add(controller)
+    #        db.session.commit()
+    #        flash('{} was added with success!'.format(controller.name)) 
+    #        return redirect(url_for('index'))  
     user = User.query.filter_by(username=current_user.username).first()
-    return render_template('index.html', title='Index', user=user, formActuator=formActuator, formController=formController)
+    return render_template('index.html', title='Index', user=user)#, formActuator=formActuator, formController=formController)
 
 @app.route('/user/<username>')
 @login_required
