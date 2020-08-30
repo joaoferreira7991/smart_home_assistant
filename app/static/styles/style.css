@@ -45,8 +45,15 @@ body    {
     border-radius: 5px;
 }
 
-.div_actuatorform > button  {
+.button-form > button  {
     margin: auto;
+    padding: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: black;
+    margin: 20px;
+    background: 	rgb(28, 37, 49);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);    
 }
 
 .div_controllerform   {
