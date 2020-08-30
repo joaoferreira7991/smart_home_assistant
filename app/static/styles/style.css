@@ -148,6 +148,10 @@ body    {
     font-weight: bold;
 }
 
+.switch-del-button:focus    {
+    outline: none;
+}
+
 .led-switch-onoff   {
     margin: auto;
     grid-area: switch-onoff;
@@ -217,6 +221,10 @@ body    {
     user-select: none;  
     color: black;
     font-weight: bold;
+}
+
+.controller-del-button:focus    {
+    outline: none;
 }
 
 .led-controller-onoff   {
