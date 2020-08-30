@@ -296,7 +296,7 @@ function makeChart(ctx, arr, name, min, max)    {
         data: data,
         options: {
             lineTension: 1,
-            responsive: false,
+            responsive: true,
             maintainAspectRatio: false,
             scales: {
                 xAxes:[{
