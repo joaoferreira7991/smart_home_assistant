@@ -19,9 +19,7 @@ body    {
     display: flex;
     background: rgba(0,0,0,.5);
     padding: 15px;
-    border-style: solid;
-    border-bottom: 1px;
-    border-color: black;
+    border-bottom: 5px solid black;
 }
 
 .head > div > a{
