@@ -74,7 +74,7 @@ body    {
     align-items: stretch; 
     margin: 20px;
     padding: 15px;
-
+    gap: 20px;
 }
 
 .led-switch {
@@ -255,7 +255,7 @@ body    {
     align-items: stretch;    
     margin: 20px;
     padding: 15px;
-    row-gap: 40px;
+    gap: 40px;
 }
 
 .charts > div   {
@@ -263,7 +263,7 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 10px, 20px;
-    padding: 10px, 20px;
+    padding: 10px, 40px;
     max-height: 300px;
     max-width: 500px;
     min-height: 300px;
