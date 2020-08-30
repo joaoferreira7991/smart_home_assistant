@@ -7,7 +7,7 @@ body    {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: linear-gradient(rgb(20, 30, 48), rgb(36, 59, 85));
+    background: linear-gradient(rgb(20, 30, 48), rgb(37, 49, 62));
 }
 
 /* Classes */
@@ -88,6 +88,7 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 5px;
+    color: 	rgb(28, 37, 49);
 
 }
 
@@ -136,6 +137,7 @@ body    {
     border-radius: 5px;
     border-color: black;
     margin: 5px;
+    color: 	rgb(28, 37, 49);
 }
 
 .led-controller-onoff   {
