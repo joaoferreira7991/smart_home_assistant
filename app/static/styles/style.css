@@ -112,6 +112,7 @@ body    {
 .led-switch {
     display: grid;
     grid-template-areas: 
+        'switch-del'
         'switch-onoff'
         'switch-onoff'
         'switch-label';
@@ -124,6 +125,20 @@ body    {
     margin: 20px;
     background: 	rgb(28, 37, 49);
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
+}
+
+.led-switch-del {
+    grid-area: switch-del;
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
 }
 
 .led-switch-onoff   {
@@ -160,6 +175,7 @@ body    {
 .led-controller {
     display: grid;
     grid-template-areas: 
+        'controller-del controller-del'
         'controller-onoff controller-onoff'
         'controller-onoff controller-onoff'
         'controller-increase controller-decrease'
@@ -173,6 +189,20 @@ body    {
     margin: 20px;
     background: 	rgb(28, 37, 49);
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
+}
+
+.led-controller-del {
+    grid-area: controller-del;
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    color: black;
 }
 
 .led-controller-onoff   {
@@ -247,7 +277,7 @@ body    {
 
 .controller-decrease:active {
     outline: none;
-    color: blue;
+    color: rgb(3, 118, 254);
 } 
 
 .controller-decrease:focus    {
