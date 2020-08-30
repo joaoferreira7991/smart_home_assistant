@@ -107,3 +107,20 @@
     color: rgb(235, 236, 237); ;
     pointer-events: none;
 }
+
+.form-field-submit input {
+    border-radius: 5px;
+    border-color:  rgba(0,0,0,.6);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    width: -webkit-fill-available;
+    height: 100%;
+    background:  rgba(0,0,0,.6);
+    position: relative;
+    display: inline-block;
+    padding: 10px, 20px;
+    color: rgb(3, 118, 254);
+    font-size: 16px;
+    text-decoration: none;
+    overflow: hidden;
+    margin-top: 20px;
+}
