@@ -84,7 +84,7 @@ socketio.on('deleteController', function(data) {
 
 
 // Forms Events
-$('actuatorform').submit(function(event)    {
+$('#actuatorform').submit(function(event)    {
     alert('ola');
     event.preventDefault();
     data =  {
@@ -95,7 +95,7 @@ $('actuatorform').submit(function(event)    {
     socketio.emit('submitForm', data=data);
 });
 
-$('controllerform').submit(function(event)    {
+$('#controllerform').submit(function(event)    {
     event.preventDefault();
     data =  {
         'type'  : 'actuator',
