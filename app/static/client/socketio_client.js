@@ -106,7 +106,8 @@ $('form#controllerform').submit(function(event)    {
         'blue'  : $('#blueController').val()
     }
     socketio.emit('submitForm', data=data, function(data)   {
-        alert(data);
+        parsed = JSON.parse(data);
+        alert(parsed);
     });
 });
 
