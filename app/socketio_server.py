@@ -147,7 +147,6 @@ def switchDel(data):
 def ledClick(data):
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
-        print(oControllerLed.state_current)
         aux = controller_pi(oControllerLed)
         if oControllerLed.state_current:
             socketio.emit('ledOff', data=aux, namespace='/client-pi', callback=ledClick_ack)
@@ -196,10 +195,6 @@ def colorshiftClick_ack(data=None):
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
         # Update database
-        print(oControllerLed.state_red)
-        print(oControllerLed.state_green)
-        print(oControllerLed.state_blue)
-        print(parsed['state_colorshift'])
         oControllerLed.state_colorshift = parsed['state_colorshift']
         if not parsed['state_colorshift']:
             oControllerLed.state_red = parsed['red']
@@ -238,9 +233,7 @@ def brightness_ack(data=None):
     oControllerLed = ControllerLed.query.filter_by(id=parsed['id']).first()
     if oControllerLed is not None:
         # Update database
-        print(oControllerLed.state_brightness)
         oControllerLed.state_brightness = parsed['brightness']
-        print(oControllerLed.state_brightness)
         db.session.commit()
 
 @socketio.on('controllerDel', namespace='/client-user')
@@ -248,7 +241,6 @@ def controllerDel(data):
     oControllerLed = ControllerLed.query.filter_by(id=data['id']).first()
     if oControllerLed is not None:
         # Delete row
-        print('ola')
         db.session.delete(oControllerLed)
         db.session.commit()
         socketio.emit('deleteController', data=controller_pi(oControllerLed), namespace='/client-pi')

@@ -244,7 +244,7 @@ function loadButtons(actuator_arr, controller_arr)  {
         // <div class='led-controller>'
         var div_controller = document.createElement('div');
         div_controller.className = 'led-controller';
-        div_controller.id = 'led-switch'+controller_arr[j]['id'];
+        div_controller.id = 'led-controller'+controller_arr[j]['id'];
 
         // <div class='led-controller-onoff>'
         var div_onoff = document.createElement('div');
