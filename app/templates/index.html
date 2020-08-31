@@ -6,7 +6,7 @@
             <button class='button-form' id='button_addActuator'>New Actuator</button>
             <div class='formwrapper addActuator' id='addActuator'>
                 <form id='actuatorform' action='#' method='POST' novalidate>
-                    {{ formActuator.csrf_token() }}
+                    {{ formActuator.csrf_token(id='csrfActuator') }}
                     {{ formActuator.form_type }}
                     <div class='form-field'>
                         {{ formActuator.name.label }}<br>
@@ -32,7 +32,7 @@
             <button class='button-form' id='button_addController'>New Controller</button>
             <div class='formwrapper addController' id='addController'>                   
                 <form id='controllerform' action='#' method='POST' novalidate>
-                    {{ formController.csrf_token() }}
+                    {{ formController.csrf_token(id='csrfController') }}
                     {{ formController.form_type }}
                     <div class='form-field'>
                         {{ formController.name.label }}<br>

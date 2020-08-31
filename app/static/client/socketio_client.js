@@ -88,6 +88,7 @@ $('form#actuatorform').submit(function(event)    {
     event.preventDefault();
     data =  {
         'type'  : 'actuator',
+        'csrf_token'    : $('#csrfActuator').val(),
         'name'  : $('#nameActuator').val(),
         'ip'    : $('#ipActuator').val()
     }
@@ -98,6 +99,7 @@ $('form#controllerform').submit(function(event)    {
     event.preventDefault();
     data =  {
         'type'  : 'controller',
+        'csrf_token'    : $('#csrfController').val(),        
         'name'  : $('#nameController').val(),
         'red'   : $('#redController').val(),
         'green' : $('#greenController').val(),
