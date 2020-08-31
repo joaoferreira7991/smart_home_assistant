@@ -45,7 +45,7 @@ def submitForm(data):
         form = ControllerCreateForm(MultiDict(data))
         if form.validate():
             print('validate')
-            oController = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
+            oController = ControllerLed(name=form.name.data, gpio_red=form.red.data, gpio_green=form.green.data, gpio_blue=form.blue.data)
             db.session.add(oController)
             db.session.commit()
             loadActuator()
