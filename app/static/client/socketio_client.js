@@ -93,6 +93,7 @@ $('form#actuatorform').submit(function(event)    {
         'ip'    : $('#ipActuator').val()
     }
     socketio.emit('submitForm', data=data, function(data)   {
+        parsed = JSON.parse(data);
         alert(data['OK']);
         if(data['OK'] == 0) {
             alert(data['errors']);
