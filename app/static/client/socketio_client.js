@@ -95,8 +95,8 @@ $('form#actuatorform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            document.getElementById('nameActuator').innerHTML = parsed['name'];
-            document.getElementById('ipActuator').innerHTML = parsed['ip'];
+            document.getElementById('nameActuator').innerText = parsed['name'];
+            document.getElementById('ipActuator').innerText = parsed['ip'];
         }
     });
 });
@@ -114,10 +114,10 @@ $('form#controllerform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            document.getElementById('nameController').innerHTML = parsed['name'];
-            document.getElementById('redController').innerHTML = parsed['red'];
-            document.getElementById('greenController').innerHTML = parsed['green'];
-            document.getElementById('blueController').innerHTML = parsed['blue'];
+            document.getElementById('nameController').innerText = parsed['name'];
+            document.getElementById('redController').innerText = parsed['red'];
+            document.getElementById('greenController').innerText = parsed['green'];
+            document.getElementById('blueController').innerText = parsed['blue'];
         }
     });
 });
