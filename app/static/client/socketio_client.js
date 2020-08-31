@@ -95,8 +95,10 @@ $('form#actuatorform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            document.getElementById('nameActuator').value = parsed['name'];
-            document.getElementById('ipActuator').value = parsed['ip'];
+            if(parsed['name'] != undefined)
+                document.getElementById('nameActuator').value = parsed['name'];
+            if(parsed['ip'] != undefined)
+                document.getElementById('ipActuator').value = parsed['ip'];
         }
     });
 });
@@ -114,10 +116,14 @@ $('form#controllerform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            document.getElementById('nameController').value = parsed['name'];
-            document.getElementById('redController').value = parsed['red'];
-            document.getElementById('greenController').value = parsed['green'];
-            document.getElementById('blueController').value = parsed['blue'];
+            if(parsed['name'] != undefined)
+                document.getElementById('nameController').value = parsed['name'];
+            if(parsed['red'] != undefined)
+                document.getElementById('redController').value = parsed['red'];
+            if(parsed['green'] != undefined)
+                document.getElementById('greenController').value = parsed['green'];
+            if(parsed['blue'] != undefined)
+                document.getElementById('blueController').value = parsed['blue'];
         }
     });
 });
