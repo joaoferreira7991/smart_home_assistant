@@ -28,9 +28,7 @@ def submitForm(data):
             db.session.add(oActuator)
             db.session.commit()            
             loadActuator()
-            return {
-                'OK' : 1
-            } 
+            return json.dumps({'OK':1})
         else :
             aux = {
                 'OK' : 0,
@@ -47,9 +45,7 @@ def submitForm(data):
             db.session.commit()
             loadActuator()
             socketio.emit('addController', data=controller_pi(oController), namespace='/client-pi')
-            return {
-                'OK' : 1
-            }  
+            return json.dumps({'OK':1})
         else :
             aux = {
                 'OK' : 0,
