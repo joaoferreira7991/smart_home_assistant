@@ -94,9 +94,8 @@ $('form#actuatorform').submit(function(event)    {
     }
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
-        alert(data['OK']);
-        if(data['OK'] == 0) {
-            alert(data['errors']);
+        if(parsed['OK'] == 0) {
+            alert(parsed['errors']);
         }
     });
 });
@@ -112,9 +111,9 @@ $('form#controllerform').submit(function(event)    {
         'blue'  : $('#blueController').val()
     }
     socketio.emit('submitForm', data=data, function(data)   {
-        alert(data);
-        if(data['OK'] == 0) {
-            alert(data['errors']);
+        parsed = JSON.parse(data);
+        if(parsed['OK'] == 0) {
+            alert(parsed['errors']);
         }
     });
 });
