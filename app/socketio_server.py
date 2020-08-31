@@ -34,7 +34,7 @@ def submitForm(data):
         else :
             aux = {
                 'OK' : 0,
-                form.errors
+                'errors' : form.errors
             }            
             return json.dumps(aux)
 
@@ -53,7 +53,7 @@ def submitForm(data):
         else :
             aux = {
                 'OK' : 0,
-                form.errors
+                'errors' : form.errors
             }            
             return json.dumps(aux)
 
