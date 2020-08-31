@@ -94,7 +94,7 @@ $('form#actuatorform').submit(function(event)    {
     }
     socketio.emit('submitForm', data=data, function(data)   {
         alert(data);
-        if(data['OK'] == 0) {
+        if(data['OK'] == '0') {
             alert(data['errors']);
         }
     });
