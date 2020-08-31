@@ -93,6 +93,7 @@ $('form#actuatorform').submit(function(event)    {
         'ip'    : $('#ipActuator').val()
     }
     socketio.emit('submitForm', data=data, function(data)   {
+        alert(data);
         if(data['OK'] == 0) {
             alert(data['errors']);
         }
@@ -110,6 +111,7 @@ $('form#controllerform').submit(function(event)    {
         'blue'  : $('#blueController').val()
     }
     socketio.emit('submitForm', data=data, function(data)   {
+        alert(data);
         if(data['OK'] == 0) {
             alert(data['errors']);
         }
