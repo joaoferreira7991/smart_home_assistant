@@ -117,7 +117,7 @@ $('form#controllerform').submit(function(event)    {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
             var name = document.getElementById('nameController');
-            name.innerText = parsed['name'];
+            name.innerText = 'fuck you';/*parsed['name'];*/
             var red = document.getElementById('redController');
             red.innerText = parsed['red'];
             var green = document.getElementById('greenController');
