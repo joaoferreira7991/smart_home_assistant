@@ -72,6 +72,8 @@ def loadData(background=0, date_range=datetime.today(), max_results=120):
         # Transform data to be sent
         arrTemperature = readingArr(aTemperature)
         arrHumidity = readingArr(aHumidity)
+        print(arrTemperature)
+        print(arrHumidity)
         
         data =   {  'latest_temp'       :   latestTemp.data_reading,
                     'latest_hum'        :   latestHum.data_reading,
