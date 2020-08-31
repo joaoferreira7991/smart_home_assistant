@@ -5,6 +5,7 @@ from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
 from utils.fix_data import readingArr, actuatorArr_client, actuatorArr_pi, controllerArr_client, controllerArr_pi, controller_pi
 from datetime import datetime, time, date, timedelta
+from werkzeug import MultiDict
 import json, sys
 
 
@@ -21,9 +22,12 @@ def connect_user():
 def submitForm(data):
     print(data)
     if data['type'] == 'actuator':
-        form = ActuatorCreateForm()
+        data.pop('type')
+        form = ActuatorCreateForm(MultiDict(data))
+        
     elif data['type'] == 'controller':
-        form = ControllerCreateForm()
+        data.pop('type')
+        form = ControllerCreateForm(MultiDict(data))
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
