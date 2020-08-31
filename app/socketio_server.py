@@ -30,6 +30,7 @@ def submitForm(data):
             loadActuator()
             return json.dumps({'OK':1})
         else :
+            aux = dict()
             aux['OK'] = 0
             for fieldname, errormsg in form.errors.items():
                 for err in errormsg:
@@ -47,6 +48,7 @@ def submitForm(data):
             socketio.emit('addController', data=controller_pi(oController), namespace='/client-pi')
             return json.dumps({'OK':1})
         else :
+            aux = dict()
             aux['OK'] = 0
             for fieldname, errormsg in form.errors.items():
                 for err in errormsg:
