@@ -92,7 +92,9 @@ $('form#actuatorform').submit(function(event)    {
         'name'  : $('#nameActuator').val(),
         'ip'    : $('#ipActuator').val()
     }
-    socketio.emit('submitForm', data=data);
+    socketio.emit('submitForm', data=data, function(data)   {
+        alert(data);
+    });
 });
 
 $('form#controllerform').submit(function(event)    {

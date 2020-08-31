@@ -28,7 +28,16 @@ def submitForm(data):
         form = ActuatorCreateForm(MultiDict(data))
         if form.validate():
             print('validate')
-        
+            oActuator = Actuator(name=form.name.data, ip=form.ip.data)
+            db.session.add(oActuator)
+            db.session.commit()            
+            loadActuator()
+            return {
+                'OK' : 1
+            } 
+        else :            
+            return json.dumps(form.errors)
+
     elif data['type'] == 'controller':
         print('controller')
         data.pop('type')
@@ -36,10 +45,15 @@ def submitForm(data):
         form = ControllerCreateForm(MultiDict(data))
         if form.validate():
             print('validate')
-            return json.dumps(form.errors)
+            oController = ControllerLed(name=formController.name.data, gpio_red=formController.red.data, gpio_green=formController.green.data, gpio_blue=formController.blue.data)
+            db.session.add(oController)
+            db.session.commit()
+            loadActuator()
+            socketio.emit('addController', data=controller_pi(oController), namespace='/client-pi')
+            return {
+                'OK' : 1
+            } 
         else :            
-            print(form)
-            print(form.errors)
             return json.dumps(form.errors)
 
 # Database reading events
