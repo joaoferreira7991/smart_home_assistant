@@ -95,7 +95,8 @@ $('form#actuatorform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            for (i in parsed['errors'])    {
+            parsed.pop('OK');
+            for (i in parsed)    {
                 alert(parsed[i]);
             }
         }
@@ -115,7 +116,8 @@ $('form#controllerform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            for (i in parsed['errors'])    {
+            parsed.pop('OK');
+            for (i in parsed)    {
                 alert(parsed[i]);
             }
         }
