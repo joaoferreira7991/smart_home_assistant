@@ -5,17 +5,25 @@
         <div class='div_actuatorform'>
             <button class='button-form' id='button_addActuator'>New Actuator</button>
             <div class='formwrapper addActuator' id='addActuator'>
-                <form id='actuatorform'>
+                <form id='actuatorform' action='#' method='POST' novalidate>
+                    {{ formActuator.csrf_token() }}
+                    {{ formActuator.form_type }}
                     <div class='form-field'>
-                        <label for='nameActuator'>Name</label><br>
-                        <input id='nameActuator'type="text" size='30px'>
+                        {{ formActuator.name.label }}<br>
+                        {{ formActuator.name(id='nameActuator', size=30) }}<br>
+                        {% for error in formActuator.name.errors %}
+                        <span style='color: red;'> {{ error }}</span>
+                        {% endfor %}   
                     </div>        
                     <div class='form-field'>
-                        <label for='ipActuator'>IP Address</label><br>
-                        <input id='ipActuator'type="text" size='30px'> 
+                        {{ formActuator.ip.label }}<br>
+                        {{ formActuator.ip(id='ipActuator', size=30) }}<br>
+                        {% for error in formActuator.ip.errors %}
+                        <span style='color: red;'> {{ error }}</span>
+                        {% endfor %}   
                     </div>   
                     <div class='form-field-submit'>
-                        <input id='submitActuator' type='submit' value='Add'>
+                        {{ formActuator.submitActuator() }}
                     </div>    
                 </form>
             </div>            
@@ -23,25 +31,39 @@
         <div class='div_controllerform'>
             <button class='button-form' id='button_addController'>New Controller</button>
             <div class='formwrapper addController' id='addController'>                   
-                <form id='controllerform'>     
+                <form id='controllerform' action='#' method='POST' novalidate>
+                    {{ formController.csrf_token() }}
+                    {{ formController.form_type }}
                     <div class='form-field'>
-                        <label for='nameController'>Name</label><br>
-                        <input id='nameController'type="text" size='30px'>  
+                        {{ formController.name.label }}<br>
+                        {{ formController.name(id='nameController', size=30) }}<br>
+                        {% for error in formController.name.errors %}
+                        <span style='color: red;'> {{ error }}</span>
+                        {% endfor %}   
                     </div>        
                     <div class='form-field'>
-                        <label for='redController'>GPIO Red Pin</label><br>
-                        <input id='redController'type="text" size='30px'>   
+                        {{ formController.red.label }}<br>
+                        {{ formController.red(id='redController', size=30) }}<br>
+                        {% for error in formController.red.errors %}
+                        <span style='color: red;'> {{ error }}</span>
+                        {% endfor %}   
                     </div>           
                     <div class='form-field'>
-                        <label for='greenController'>GPIO Green Pin</label><br>
-                        <input id='greenController'type="text" size='30px'>  
+                        {{ formController.green.label }}<br>
+                        {{ formController.green(id='greenController', size=30) }}<br>
+                        {% for error in formController.green.errors %}
+                        <span style='color: red;'> {{ error }}</span>
+                        {% endfor %}   
                     </div>           
                     <div class='form-field'>
-                        <label for='blueController'>GPIO Blue Pin</label><br>
-                        <input id='blueController'type="text" size='30px'>  
+                        {{ formController.blue.label }}<br>
+                        {{ formController.blue(id='blueController', size=30) }}<br>
+                        {% for error in formController.blue.errors %}
+                        <span style='color: red;'> {{ error }}</span>
+                        {% endfor %}   
                     </div>       
                     <div class='form-field-submit'>
-                        <input id='submitController' type='submit' value='Add'>
+                        {{ formController.submitController() }}
                     </div>  
                 </form>
             </div>
