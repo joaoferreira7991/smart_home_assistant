@@ -96,9 +96,9 @@ $('form#actuatorform').submit(function(event)    {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
             var name = document.getElementById('nameActuator');
-            name.innerText = parsed['name'];
+            name.textContent = parsed['name'];
             var ip = document.getElementById('ipActuator');
-            ip.innerText = parsed['ip'];
+            ip.textContent = parsed['ip'];
         }
     });
 });
@@ -117,13 +117,13 @@ $('form#controllerform').submit(function(event)    {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
             var name = document.getElementById('nameController');
-            name.innerText = 'fuck you';/*parsed['name'];*/
+            name.textContent = 'fuck you';/*parsed['name'];*/
             var red = document.getElementById('redController');
-            red.innerText = parsed['red'];
+            red.textContent = parsed['red'];
             var green = document.getElementById('greenController');
-            green.innerText = parsed['green'];
+            green.textContent = parsed['green'];
             var blue = document.getElementById('blueController');
-            blue.innerText = parsed['blue'];
+            blue.textContent = parsed['blue'];
         }
     });
 });
