@@ -61,7 +61,7 @@ def submitForm(data):
 def loadData(background=0, date_range=datetime.today(), max_results=120):
     while True:
         # Fix date_range to correctly show today without time values
-        date_range = date_range.replace(day=30, hour=0, minute=0, second=0,microsecond=0)
+        date_range = date_range.replace(hour=0, minute=0, second=0,microsecond=0)
         
         # Query the database
         latestTemp = Reading.query.filter_by(data_type=data_type_dict['dht11_temperature']).order_by(Reading.id.desc()).first()
