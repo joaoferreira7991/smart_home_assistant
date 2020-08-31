@@ -1,5 +1,6 @@
 from app import db, socketio
 from app.models import Reading, data_type_dict, Actuator, ControllerLed
+from app.forms import ActuatorCreateForm, ControllerCreateForm
 from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
 from utils.fix_data import readingArr, actuatorArr_client, actuatorArr_pi, controllerArr_client, controllerArr_pi, controller_pi
@@ -19,6 +20,10 @@ def connect_user():
 @socketio.on('submitForm', namespace='/client-user')
 def submitForm(data):
     print(data)
+    if data['type'] == 'actuator':
+        form = ActuatorCreateForm()
+    elif data['type'] == 'controller':
+        form = ControllerCreateForm()
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
