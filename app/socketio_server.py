@@ -47,6 +47,7 @@ def submitForm(data):
             socketio.emit('addController', data=controller_pi(oController), namespace='/client-pi')
             return json.dumps({'OK':1})
         else :
+            print(form.errors.items())
             aux = {
                 'OK' : 0,
                 'errors' : form.errors
