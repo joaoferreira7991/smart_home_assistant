@@ -95,8 +95,10 @@ $('form#actuatorform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            document.getElementById('nameActuator').innerText = parsed['name'];
-            document.getElementById('ipActuator').innerText = parsed['ip'];
+            var name = document.getElementById('nameActuator');
+            name.innerText = parsed['name'];
+            var ip = document.getElementById('ipActuator');
+            ip.innerText = parsed['ip'];
         }
     });
 });
@@ -114,10 +116,14 @@ $('form#controllerform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            document.getElementById('nameController').innerText = parsed['name'];
-            document.getElementById('redController').innerText = parsed['red'];
-            document.getElementById('greenController').innerText = parsed['green'];
-            document.getElementById('blueController').innerText = parsed['blue'];
+            var name = document.getElementById('nameController');
+            name.innerText = parsed['name'];
+            var red = document.getElementById('redController');
+            red.innerText = parsed['red'];
+            var green = document.getElementById('greenController');
+            green.innerText = parsed['green'];
+            var blue = document.getElementById('blueController');
+            blue.innerText = parsed['blue'];
         }
     });
 });
