@@ -96,7 +96,7 @@ $('form#actuatorform').submit(function(event)    {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
             for (i in parsed['errors'])    {
-                alert(i);
+                alert(parsed[i]);
             }
         }
     });
@@ -116,7 +116,7 @@ $('form#controllerform').submit(function(event)    {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
             for (i in parsed['errors'])    {
-                alert(i);
+                alert(parsed[i]);
             }
         }
     });
