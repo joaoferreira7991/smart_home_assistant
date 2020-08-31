@@ -5,7 +5,7 @@ from flask_socketio import emit
 from utils.json_util import DateTimeDecoder, DateTimeEncoder
 from utils.fix_data import readingArr, actuatorArr_client, actuatorArr_pi, controllerArr_client, controllerArr_pi, controller_pi
 from datetime import datetime, time, date, timedelta
-from werkzeug import MultiDict
+from werkzeug.datastructures import MultiDict
 import json, sys
 
 
