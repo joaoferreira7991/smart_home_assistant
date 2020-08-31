@@ -22,13 +22,21 @@ def connect_user():
 def submitForm(data):
     print(data)
     if data['type'] == 'actuator':
+        print('actuator')
         data.pop('type')
+        print(data)
         form = ActuatorCreateForm(MultiDict(data))
+        if form.validate():
+            print('validate')
         
     elif data['type'] == 'controller':
+        print('controller')
         data.pop('type')
+        print(data)
         form = ControllerCreateForm(MultiDict(data))
-
+            if form.validate():
+            print('validate')
+                        
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
 def loadData(background=0, date_range=datetime.today(), max_results=120):
