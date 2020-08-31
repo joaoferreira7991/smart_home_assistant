@@ -20,14 +20,10 @@ def connect_user():
 # Form events
 @socketio.on('submitForm', namespace='/client-user')
 def submitForm(data):
-    print(data)
     if data['type'] == 'actuator':
-        print('actuator')
         data.pop('type')
-        print(data)
         form = ActuatorCreateForm(MultiDict(data))
         if form.validate():
-            print('validate')
             oActuator = Actuator(name=form.name.data, ip=form.ip.data)
             db.session.add(oActuator)
             db.session.commit()            
@@ -35,16 +31,17 @@ def submitForm(data):
             return {
                 'OK' : 1
             } 
-        else :            
-            return json.dumps(form.errors)
+        else :
+            aux = {
+                'OK' : 0,
+                form.errors
+            }            
+            return json.dumps(aux)
 
     elif data['type'] == 'controller':
-        print('controller')
         data.pop('type')
-        print(data)
         form = ControllerCreateForm(MultiDict(data))
         if form.validate():
-            print('validate')
             oController = ControllerLed(name=form.name.data, gpio_red=form.red.data, gpio_green=form.green.data, gpio_blue=form.blue.data)
             db.session.add(oController)
             db.session.commit()
@@ -52,9 +49,13 @@ def submitForm(data):
             socketio.emit('addController', data=controller_pi(oController), namespace='/client-pi')
             return {
                 'OK' : 1
-            } 
-        else :            
-            return json.dumps(form.errors)
+            }  
+        else :
+            aux = {
+                'OK' : 0,
+                form.errors
+            }            
+            return json.dumps(aux)
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
@@ -72,8 +73,6 @@ def loadData(background=0, date_range=datetime.today(), max_results=120):
         # Transform data to be sent
         arrTemperature = readingArr(aTemperature)
         arrHumidity = readingArr(aHumidity)
-        print(arrTemperature)
-        print(arrHumidity)
         
         data =   {  'latest_temp'       :   latestTemp.data_reading,
                     'latest_hum'        :   latestHum.data_reading,
