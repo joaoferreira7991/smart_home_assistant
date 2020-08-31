@@ -345,7 +345,7 @@ function parse_chart(data)   {
         var x = {
             x: new moment({
                 y: data[i][1].year,
-                M: data[i][1].month, 
+                M: data[i][1].month-1, 
                 d: data[i][1].day,
                 h: data[i][1].hour, 
                 m: data[i][1].minute,
