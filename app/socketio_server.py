@@ -36,9 +36,11 @@ def submitForm(data):
         form = ControllerCreateForm(MultiDict(data))
         if form.validate():
             print('validate')
-        else :
+            return form.errors
+        else :            
             print(form)
             print(form.errors)
+            return form.errors
 
 # Database reading events
 @socketio.on('loadData', namespace='/client-user')
