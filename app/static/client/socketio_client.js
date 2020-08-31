@@ -95,9 +95,8 @@ $('form#actuatorform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            for (i in parsed)    {
-                alert(parsed[i]);
-            }
+            document.getElementById('nameActuator').innerHTML = parsed['name'];
+            document.getElementById('ipActuator').innerHTML = parsed['ip'];
         }
     });
 });
@@ -115,9 +114,10 @@ $('form#controllerform').submit(function(event)    {
     socketio.emit('submitForm', data=data, function(data)   {
         parsed = JSON.parse(data);
         if(parsed['OK'] == 0) {
-            for (i in parsed)    {
-                alert(parsed[i]);
-            }
+            document.getElementById('nameController').innerHTML = parsed['name'];
+            document.getElementById('redController').innerHTML = parsed['red'];
+            document.getElementById('greenController').innerHTML = parsed['green'];
+            document.getElementById('blueController').innerHTML = parsed['blue'];
         }
     });
 });
