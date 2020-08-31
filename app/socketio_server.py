@@ -251,7 +251,7 @@ def controllerDel(data):
         print('ola')
         db.session.delete(oControllerLed)
         db.session.commit()
-        socketio.emit('deleteController', data=data, namespace='/client-pi')
+        socketio.emit('deleteController', data=controller_pi(oControllerLed), namespace='/client-pi')
         socketio.emit('deleteController', data=data, namespace='/client-user')
 
 # -------------------------------------
