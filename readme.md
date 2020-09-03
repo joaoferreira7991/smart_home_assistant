@@ -1,10 +1,10 @@
 # Smart Home Assistant
 
-Implementation of web application using Flask for remote monitoring and controlling of a house using sensors and actuators.
+Implementation of a web application using Flask and Gunicorn for remote monitoring and controlling of a house using sensors and actuators.
 
 ## How to make the virtual environment work
 
-After cloning the repository, delete the virtual folder. Then, run 
+After cloning the repository, run the script above, 
 ```bash
 source setup.sh
 ```
