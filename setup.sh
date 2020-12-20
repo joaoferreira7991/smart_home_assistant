@@ -6,7 +6,7 @@ echo "--Deleting old environment--"
 rm -r -f ./virtual/
 
 echo "--Making environment--"
-python3.8 -m venv virtual
+python3 -m venv virtual
 source ./virtual/bin/activate
 
 
